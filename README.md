@@ -1,7 +1,7 @@
 # CloudMusic-wx
 
-仿网易云音乐的微信小程序
-需下载[node服务器](https://github.com/Binaryify/NeteaseCloudMusicApi),并启动node app.js
+# 仿网易云音乐的微信小程序
+# 需下载[node服务器](https://github.com/Binaryify/NeteaseCloudMusicApi),并启动node app.js
 
 ### 已实现
 
