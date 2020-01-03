@@ -1,0 +1,64 @@
+@keyframes loading1 {
+  0% {
+    height: 100%;
+  }
+
+  50% {
+    height: 40%;
+  }
+
+  100% {
+    height: 100%;
+  }
+}
+
+@keyframes loading2 {
+  0% {
+    height: 40%;
+  }
+
+  50% {
+    height: 100%;
+  }
+
+  100% {
+    height: 40%;
+  }
+}
+
+.loading {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100rpx;
+  margin: 0 auto;
+}
+
+.loading > text {
+  margin-left: 20rpx;
+}
+
+.loading-icon {
+  width: 20rpx;
+  height: 28rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.loading-icon > view {
+  width: 1px;
+  height: 100%;
+  background-color: #f00;
+  border-radius: 50px;
+}
+
+.loading-icon > view:nth-child(odd) {
+  animation: loading1 .5s linear infinite;
+}
+
+.loading-icon > view:nth-child(even) {
+  animation: loading2 .5s linear infinite;
+}
+

@@ -1,0 +1,18 @@
+<template name="playerTemplate">
+  <!-- 唱片机 -->
+  <view class="player-phonograph" style="background-image: url({{curPlayPicUrl||''}});">
+    <image class="player-stick {{isPlayState?'player-stick-turn':''}}" src="../../images/stick.png" />
+    <view class="player-disc {{isPlayState?'player-disc-running':''}}" catch:longpress="onFullPic" data-imgurl="{{curPlayPicUrl}}">
+      <image class="player-img" src="{{curPlayPicUrl}}" />
+      <image class="player-light" src="../../images/light.png" />
+      <image class="player-cover" src="../../images/cover.png" />
+    </view>
+    <view class="player-bar">
+      <view class="iconfont icon-orderPlay"></view>
+      <view class="iconfont icon-last"></view>
+      <view class="iconfont {{isPlayState?'icon-play':'icon-pause'}}" catch:tap="onToggleState"></view>
+      <view class="iconfont icon-next"></view>
+      <view class="iconfont icon-menu"></view>
+    </view>
+  </view>
+</template>

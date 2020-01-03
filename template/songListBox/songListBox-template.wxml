@@ -1,0 +1,14 @@
+<template name="songListBoxTemplate">
+
+  <view class="songListBox">
+    <view class="songListBox-img" style="background-image: url({{picUrl}});">
+      <view class="songListBox-playBtn" wx:if="{{isPlayBtnShow}}"></view>
+      <view class="songListBox-playCount" wx:if="{{playCount}}">
+        <text class="iconfont icon-playCountTriangle"></text>{{playCount}}
+      </view>
+    </view>
+    <text class="songListBox-name {{artist?'songListBox-name-nowrap':''}}" wx:if="{{name}}">{{name}}</text>
+    <text class="songListBox-author" wx:if="{{artist}}">{{artist}}</text>
+  </view>
+
+</template>

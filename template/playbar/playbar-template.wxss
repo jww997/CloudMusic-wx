@@ -1,0 +1,69 @@
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.playbar {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 80rpx;
+  background: #fff;
+  border-top: 1px solid #eee;
+  z-index: 3;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.playbar-image {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  background-size: 100%;
+  background-color: #eee;
+  margin: 0 20rpx;
+  transform-origin: center;
+  animation: rotate 10s infinite linear paused;
+  transition: animation 1s;
+  flex-shrink: 0;
+}
+
+.playbar-image.playbar-image-rotate {
+  animation-play-state: running;
+}
+
+.playbar-text {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.playbar-text text:last-child {
+  color: #333;
+  font-size: 20rpx;
+}
+
+.playbar text {
+  flex-grow: 1;
+  max-width: 500rpx;
+
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.playbar .iconfont {
+  font-size: 40rpx;
+  margin: 0 15rpx;
+  flex-shrink: 0;
+}
+
+.playbar .icon-play, .playbar .icon-pause {
+  font-size: 44rpx;
+}

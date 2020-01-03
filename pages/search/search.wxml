@@ -1,0 +1,52 @@
+<import src="/template/loading/loading-template.wxml" />
+<import src="/template/songListBox/songListBox-template.wxml" />
+<import src="/template/playbar/playbar-template.wxml" />
+
+<view id="search">
+  <!-- 输入框 -->
+  <view class="search-input">
+    <input placeholder="老朋友 - 励志豪" value="{{searchValue}}" placeholder-style="color: #ccc" catch:input="onSearch"></input>
+    <text class="iconfont icon-singer"></text>
+  </view>
+  <!-- 底部播放栏 -->
+  <template is="playbarTemplate" data="{{isShowPlayBar, isPlayState, playing}}" />
+  <!-- 历史记录 -->
+  <view class="search-history">
+    <view class="search-history-title">
+      <text>历史记录</text>
+      <view class="iconfont icon-empty"></view>
+    </view>
+    <view class="search-history-content">
+      <view>123</view>
+      <view>123</view>
+      <view>123</view>
+      <view>123</view>
+      <view>123</view>
+      <view>123</view>
+      <view>123</view>
+      <view>123</view>
+      <view>123</view>
+      <view>123</view>
+      <view>123</view>
+      <view>123</view>
+      <view>123</view>
+      <view>123</view>
+      <view>123</view>
+      <view>123</view>
+      <view>123</view>
+    </view>
+
+  </view>
+  <!-- 搜索结果 -->
+  <view class="search-result">
+    <block wx:for="{{searchList}}" wx:key="{{item.id}}">
+      <view class="search-result-item" hover-class="search-result-item-hover" catch:tap="toPages" data-to="player" data-id="{{item.id}}">
+        <view class="search-song">
+          <text>{{item.name}}</text>
+          <text>{{item.artists[0].name + " - " + item.album.name}}</text>
+        </view>
+        <view class="iconfont icon-songMore"></view>
+      </view>
+    </block>
+  </view>
+</view>

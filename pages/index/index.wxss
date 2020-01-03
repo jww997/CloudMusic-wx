@@ -1,0 +1,156 @@
+Page {
+  height: 100%;
+  /* overflow: hidden; */
+}
+
+.toolbar, .container {
+  z-index: 1;
+}
+
+.container {
+  width: 100%;
+  height: 93%;
+  position: absolute;
+  top: 7%;
+  overflow: hidden;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: #f00;
+  width: 100%;
+  height: 7%;
+  color: #fff;
+  position: absolute;
+}
+
+.toolbar text {
+  width: 100rpx;
+  opacity: 0.8;
+}
+
+text.toolbar-active {
+  font-weight: bold;
+  font-size: 30rpx;
+  opacity: 1;
+}
+
+.icon-more, .icon-search {
+  position: absolute;
+  font-size: 40rpx;
+}
+
+.icon-more {
+  left: 5%;
+}
+
+.icon-search {
+  right: 5%;
+}
+
+.banner {
+  height: 0;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 150rpx;
+  margin-bottom: 100rpx;
+  background: #f00;
+}
+
+.banner swiper {
+  width: 100%;
+  height: 250rpx;
+}
+
+.banner swiper-item {
+  box-sizing: border-box;
+  padding: 0 5%;
+}
+
+.banner image {
+  width: 100%;
+  height: 100%;
+  border-radius: 10rpx;
+}
+
+.menu-items {
+  display: flex;
+  justify-content: space-around;
+}
+
+.menu-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.menu-item text {
+  font-size: 20rpx;
+  margin-top: 10rpx;
+}
+
+.menu_icon {
+  width: 70rpx;
+  height: 70rpx;
+  background: #f00;
+  border-radius: 50%;
+  font-size: 55rpx;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wrap {
+  width: 690rpx;
+  margin: 0 auto;
+}
+
+.wrap-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 28rpx;
+  padding: 0 15rpx;
+  width: 100%;
+}
+
+.wrap-title {
+  display: flex;
+  align-items: center;
+}
+
+.wrap-title text {
+  width: 60rpx;
+  font-size: 22rpx;
+  color: #666;
+}
+
+.wrap-header .wrap-title-checked {
+  font-weight: bold;
+  font-size: 28rpx;
+  color: #333;
+}
+
+.wrap-titleLine {
+  width: 1px;
+  height: 22rpx;
+  background: #999;
+  font-size: 24rpx;
+  margin: 0 20rpx;
+}
+
+.wrap-more {
+  padding: 0 15rpx;
+  margin-right: 10rpx;
+  font-size: 22rpx;
+  border: 1px solid #999;
+  border-radius: 15px;
+  color: #666;
+}
+
+.wrap-box {
+  margin: 0 15rpx;
+}

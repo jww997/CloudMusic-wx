@@ -1,0 +1,206 @@
+Page {
+  height: 100%;
+}
+
+.mv {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 100%;
+}
+
+.mv-video {
+  width: 100%;
+  height: 400rpx;
+  flex-shrink: 0;
+}
+
+.mv-container {
+  width: 100%;
+  flex-grow: 1;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.wrap {
+  width: 690rpx;
+  margin: 0 auto;
+}
+
+.mv-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  width: 690rpx;
+  margin: 20rpx auto 0;
+}
+
+.mv-playCount {
+  font-size: 22rpx;
+  color: #999;
+  width: 690rpx;
+  margin: 20rpx auto 0;
+}
+
+.mv-more {
+  font-size: 22rpx;
+  margin-top: 20rpx;
+  color: #666;
+  width: 690rpx;
+  margin: 0 auto;
+}
+
+.mv-more > view {
+  margin-top: 10rpx;
+  line-height: 40rpx;
+}
+
+.mv-menu {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 30rpx;
+}
+
+.mv-menu > view {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 25rpx;
+  color: #555;
+}
+
+.mv-menu .iconfont {
+  font-size: 40rpx;
+}
+
+.mv-hr {
+  width: 100%;
+  height: 1px;
+  background-color: #eee;
+  margin-top: 20rpx;
+}
+
+.mv-singer {
+  padding: 0 30rpx;
+  height: 80rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 20rpx;
+  background-color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 9;
+}
+
+.mv-singer view {
+  height: 40rpx;
+  line-height: 40rpx;
+  border-radius: 30px;
+  padding: 0 20rpx;
+  font-size: 24rpx;
+  background-color: #f00;
+  color: #fff;
+}
+
+.mv-singer + .mv-hr,
+.mv-relatedVideo + .mv-hr {
+  height: 8px;
+  margin: 0;
+}
+
+.mv-relatedMusic > view:first-child,
+.mv-relatedVideo > view:first-child,
+.mv-comment-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  margin: 20rpx 0;
+}
+
+.mv-relatedVideo-row {
+  display: flex;
+  margin: 15rpx 0;
+}
+
+.mv-relatedVideo-row > view:first-child {
+  position: relative;
+}
+
+.mv-relatedVideo-row-playCount {
+  position: absolute;
+  top: 10rpx;
+  right: 10rpx;
+  color: #fff;
+  font-size: 18rpx;
+}
+
+.mv-relatedVideo-row-playCount text {
+  display: inline-block;
+}
+
+.mv-relatedVideo-row image {
+  width: 250rpx;
+  height: 150rpx;
+  border-radius: 5px;
+}
+
+.mv-relatedVideo-row > view:last-child {
+  padding: 20rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  font-size: 22rpx;
+}
+
+.mv-relatedVideo-row > view:last-child text:last-child {
+  font-size: 20rpx;
+  color: #666;
+}
+
+.mv-comment-row {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  margin-top: 20rpx;
+}
+
+.mv-comment-row image {
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.mv-comment-row-info {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-left: 20rpx;
+  padding-bottom: 20rpx;
+  border-bottom: 1px solid #eee;
+}
+
+.mv-comment-row-info text:first-child {
+  font-size: 24rpx;
+  color: #333;
+}
+
+.mv-comment-row-info text:nth-child(2) {
+  font-size: 22rpx;
+  color: #666;
+  margin-top: 5rpx;
+}
+
+.mv-comment-row-info text:last-child {
+  font-size: 26rpx;
+  margin-top: 10rpx;
+}
+
+.mv-comment-row-likedCount {
+  position: absolute;
+  right: 5rpx;
+  top: 5rpx;
+  color: #666;
+}

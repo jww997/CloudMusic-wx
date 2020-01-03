@@ -1,0 +1,94 @@
+<view class="mv">
+
+  <video class="mv-video" id="video" src="{{video.url||''}}" autoplay loop></video>
+  <view class="mv-container">
+    <!-- 视频信息 -->
+    <view class="mv-title">{{video.title}}</view>
+    <view class="mv-playCount">{{video.playCount}}次观看</view>
+    <view class="mv-more">
+      <view>{{video.publishTime}} 发布</view>
+      <view>{{video.description}}</view>
+    </view>
+    <view class="mv-menu">
+      <view>
+        <view class="iconfont icon-like"></view>
+        <text>{{video.likeCount}}</text>
+      </view>
+      <view>
+        <view class="iconfont icon-collect"></view>
+        <text>{{video.collectCount}}</text>
+      </view>
+      <view>
+        <view class="iconfont icon-comment"></view>
+        <text>{{video.commentCount}}</text>
+      </view>
+      <view>
+        <view class="iconfont icon-share"></view>
+        <text>{{video.shareCount}}</text>
+      </view>
+    </view>
+    <view class="mv-hr"></view>
+    <view class="mv-singer">
+      <text>{{video.singer}}</text>
+      <view>+ 收藏</view>
+    </view>
+    <view class="mv-hr"></view>
+    <!-- 相关音乐 -->
+    <view class="mv-relatedMusic wrap">
+      <view>相关音乐</view>
+    </view>
+    <!-- 相关视频 -->
+    <view class="mv-relatedVideo wrap">
+      <view>相关视频</view>
+      <view class="mv-relatedVideo-row" wx:for="{{relatedVideo}}" wx:key="index">
+        <view>
+          <image mode="aspectFill" src="{{item.image}}"></image>
+          <view class="mv-relatedVideo-row-playCount">
+            <text class="iconfont icon-playCountTriangle"></text>
+            <text>{{item.playCount}}</text>
+          </view>
+        </view>
+        <view>
+          <text>{{item.title}}</text>
+          <text>{{item.duration}} by {{item.singer}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="mv-hr"></view>
+    <!-- 精彩评论 -->
+    <view class="mv-comment wrap">
+      <view class="mv-comment-title" wx:if="{{hotComment.length}}">精彩评论</view>
+      <view class="mv-comment-row" wx:for="{{hotComment}}" wx:key="index">
+        <image src="{{item.image}}"></image>
+        <view class="mv-comment-row-info">
+          <text>{{item.name}}</text>
+          <text>{{item.time}}</text>
+          <text>{{item.content}}</text>
+        </view>
+        <view class="mv-comment-row-likedCount">
+          <text>{{item.likedCount}} </text>
+          <text class="iconfont icon-like"></text>
+        </view>
+      </view>
+      <view class="mv-comment-title">最新评论</view>
+      <view class="mv-comment-row" wx:for="{{newComment}}" wx:key="index">
+        <image src="{{item.image}}"></image>
+        <view class="mv-comment-row-info">
+          <text>{{item.name}}</text>
+          <text>{{item.time}}</text>
+          <text>{{item.content}}</text>
+        </view>
+        <view class="mv-comment-row-likedCount">
+          <text>{{item.likedCount}} </text>
+          <text class="iconfont icon-like"></text>
+        </view>
+      </view>
+
+
+
+    </view>
+
+
+  </view>
+
+</view>

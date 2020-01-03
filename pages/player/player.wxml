@@ -1,0 +1,80 @@
+<view class="player-wrap" style="background-image: url({{playing.image||''}});">
+  <!-- 播放器 -->
+  <view class="player {{isShowPlaylist? 'player-playlist-bg':''}}" catch:tap="onHidePlaylist">
+    <!-- 唱片机 -->
+    <view class="player-phonograph" hidden="{{isShowlyric}}" catch:tap="onToggleShowlyric">
+      <!-- 手柄 -->
+      <image class="player-stick {{isPlayState?'player-stick-turn':''}}" src="../../images/stick.png" />
+      <!-- 转盘 -->
+      <view class="player-disc {{isPlayState?'player-disc-running':''}}" catch:longpress="onFullPic" data-imgurl="{{playing.image||''}}">
+        <image class="player-img" mode="aspectFill" src="{{playing.image||'/images/chassis.png'}}" />
+        <image class="player-light" src="../../images/light.png" />
+        <image class="player-cover" src="../../images/cover.png" />
+      </view>
+      <!-- 操作 -->
+      <view class="player-operation">
+        <view class="iconfont icon-love"></view>
+        <view class="iconfont icon-download-2"></view>
+        <view class="iconfont icon-polyphonic"></view>
+        <view class="iconfont icon-comment"></view>
+        <view class="iconfont icon-playerMore"></view>
+      </view>
+    </view>
+    <!-- 歌词 -->
+    <view class="player-lyric" hidden="{{!isShowlyric}}" catch:tap="onToggleShowlyric">
+      <view class="player-lyric-wrap">
+        <view class="player-lyric-list" style="top: -{{curLrcIndex*80}}rpx;">
+          <block wx:for="{{playing.lyric}}" wx:key="index">
+            <view class="{{index == curLrcIndex?'current': ''}}">{{item.lrc}}</view>
+          </block>
+        </view>
+      </view>
+    </view>
+
+
+    <!-- 工具区 -->
+    <view class="player-toolbar">
+      <!-- 进度条 -->
+      <view class="player-progress">
+        <text>{{currentTime}}</text>
+        <slider backgroundColor="#ccc" activeColor="#f00" block-size="12" value="{{sliderValue}}" max="{{sliderMax}}" bind:change="onChangeProgress"></slider>
+        <text>{{duration}}</text>
+      </view>
+      <!-- 控制条 -->
+      <view class="player-bar">
+        <view class="iconfont icon-orderPlay"></view>
+        <view class="iconfont icon-last" catch:tap="onChangePlaying" data-id="-1" data-type="last"></view>
+        <view class="iconfont {{isPlayState?'icon-play':'icon-pause'}}" catch:tap="onTogglePlayState"></view>
+        <view class="iconfont icon-next" catch:tap="onChangePlaying" data-id="1" data-type="next"></view>
+        <view class="iconfont icon-list" catch:tap="onShowPlaylist"></view>
+      </view>
+    </view>
+  </view>
+  <!-- 播放列表 -->
+  <view class="player-playlist {{!isShowPlaylist? 'player-playlist-hidden':''}}">
+    <view class="player-playlist-topbar">
+      <view>
+        <view class="iconfont icon-orderPlay"></view>
+        <text>列表循环（{{playlist.length}}）</text>
+      </view>
+      <view>
+        <view class="iconfont icon-collectAll"></view>
+        <text>收藏全部</text>
+        <view class="iconfont icon-empty"></view>
+      </view>
+    </view>
+    <view class="player-playlist-list">
+      <block wx:for="{{playlist}}" wx:key="index">
+        <view class="player-playlist-list-item {{playing.id==item.id?'player-playlist-list-item-active':''}}" hover-class="player-playlist-list-item-hover" catch:tap="onChangePlaying" data-id="{{index}}">
+          <view class="{{playing.id==item.id?'iconfont icon-trumpet':''}}"></view>
+          <view>
+            <text>{{item.title}}</text>
+            <text> - {{item.singer}}</text>
+          </view>
+          <view class="iconfont icon-delete"></view>
+        </view>
+      </block>
+    </view>
+    <!-- <view class="player-playlist-close" catch:tap="onHidePlaylist">关闭</view> -->
+  </view>
+</view>

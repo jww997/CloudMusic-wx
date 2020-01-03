@@ -1,0 +1,61 @@
+<import src="/template/loading/loading-template.wxml" />
+<import src="/template/songListBox/songListBox-template.wxml" />
+<import src="/template/playbar/playbar-template.wxml" />
+
+<!-- 底部播放栏 -->
+<template is="playbarTemplate" data="{{isShowPlayBar,isPlayState,curPlayId,curPlayPicUrl,curPlaySong,curPlayAuthor}}" />
+
+
+<!-- 导航区 -->
+<view class="square-nav">
+
+  <view class="square-nav-list">
+    <view class="square-nav-list-item square-nav-list-item-active">推荐</view>
+    <view class="square-nav-list-item">官方</view>
+    <view class="square-nav-list-item">精品</view>
+    <view class="square-nav-list-item">华语</view>
+    <view class="square-nav-list-item">民谣</view>
+    <view class="square-nav-list-item">电子</view>
+    <view class="square-nav-list-item">R&B/Soul</view>
+    <view class="square-nav-list-item">说唱</view>
+
+    <view class="square-nav-list-line">
+      <view></view>
+    </view>
+  </view>
+
+  <view class="iconfont icon-classify"></view>
+</view>
+
+
+<!-- 内容区 -->
+<swiper>
+  <swiper-item>推荐</swiper-item>
+  <swiper-item>官方</swiper-item>
+  <swiper-item>精品</swiper-item>
+  <swiper-item>华语</swiper-item>
+  <swiper-item>民谣</swiper-item>
+  <swiper-item>电子</swiper-item>
+  <swiper-item>R&B/Soul</swiper-item>
+  <swiper-item>说唱</swiper-item>
+</swiper>
+
+
+
+
+
+
+
+
+
+
+<view class="wrap" style="{{isShowPlayBar?'padding-bottom:80rpx;':''}}">
+  <template is="loadingTemplate" wx:if="{{!playlists.length}}" />
+  <view class="songlist" wx:else>
+    <block wx:for="{{playlists}}" wx:key="index">
+      <view class="songlist-item margin-top" catch:tap="toPages" data-to="songListDetail" data-id="{{item.id}}">
+        <template is="songListBoxTemplate" data="{{picUrl: item.coverImgUrl, playCount: item.playCount, name: item.name}}" />
+      </view>
+    </block>
+  </view>
+</view>

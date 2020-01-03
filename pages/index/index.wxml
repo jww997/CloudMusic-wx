@@ -1,0 +1,105 @@
+<import src="/template/loading/loading-template.wxml" />
+<import src="/template/songListBox/songListBox-template.wxml" />
+<import src="/template/playbar/playbar-template.wxml" />
+
+<!-- 顶部工具栏 -->
+<view class="toolbar">
+  <text class="{{showHomeIndex==0?'toolbar-active':''}}" catch:tap="onToggleHomeIndex" data-index="0">我的</text>
+  <text class="{{showHomeIndex==1?'toolbar-active':''}}" catch:tap="onToggleHomeIndex" data-index="1">发现</text>
+  <text class="{{showHomeIndex==2?'toolbar-active':''}}" catch:tap="onToggleHomeIndex" data-index="2">云村</text>
+  <text class="{{showHomeIndex==3?'toolbar-active':''}}" catch:tap="onToggleHomeIndex" data-index="3">视频</text>
+
+  <view class="iconfont icon-more"></view>
+  <view class="iconfont icon-search" catch:tap="toPages" data-to="search"></view>
+
+</view>
+<!-- 底部播放栏 -->
+<template is="playbarTemplate" data="{{isShowPlayBar, isPlayState, playing}}" />
+<!-- 主体内容 -->
+<swiper class="container" current="{{showHomeIndex}}" catch:change="onToggleHomeIndex">
+  <swiper-item>我的(待开发)</swiper-item>
+  <swiper-item class="discover">
+
+    <scroll-view style="height: 100%;" scroll-y="{{true}}">
+      <!-- 轮播图 -->
+      <view class="banner">
+        <swiper autoplay="{{true}}" indicator-dots="{{true}}" circular="{{true}}" indicator-active-color="#f00">
+          <swiper-item wx:for="{{banners}}" wx:key="index">
+            <image mode="scaleToFill" src="{{item.image}}" />
+          </swiper-item>
+        </swiper>
+      </view>
+      <!-- 菜单栏 -->
+      <view class="menu-items padding-top">
+        <view class="menu-item">
+          <view class="menu_icon iconfont icon-sirenfm"></view>
+          <text>私人FM</text>
+        </view>
+        <view class="menu-item" catch:tap="toPages" data-to="songListSquare">
+          <view class="menu_icon iconfont icon-gedan"></view>
+          <text>歌单</text>
+        </view>
+        <view class="menu-item" catch:tap="toPages" data-to="rankingList">
+          <view class="menu_icon iconfont icon-paihangbang"></view>
+          <text>排行榜</text>
+        </view>
+        <view class="menu-item">
+          <view class="menu_icon iconfont icon-diantai"></view>
+          <text>电台</text>
+        </view>
+        <view class="menu-item">
+          <view class="menu_icon iconfont icon-meirituijian"></view>
+          <text>每日推荐</text>
+        </view>
+      </view>
+      <!-- 分割线 -->
+      <view class="hr margin-top"></view>
+      <!-- 推荐歌单 -->
+      <view class="recommend wrap padding-top flex-wrap">
+        <view class="wrap-header">
+          <view class="wrap-title-checked">推荐歌单</view>
+          <buttom class="wrap-more" catch:tap="toPages" data-to="songListSquare">歌单广场</buttom>
+        </view>
+        <template is="loadingTemplate" wx:if="{{!recommends.length}}" />
+        <block wx:else>
+          <view class="wrap-box" wx:for="{{recommends}}" wx:key="index" catch:tap="toPages" data-to="songListDetail" data-id="{{item.id}}">
+            <template is="songListBoxTemplate" data="{{name: item.title, picUrl: item.image, playCount: item.playCount}}" />
+          </view>
+        </block>
+      </view>
+      <!-- 新碟&新歌 -->
+      <view class="new wrap padding-top flex-wrap" style="{{isShowPlayBar?'padding-bottom:80rpx;':''}}">
+        <view class="wrap-header">
+          <view class="wrap-title">
+            <text class="{{showNewList == 1?'wrap-title-checked':''}}" catch:tap="onToggleNewList" data-id="1">新碟</text>
+            <view class="wrap-titleLine"></view>
+            <text class="{{showNewList == 2?'wrap-title-checked':''}}" catch:tap="onToggleNewList" data-id="2">新歌</text>
+          </view>
+          <buttom class="wrap-more" wx:if="{{showNewList == 1}}">更多新碟</buttom>
+          <buttom class="wrap-more" wx:elif="{{showNewList == 2}}">新歌推荐</buttom>
+        </view>
+        <!-- 新碟 -->
+        <view class="flex-wrap" hidden="{{!(showNewList == 1)}}">
+          <template is="loadingTemplate" wx:if="{{!newDiscs.length}}" />
+          <block wx:else>
+            <view class="wrap-box" wx:for="{{newDiscs}}" wx:key="index" wx:if="{{index<12}}" catch:tap="toPages" data-to="songListDetail" data-type="newDiscs" data-id="{{item.id}}">
+              <template is="songListBoxTemplate" data="{{name: item.title, picUrl: item.image, playCount: item.playCount, artist: item.singer}}" />
+            </view>
+          </block>
+        </view>
+        <!-- 新歌 -->
+        <view class="flex-wrap" hidden="{{!(showNewList == 2)}}">
+          <template is="loadingTemplate" wx:if="{{!newSongs.length}}" />
+          <block wx:else>
+            <view class="wrap-box" wx:for="{{newSongs}}" wx:key="index" wx:if="{{index<12}}" catch:tap="toPages" data-to="player" data-id="{{item.id}}" data-index="{{index}}">
+              <template is="songListBoxTemplate" data="{{name: item.title, picUrl: item.image, artist: item.singer, isPlayBtnShow: !!newSongs.length}}" />
+            </view>
+          </block>
+        </view>
+      </view>
+    </scroll-view>
+
+  </swiper-item>
+  <swiper-item>云村(待开发)</swiper-item>
+  <swiper-item>视频(待开发)</swiper-item>
+</swiper>

@@ -1,0 +1,162 @@
+@font-face {
+  font-family: 'iconfont';  /* project id 1534859 */
+  src: url('//at.alicdn.com/t/font_1534859_cq4ynzd2ooq.eot');
+  src: url('//at.alicdn.com/t/font_1534859_cq4ynzd2ooq.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_1534859_cq4ynzd2ooq.woff2') format('woff2'),
+  url('//at.alicdn.com/t/font_1534859_cq4ynzd2ooq.woff') format('woff'),
+  url('//at.alicdn.com/t/font_1534859_cq4ynzd2ooq.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_1534859_cq4ynzd2ooq.svg#iconfont') format('svg');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-sirenfm:before {
+  content: "\e634";
+}
+
+.icon-diantai:before {
+  content: "\e601";
+}
+
+.icon-paihangbang:before {
+  content: "\e604";
+}
+
+.icon-gedan:before {
+  content: "\e602";
+}
+
+.icon-meirituijian:before {
+  content: "\e603";
+}
+
+.icon-playCountTriangle:before {
+  content: "\e656";
+}
+
+.icon-more:before {
+  content: "\e70d";
+}
+
+.icon-search:before {
+  content: "\e607";
+}
+
+.icon-comment:before {
+  content: "\e65d";
+}
+
+.icon-share:before {
+  content: "\e65c";
+}
+
+.icon-download:before {
+  content: "\e65b";
+}
+
+.icon-multipleChoice:before {
+  content: "\e65a";
+}
+
+.icon-playall:before {
+  content: "\e641";
+}
+
+.icon-songMore:before {
+  content: "\e690";
+}
+
+.icon-list:before {
+  content: "\e664";
+}
+
+.icon-play:before {
+  content: "\e665";
+}
+
+.icon-pause:before {
+  content: "\e666";
+}
+
+.icon-last:before {
+  content: "\e663";
+}
+
+.icon-next:before {
+  content: "\e668";
+}
+
+.icon-orderPlay:before {
+  content: "\e600";
+}
+
+.icon-trumpet:before {
+  content: "\e66d";
+}
+
+.icon-singer:before {
+  content: "\e605";
+}
+
+.icon-empty:before {
+  content: "\e632";
+}
+
+.icon-collect:before {
+  content: "\e61d";
+}
+
+.icon-delete:before {
+  content: "\e626";
+}
+
+.icon-mv:before {
+  content: "\e606";
+}
+
+.icon-vip:before {
+  content: "\e670";
+}
+
+.icon-exclusive:before { 
+  content: "\e671";
+}
+
+.icon-sq:before {
+  content: "\e608";
+}
+
+.icon-like:before {
+  content: "\e697";
+}
+
+.icon-love:before {
+  content: "\e66a";
+}
+
+.icon-download-2:before {
+  content: "\e694";
+}
+
+.icon-polyphonic:before {
+  content: "\e98f";
+}
+
+.icon-commentCount:before {
+  content: "\e66b";
+}
+
+.icon-playerMore:before {
+  content: "\e66c";
+}
+
+.icon-classify:before {
+  content: "\e609";
+}
+

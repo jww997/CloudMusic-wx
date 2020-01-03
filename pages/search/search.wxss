@@ -1,0 +1,103 @@
+.search-input {
+  height: 80rpx;
+  padding: 0 30rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f00;
+  color: #fff;
+}
+
+.search-input>input {
+  height: 50rpx;
+  border-bottom: 1rpx solid #ccc;
+  box-sizing: border-box;
+  font-size: 26rpx;
+  flex-grow: 1;
+}
+
+.icon-singer {
+  font-size: 40rpx;
+  margin-left: 30rpx;
+}
+
+.search-history {
+  width: 690rpx;
+  margin: 40rpx auto;
+}
+
+.search-history-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.search-history-title text {
+  font-weight: bold;
+  font-size: 28rpx;
+}
+
+.search-history-title .icon-empty {
+  color: #666;
+  font-size: 40rpx;
+}
+
+.search-history-content {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+}
+
+.search-history-content view {
+  padding: 0 30rpx;
+  box-sizing: border-box;
+  background-color: #eee;
+  border-radius: 30px;
+  margin-top: 30rpx;
+  margin-right: 20rpx;
+}
+
+.search-history-content view:last-child {
+  margin-right: 0;
+}
+
+.search-result-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx;
+}
+
+.search-result-item-hover {
+  background-color: #eee;
+  transition: background-color 0.5s;
+}
+
+.search-song {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+  flex-grow: 1;
+  width: 80%;
+}
+
+.search-song>text:first-child {
+  font-size: 24rpx;
+  color: #000;
+}
+
+.search-song>text:last-child {
+  font-size: 18rpx;
+  color: #666;
+}
+
+.search-song text {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.icon-songMore {
+  color: #666;
+}

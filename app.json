@@ -1,0 +1,20 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/songListDetail/songListDetail",
+    "pages/songListSquare/songListSquare",
+    "pages/rankingList/rankingList",
+    "pages/player/player",
+    "pages/search/search",
+    "pages/mv/mv"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#f00",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "网易云音乐"
+  },
+  "sitemapLocation": "sitemap65.json",
+  "requiredBackgroundModes": [
+    "audio"
+  ]
+}
