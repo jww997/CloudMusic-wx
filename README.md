@@ -4,7 +4,7 @@
 
 需下载[node服务器](https://github.com/Binaryify/NeteaseCloudMusicApi),并启动node app.js.
 
-API由[@Binaryify](https://github.com/Binaryify)提供[文档](https://binaryify.github.io/NeteaseCloudMusicApi/#/),非常感谢!
+API与[文档](https://binaryify.github.io/NeteaseCloudMusicApi/#/)来自[@Binaryify](https://github.com/Binaryify),非常感谢!
 
 ### 已实现
 
