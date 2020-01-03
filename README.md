@@ -2,11 +2,11 @@
 
 仿网易云音乐的微信小程序
 
-需下载[node服务器](https://github.com/Binaryify/NeteaseCloudMusicApi),并启动node app.js.🤣
+需下载[node服务器](https://github.com/Binaryify/NeteaseCloudMusicApi), 并启动node app.js 🤣
 
-API与[文档](https://binaryify.github.io/NeteaseCloudMusicApi/#/)来自[@Binaryify](https://github.com/Binaryify),非常感谢!👍👍
+API与[文档](https://binaryify.github.io/NeteaseCloudMusicApi/#/)来自[@Binaryify](https://github.com/Binaryify), 非常感谢! 👍👍
 
-### 已实现😎
+### 😎 已实现
 
 * 专辑
 * 歌词
@@ -16,7 +16,7 @@ API与[文档](https://binaryify.github.io/NeteaseCloudMusicApi/#/)来自[@Binar
 * 排行榜
 * 播放条
 
-### 待开发👏
+### 👏 待开发
 
 * 用户
 * MV
@@ -34,7 +34,7 @@ API与[文档](https://binaryify.github.io/NeteaseCloudMusicApi/#/)来自[@Binar
 * 新歌 新专 分类电台
 
 
-### 参考同学👯‍♂️
+### 👯‍♂️ 参考同学
 
 https://github.com/aszt/wx-neteaseCloudMusic
 
