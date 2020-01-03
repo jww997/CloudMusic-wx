@@ -1,3 +1,12 @@
+Page {
+  height: 100%;
+}
+
+.square {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
 
 .square-nav {
   height: 80rpx;
@@ -53,9 +62,9 @@
   font-size: 30rpx;
 }
 
-
-
-
+swiper {
+  flex-grow: 1;
+}
 
 
 
@@ -79,7 +88,9 @@
 
 .wrap {
   width: 690rpx;
+  height: 100%;
   margin: 0 auto;
+  overflow: scroll;
 }
 
 .songlist {

@@ -198,6 +198,9 @@ Page({
       isShowPlaylist, // 显示&隐藏 播放列表
       isShowlyric, // 显示&隐藏 歌词
     } = app.globalData;
+    let {
+      curLrcIndex,
+    } = that.data;
 
     console.log(playing);
     console.log(isPlayState);
@@ -243,12 +246,13 @@ Page({
       let {
         playing: {
           lyric
-        }
+        },
       } = that.data;
-      for (let i in secArr) {
-        if (lyric.lrc < BackgroundAudioManager.currentTime) {
+      if (!lyric.length) return;
+      for (let i in lyric) {
+        if (lyric[i].sec < BackgroundAudioManager.currentTime) {
           curLrcIndex = i
-        }
+        };
       };
       // if (curLrcIndex != i) return;
       that.setData({
