@@ -33,6 +33,10 @@
 * 用户动态，粉丝
 * 新歌 新专 分类电台
 
+### 效果图
+
+<image width="340" src="https://github.com/jww997/CloudMusic-wx/other/1.gif"/><image width="340" src="https://github.com/jww997/CloudMusic-wx/other/2.gif"/><image width="340" src="https://github.com/jww997/CloudMusic-wx/other/3.gif"/>
+
 
 ### 👯‍♂️ 参考同学
 
