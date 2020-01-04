@@ -35,7 +35,7 @@
 
 ### 效果图
 
-<image width="340" src="https://github.com/jww997/CloudMusic-wx/other/1.gif"/><image width="340" src="https://github.com/jww997/CloudMusic-wx/other/2.gif"/><image width="340" src="https://github.com/jww997/CloudMusic-wx/other/3.gif"/>
+<image width="340" src="https://github.com/jww997/CloudMusic-wx/blob/master/other/1.gif"/><image width="340" src="https://github.com/jww997/CloudMusic-wx/blob/master/other/2.gif"/><image width="340" src="https://github.com/jww997/CloudMusic-wx/blob/master/other/3.gif"/>
 
 
 ### 👯‍♂️ 参考同学
