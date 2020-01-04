@@ -25,13 +25,15 @@ Page({
     isShowPlayBar: false, // 显示&隐藏 底部栏
     isShowPlaylist: false, // 显示&隐藏 播放列表
     isShowlyric: false, // 显示&隐藏 歌词
+    isScrollLyric: false, // 歌词能否滚动
 
     currentTime: '00:00', // 进度时长
     duration: '00:00', // 总时长
     sliderValue: 0, // 当前滑块值
     sliderMax: 0, // 滑块最大值
-    curLrcIndex: 0, // m
-
+    curLrcIndex: 0, // 当前歌词下标
+    curLrcStartHeight: 0, // 滑动初始高度
+    curLrcScrolledHeight: 0, // 滑动高度
   },
 
   /**
@@ -68,6 +70,7 @@ Page({
       playing,
     } = app.globalData;
 
+
     if (type) {
       playIndex = playIndex + Number(id); // 上下一首
       console.log(playIndex);
@@ -86,11 +89,11 @@ Page({
       that.setData({
         playing: {
           ...playing,
-          lyric: res.data.lrc.lyric, // 歌词
+          lyric: util.parseLyric(res.data.lrc.lyric), // 歌词
         }, // 当前播放的歌曲
       });
       // 更新全局
-      app.globalData.playing.lyric = res.data.lrc.lyric;
+      app.globalData.playing.lyric = util.parseLyric(res.data.lrc.lyric);
     });
 
     if (playing.url) {
@@ -166,6 +169,54 @@ Page({
     this.setData({
       isShowPlaylist: false
     });
+  },
+  onStartLyric: function(event) { // 开始拖动歌词
+    let that = this;
+    let {
+      curLrcStartHeight
+    } = that.data;
+
+    console.log(curLrcStartHeight);
+
+    let clientY = event.changedTouches[0].clientY;
+
+    that.setData({
+      isScrollLyric: true,
+      curLrcStartHeight: clientY
+    });
+
+  },
+  onMoveLyric: function(event) { // 正在拖动歌词
+
+    let that = this;
+    let {
+      curLrcStartHeight,
+    } = that.data;
+
+    let clientY = event.changedTouches[0].clientY;
+
+    that.setData({
+      isScrollLyric: true,
+      curLrcScrolledHeight: curLrcStartHeight - clientY
+    });
+
+
+  },
+  onEndLyric: function(event) { // 结束拖动歌词
+    let that = this;
+    let {
+      curLrcScrolledHeight
+    } = that.data;
+
+    let clientY = event.changedTouches[0].clientY;
+
+    setTimeout(function() {
+      that.setData({
+        isScrollLyric: false,
+        curLrcStartHeight: clientY
+      });
+    }, 2000);
+
   },
   onFullPic: function(event) { // 长按查看原图
     let current = event.currentTarget.dataset.imgurl;

@@ -64,10 +64,9 @@ function parseLyric(content) {
           lrc: row.split(']').pop(),
           sec: parseInt(time.split(':')[0] * 60 + time.split(':')[1] * 1)
         });
-      }
+      };
     };
-  }
-  console.log(newArr);
+  };
   return newArr;
 }
 

@@ -22,12 +22,10 @@
     </view>
     <!-- 歌词 -->
     <view class="player-lyric" hidden="{{!isShowlyric}}" catch:tap="onToggleShowlyric">
-      <view class="player-lyric-wrap">
-        <view class="player-lyric-list" style="top: -{{curLrcIndex*80}}rpx;">
-          <block wx:for="{{playing.lyric}}" wx:key="index">
-            <view class="{{index == curLrcIndex?'current': ''}}">{{item.lrc}}</view>
-          </block>
-        </view>
+      <view class="player-lyric-list" style="transform: translateY(-{{curLrcIndex*80 + (isScrollLyric? curLrcScrolledHeight*2: 0)}}rpx);{{!isScrollLyric?'transition: transform 1s;':''}}" bind:touchstart="onStartLyric" bind:touchmove="onMoveLyric" bind:touchend="onEndLyric">
+        <block wx:for="{{playing.lyric}}" wx:key="index">
+          <view class="{{index == curLrcIndex?'current': ''}}" style="{{curLrcIndex-4 <= index && index < curLrcIndex ? 'opacity: .6;': ''}}">{{item.lrc}}</view>
+        </block>
       </view>
     </view>
 

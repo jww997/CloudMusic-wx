@@ -2,7 +2,9 @@
 <import src="/template/songListBox/songListBox-template.wxml" />
 <import src="/template/playbar/playbar-template.wxml" />
 
-<view class="square">
+<import src="/template/songList/songList-template.wxml" />
+
+<view class="square" style="{{isShowPlayBar?'padding-bottom:80rpx;':''}}">
   <!-- 底部播放栏 -->
   <template is="playbarTemplate" data="{{isShowPlayBar, isPlayState, playing}}" />
   <!-- 导航区 -->
@@ -30,17 +32,8 @@
   <!-- 内容区 -->
   <swiper>
     <swiper-item>
-
-      <view class="wrap" style="{{isShowPlayBar?'padding-bottom:80rpx;':''}}">
-        <template is="loadingTemplate" wx:if="{{!playlists.length}}" />
-        <view class="songlist" wx:else>
-          <block wx:for="{{playlists}}" wx:key="index">
-            <view class="songlist-item margin-top" catch:tap="toPages" data-to="songListDetail" data-id="{{item.id}}">
-              <template is="songListBoxTemplate" data="{{picUrl: item.coverImgUrl, playCount: item.playCount, name: item.name}}" />
-            </view>
-          </block>
-        </view>
-      </view>
+      
+      <template is="songListTemplate" data="{{list: playlists}}" />
 
     </swiper-item>
     <swiper-item>官方</swiper-item>
@@ -52,3 +45,5 @@
     <swiper-item>说唱</swiper-item>
   </swiper>
 </view>
+
+

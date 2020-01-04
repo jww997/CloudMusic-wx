@@ -86,18 +86,4 @@ swiper {
 
 
 
-.wrap {
-  width: 690rpx;
-  height: 100%;
-  margin: 0 auto;
-  overflow: scroll;
-}
 
-.songlist {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.songlist-item {
-  margin: 0 15rpx;
-}
