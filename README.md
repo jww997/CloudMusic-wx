@@ -1,6 +1,6 @@
 # CloudMusic-wx
 
-仿网易云音乐的微信小程序 需下载[node服务器](https://github.com/Binaryify/NeteaseCloudMusicApi), 并启动 🤣
+仿网易云音乐的微信小程序 需下载[node服务器](https://github.com/Binaryify/NeteaseCloudMusicApi), 并启动
 
 [API文档](https://binaryify.github.io/NeteaseCloudMusicApi/#/)来自[@Binaryify](https://github.com/Binaryify), 非常感谢! 👍 👍
 
@@ -30,7 +30,7 @@
 * 收听记录
 * 歌词翻译
 
-### 效果图
+### ⛲ 效果图
 
 <image width="340" src="https://github.com/jww997/CloudMusic-wx/blob/master/other/1.png"/><image width="340" style="border: 1px solid #000;" src="https://github.com/jww997/CloudMusic-wx/blob/master/other/2.png"/><image width="340" src="https://github.com/jww997/CloudMusic-wx/blob/master/other/3.png"/><image width="340" src="https://github.com/jww997/CloudMusic-wx/blob/master/other/4.png"/><image width="340" src="https://github.com/jww997/CloudMusic-wx/blob/master/other/5.png"/><image width="340" src="https://github.com/jww997/CloudMusic-wx/blob/master/other/6.png"/>
 
@@ -40,9 +40,6 @@
 https://github.com/aszt/wx-neteaseCloudMusic
 
 https://github.com/sqaiyan/NeteaseMusicWxMiniApp
-
-
-
 
 
 ### 如果本示例对您学习小程序有帮助欢迎大佬赏杯奶茶喝
