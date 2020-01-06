@@ -259,7 +259,7 @@ Page({
 
     let secArr = new Array();
     // 获取歌词
-    util.getdata('lyric?id=' + playing.id, function(res) {
+    util.getdata('lyric?id=' + playing.id, function (res) {
       let lyric = util.parseLyric(res.data.lrc.lyric);
       lyric.forEach((value, index) => {
         secArr.push(value.sec);

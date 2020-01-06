@@ -1,40 +1,55 @@
 <import src="/template/loading/loading-template.wxml" />
 <import src="/template/songListBox/songListBox-template.wxml" />
 <import src="/template/playbar/playbar-template.wxml" />
-
 <import src="/template/songList/songList-template.wxml" />
 
-<view class="square" style="{{isShowPlayBar?'padding-bottom:80rpx;':''}}">
+<view class="square">
   <!-- 底部播放栏 -->
   <template is="playbarTemplate" data="{{isShowPlayBar, isPlayState, playing}}" />
-  <!-- 导航区 -->
-  <view class="square-nav">
-
-    <view class="square-nav-list">
-      <view class="square-nav-list-item square-nav-list-item-active">推荐</view>
-      <view class="square-nav-list-item">官方</view>
-      <view class="square-nav-list-item">精品</view>
-      <view class="square-nav-list-item">华语</view>
-      <view class="square-nav-list-item">民谣</view>
-      <view class="square-nav-list-item">电子</view>
-      <view class="square-nav-list-item">R&B/Soul</view>
-      <view class="square-nav-list-item">说唱</view>
-
-      <view class="square-nav-list-line">
-        <view></view>
+  <!-- 歌单标签 -->
+  <view class="square-label" hidden="{{!isShowLabel}}">
+    <view>
+      <view class="square-label-title">
+        <text>我的歌单广场</text>
+        <text>（长按可编辑）</text>
+      </view>
+      <view class="square-label-tags">
+        <view wx:for="{{mytabs}}" wx:key="index">
+          <text wx:if="{{item.isHot}}" class="iconfont icon-hot"></text>
+          <text>{{item.name}}</text>
+        </view>
+      </view>
+      <view class="square-label-edit">编辑</view>
+      <view class="square-label-close" catch:tap="onToggleLabel">关闭</view>
+    </view>
+    <view wx:for="{{label}}" wx:key="index">
+      <view class="square-label-title">{{item.title}}</view>
+      <view class="square-label-tags">
+        <view class="{{!1?'square-label-tag-disable':''}}" wx:for="{{item.tags}}" wx:key="index">
+          <text wx:if="{{item.isHot}}" class="iconfont icon-hot"></text>
+          <text>{{item.name}}</text>
+        </view>
       </view>
     </view>
-
-    <view class="iconfont icon-classify"></view>
+  </view>
+  <!-- 导航区 -->
+  <view class="square-nav">
+    <view class="square-nav-list">
+      <block wx:for="{{mytabs}}" wx:key="index">
+        <view class="square-nav-list-item {{navIndex == index? 'square-nav-list-item-active': ''}}" catch:tap="onToggleNavIndex" data-id="{{index}}">{{item.name}}</view>
+      </block>
+      <view class="square-nav-list-line">
+        <view style="transform: translateX({{navIndex*100}}rpx);"></view>
+      </view>
+    </view>
+    <view class="iconfont icon-classify" catch:tap="onToggleLabel"></view>
   </view>
 
 
   <!-- 内容区 -->
-  <swiper>
+  <swiper style="{{isShowPlayBar?'padding-bottom:80rpx;':''}}" current="{{navIndex}}" catch:change="onToggleNavIndex">
     <swiper-item>
-      
       <template is="songListTemplate" data="{{list: playlists}}" />
-
     </swiper-item>
     <swiper-item>官方</swiper-item>
     <swiper-item>精品</swiper-item>
@@ -45,5 +60,3 @@
     <swiper-item>说唱</swiper-item>
   </swiper>
 </view>
-
-

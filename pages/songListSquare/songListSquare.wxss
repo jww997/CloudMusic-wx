@@ -15,13 +15,16 @@ Page {
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #eee;
+  background-color: #fff;
   color: #333;
+  position: fixed;
+  top: 0;
+  z-index: 2;
 }
 
 .square-nav-list {
   flex-grow: 1;
   display: flex;
-
   height: 100%;
   overflow: scroll;
   position: relative;
@@ -33,7 +36,6 @@ Page {
   position: absolute;
   bottom: 0;
   left: 0;
-  padding: 0 25rpx;
   box-sizing: border-box;
 }
 
@@ -41,8 +43,9 @@ Page {
   width: 40rpx;
   height: 100%;
   border-radius: 50rpx;
+  margin: 0 20rpx;
   background-color: #f00;
-  position: absolute;
+  transition: transform .5s;
 }
 
 .square-nav-list-item {
@@ -64,26 +67,89 @@ Page {
 
 swiper {
   flex-grow: 1;
+  margin-top: 80rpx;
 }
 
+.square-label {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0 15rpx 80rpx;
+  box-sizing: border-box;
+  background: #fff;
+  overflow: scroll;
+  z-index: 3;
+}
 
+.square-label > view:first-child {
+  position: relative;
+}
 
+.square-label-title {
+  font-size: 26rpx;
+  margin-top: 20rpx;
+  padding-left: 10rpx;
+}
 
+.square-label-title > text:last-child {
+  font-size: 20rpx;
+  color: #666;
+}
 
+.square-label-tags {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20rpx;
+}
 
+.square-label-tags > view {
+  width: 160rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  padding: 0 10rpx;
+  box-sizing: border-box;
+  background-color: #eee;
+  border-radius: 50rpx;
+  text-align: center;
+  margin: 10rpx;
+  display: flex;
+}
 
+.square-label-tags .icon-hot {
+  font-size: 28rpx;
+  color: #f00;
+}
 
+.square-label-tags > view text:last-child {
+  display: inline-block;
+  flex-grow: 1;
+  font-size: 20rpx;
+  color: #111;
+}
 
+.square-label-tag-disable {
+  opacity: 0.5;
+}
 
+.square-label-edit, .square-label-close {
+  width: 70rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+  font-size: 18rpx;
+  border: 1px solid #f00;
+  border-radius: 50rpx;
+  text-align: center;
+  color: #f00;
+  position: absolute;
+  top: 0;
+}
 
+.square-label-edit {
+  right: 100rpx;
+}
 
-
-
-
-
-
-
-
-
-
-
+.square-label-close {
+  right: 10rpx;
+}

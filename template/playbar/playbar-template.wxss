@@ -15,7 +15,7 @@
   height: 80rpx;
   background: #fff;
   border-top: 1px solid #eee;
-  z-index: 3;
+  z-index: 4;
   display: flex;
   justify-content: space-between;
   align-items: center;
