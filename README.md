@@ -32,7 +32,7 @@
 
 ### ⛲ 效果图
 
-<table border="1">
+<table>
   <tr>
     <td><image width="340" src="https://github.com/jww997/CloudMusic-wx/blob/master/other/1.png"/></td>
     <td><image width="340" src="https://github.com/jww997/CloudMusic-wx/blob/master/other/2.png"/></td>
