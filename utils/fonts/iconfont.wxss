@@ -160,3 +160,6 @@
   content: "\e609";
 }
 
+.icon-hot:before {
+  content: "\e61b";
+}

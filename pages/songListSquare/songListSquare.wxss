@@ -58,6 +58,20 @@ Page {
 .square-nav-list-item-active {
   color: #f00;
   font-weight: bold;
+  position: relative;
+}
+
+.square-nav-list-item-active::after {
+  content: "";
+  width: 40rpx;
+  height: 2px;
+  border-radius: 20px;
+  background-color: #f00;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
 }
 
 .icon-classify {

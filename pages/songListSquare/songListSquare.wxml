@@ -38,9 +38,9 @@
       <block wx:for="{{mytabs}}" wx:key="index">
         <view class="square-nav-list-item {{navIndex == index? 'square-nav-list-item-active': ''}}" catch:tap="onToggleNavIndex" data-id="{{index}}">{{item.name}}</view>
       </block>
-      <view class="square-nav-list-line">
+      <!-- <view class="square-nav-list-line">
         <view style="transform: translateX({{navIndex*100}}rpx);"></view>
-      </view>
+      </view> -->
     </view>
     <view class="iconfont icon-classify" catch:tap="onToggleLabel"></view>
   </view>
@@ -48,15 +48,15 @@
 
   <!-- 内容区 -->
   <swiper style="{{isShowPlayBar?'padding-bottom:80rpx;':''}}" current="{{navIndex}}" catch:change="onToggleNavIndex">
-    <swiper-item>
-      <template is="songListTemplate" data="{{list: playlists}}" />
+    <swiper-item wx:for="{{mytabs}}" wx:key="index">
+      <template is="songListTemplate" data="{{list: item.list}}" />
     </swiper-item>
-    <swiper-item>官方</swiper-item>
+    <!-- <swiper-item>官方</swiper-item>
     <swiper-item>精品</swiper-item>
     <swiper-item>华语</swiper-item>
     <swiper-item>民谣</swiper-item>
     <swiper-item>电子</swiper-item>
     <swiper-item>R&B/Soul</swiper-item>
-    <swiper-item>说唱</swiper-item>
+    <swiper-item>说唱</swiper-item> -->
   </swiper>
 </view>

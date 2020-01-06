@@ -175,7 +175,8 @@ Page({
     // --------------获取数据---------------
     let that = this;
     let {
-      label
+      label,
+      mytabs,
     } = that.data;
 
     // 歌单分类
@@ -197,7 +198,7 @@ Page({
           };
         });
       };
-      console.log(label);
+      // console.log(label);
       that.setData({
         label, // 歌单标签
       });
@@ -207,28 +208,28 @@ Page({
     // util.getdata('playlist/hot', function(res) {
     //   console.log(res);
     // });
+    mytabs.forEach(value => {
+      util.getdata('top/playlist?cat=' + value.name, function(res) {
+        console.log(res.data.playlists);
+        value.list = res.data.playlists;
+        that.setData({
+          mytabs,
+        });
+      });
+      
+    });
+    
 
-    // util.getdata('top/playlist?limit=10&order=new', function(res) {
-    //   console.log(res);
-    // });
 
 
     // 歌单列表
     util.getdata('top/playlist', function(res) {
+      let {
+        mytabs,
+      } = that.data;
+      mytabs[0].list = res.data.playlists;
       that.setData({
-        playlists: res.data.playlists
-      });
-      let playlists = that.data.playlists,
-        playCounts = new Array();
-      playlists.forEach(value => {
-        playCounts.push(value.playCount);
-      });
-      playCounts = util.dealPlayCount(playCounts);
-      playlists.forEach(value => {
-        value.playCount = playCounts.shift();
-      });
-      that.setData({
-        playlists: playlists
+        mytabs,
       });
     });
 
