@@ -32,7 +32,7 @@
 
 ### 效果图
 
-<image width="340" src="https://github.com/jww997/CloudMusic-wx/blob/master/other/1.png"/><image width="340" style="border: 1px solid #000;" src="https://github.com/jww997/CloudMusic-wx/blob/master/other/2.png"/><image width="340" src="https://github.com/jww997/CloudMusic-wx/blob/master/other/3.png"/><image width="340" src="https://github.com/jww997/CloudMusic-wx/blob/master/other/4.png"/><image width="340" src="https://github.com/jww997/CloudMusic-wx/blob/master/other/5.png"/><image width="340" src="https://github.com/jww997/CloudMusic-wx/blob/master/other/6.png"/><image width="340" src="https://github.com/jww997/CloudMusic-wx/blob/master/other/7.png"/><image width="340" src="https://github.com/jww997/CloudMusic-wx/blob/master/other/8.png"/>
+<image width="340" src="https://github.com/jww997/CloudMusic-wx/blob/master/other/1.png"/><image width="340" style="border: 1px solid #000;" src="https://github.com/jww997/CloudMusic-wx/blob/master/other/2.png"/><image width="340" src="https://github.com/jww997/CloudMusic-wx/blob/master/other/3.png"/><image width="340" src="https://github.com/jww997/CloudMusic-wx/blob/master/other/4.png"/><image width="340" src="https://github.com/jww997/CloudMusic-wx/blob/master/other/5.png"/><image width="340" src="https://github.com/jww997/CloudMusic-wx/blob/master/other/6.png"/>
 
 
 ### 👯‍♂️ 参考同学
