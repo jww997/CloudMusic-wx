@@ -1,46 +1,45 @@
+<import src="/template/box/box-template.wxml" />
 <import src="/template/loading/loading-template.wxml" />
-<import src="/template/songListBox/songListBox-template.wxml" />
 <import src="/template/playbar/playbar-template.wxml" />
 
-<view id="search">
-  <!-- 输入框 -->
-  <view class="search-input">
-    <input placeholder="老朋友 - 励志豪" value="{{searchValue}}" placeholder-style="color: #ccc" catch:input="onSearch"></input>
+<!-- 底部播放栏 -->
+<template is="playbarTemplate" data="{{isShowPlayBar, isShowPlaylist, isPlayState, playing, playlist, modeIndex, modeList}}" />
+
+<!-- 搜索 -->
+<view class="search">
+
+  <view class="search-bar">
+    <input placeholder="{{searchDefault.showKeyword}}" placeholder-style="color: #ccc" catch:confirm="search" data-word="{{searchDefault.realkeyword}}"></input>
     <text class="iconfont icon-singer"></text>
   </view>
-  <!-- 底部播放栏 -->
-  <template is="playbarTemplate" data="{{isShowPlayBar, isPlayState, playing}}" />
-  <!-- 历史记录 -->
-  <view class="search-history">
-    <view class="search-history-title">
-      <text>历史记录</text>
-      <view class="iconfont icon-empty"></view>
+  <block wx:if="{{!searchResult.length}}">
+    <view class="search-history" wx:if="{{searchHistory.length}}">
+      <view>
+        <text class="search-title">历史记录</text>
+        <view class="iconfont icon-empty" catch:tap="clear"></view>
+      </view>
+      <view class="search-history-content">
+        <view wx:for="{{searchHistory}}" wx:key="index" catch:tap="search" data-word="{{item}}">{{item}}</view>
+      </view>
     </view>
-    <view class="search-history-content">
-      <view>123</view>
-      <view>123</view>
-      <view>123</view>
-      <view>123</view>
-      <view>123</view>
-      <view>123</view>
-      <view>123</view>
-      <view>123</view>
-      <view>123</view>
-      <view>123</view>
-      <view>123</view>
-      <view>123</view>
-      <view>123</view>
-      <view>123</view>
-      <view>123</view>
-      <view>123</view>
-      <view>123</view>
+    <view class="hots-items">
+      <view class="search-title">热搜榜</view>
+      <view class="hots-item {{index+1 <= 3? 'hots-item-active': ''}}" hover-class="hots-item-hover" wx:for="{{searchHots}}" wx:key="index" catch:tap="search" data-word="{{item.searchWord}}">
+        <view>{{index+1}}</view>
+        <view>
+          <view>
+            <text>{{item.searchWord}}</text>
+            <image mode="aspectFit" src="{{item.iconUrl}}"></image>
+          </view>
+          <view>{{item.content}}</view>
+        </view>
+        <view>{{item.score}}</view>
+      </view>
     </view>
-
-  </view>
-  <!-- 搜索结果 -->
-  <view class="search-result">
-    <block wx:for="{{searchList}}" wx:key="{{item.id}}">
-      <view class="search-result-item" hover-class="search-result-item-hover" catch:tap="toPages" data-to="player" data-id="{{item.id}}">
+  </block>
+  <view class="search-result" wx:else>
+    <block wx:for="{{searchResult}}" wx:key="index">
+      <view class="search-result-item" hover-class="search-result-item-hover" catch:tap="toggleSonglistPlaying" data-id="{{item.id}}" data-index="{{index}}">
         <view class="search-song">
           <text>{{item.name}}</text>
           <text>{{item.artists[0].name + " - " + item.album.name}}</text>
@@ -49,4 +48,5 @@
       </view>
     </block>
   </view>
+
 </view>

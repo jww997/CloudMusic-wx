@@ -1,11 +1,17 @@
 <template name="playbarTemplate">
-  <view class="playbar" hidden="{{!isShowPlayBar}}" catch:tap="toPages" data-to="player" data-id="{{playing.id}}">
-    <view class="playbar-image {{isPlayState?'playbar-image-rotate':''}}" style="background-image: url({{playing.image||'/images/chassis.png'}});"></view>
-    <view class="playbar-text">
-      <text>{{playing.title}}</text>
-      <text>{{playing.singer}}</text>
+
+  <view class="playbarTemplate" catch:tap="togglePlayingListShow">
+    <!-- 播放条 -->
+    <view class="playbar" wx:if="{{isShowPlayBar}}">
+      <view class="playbar-image {{isPlayState?'playbar-image-rotate':''}}" style="background-image: url({{playing.image||'/images/chassis.png'}});"></view>
+      <view class="playbar-text" catch:tap="toPages" data-to="player" data-id="{{playing.id}}">
+        <text>{{playing.title}}</text>
+        <text>{{playing.singer}}</text>
+      </view>
+      <view class="iconfont {{isPlayState?'icon-play':'icon-pause'}}" catch:tap="togglePlayingState"></view>
+      <view class="iconfont icon-playlist" catch:tap="togglePlayingListShow" data-type="show"></view>
     </view>
-    <view class="iconfont {{isPlayState?'icon-play':'icon-pause'}}" catch:tap="onTogglePlayState"></view>
-    <view class="iconfont icon-list" catch:tap="onShowPlaylist"></view>
+    <drawer playlist="{{playlist}}" playing="{{playing}}" isShowPlaylist="{{isShowPlaylist}}"></drawer>
   </view>
+
 </template>

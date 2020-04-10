@@ -1,4 +1,5 @@
 <template name="loadingTemplate">
+
   <view class="loading">
     <view class="loading-icon">
       <view></view>
@@ -8,4 +9,5 @@
     </view>
     <text>努力加载中...</text>
   </view>
+  
 </template>

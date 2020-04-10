@@ -1,11 +1,11 @@
 @font-face {
   font-family: 'iconfont';  /* project id 1534859 */
-  src: url('//at.alicdn.com/t/font_1534859_cq4ynzd2ooq.eot');
-  src: url('//at.alicdn.com/t/font_1534859_cq4ynzd2ooq.eot?#iefix') format('embedded-opentype'),
-  url('//at.alicdn.com/t/font_1534859_cq4ynzd2ooq.woff2') format('woff2'),
-  url('//at.alicdn.com/t/font_1534859_cq4ynzd2ooq.woff') format('woff'),
-  url('//at.alicdn.com/t/font_1534859_cq4ynzd2ooq.ttf') format('truetype'),
-  url('//at.alicdn.com/t/font_1534859_cq4ynzd2ooq.svg#iconfont') format('svg');
+  src: url('//at.alicdn.com/t/font_1534859_bah8ucgtxpg.eot');
+  src: url('//at.alicdn.com/t/font_1534859_bah8ucgtxpg.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_1534859_bah8ucgtxpg.woff2') format('woff2'),
+  url('//at.alicdn.com/t/font_1534859_bah8ucgtxpg.woff') format('woff'),
+  url('//at.alicdn.com/t/font_1534859_bah8ucgtxpg.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_1534859_bah8ucgtxpg.svg#iconfont') format('svg');
 }
 
 .iconfont {
@@ -16,150 +16,308 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-sirenfm:before {
-  content: "\e634";
+/* 网易云音乐 */
+.icon-cloudMusic::before {
+  content: "\e62c";
 }
 
-.icon-diantai:before {
-  content: "\e601";
+/* 微信 */
+.icon-wechat::before {
+  content: "\e734";
 }
 
-.icon-paihangbang:before {
-  content: "\e604";
+/* QQ */
+.icon-qq::before {
+  content: "\e610";
 }
 
-.icon-gedan:before {
-  content: "\e602";
+/* 微博 */
+.icon-microblog::before {
+  content: "\e646";
 }
 
-.icon-meirituijian:before {
-  content: "\e603";
+/* 网易 */
+.icon-netEase::before {
+  content: "\e60e";
 }
 
-.icon-playCountTriangle:before {
-  content: "\e656";
-}
 
-.icon-more:before {
+
+
+
+
+
+
+
+
+
+/* 侧边栏按钮 */
+.icon-sidebar::before { 
   content: "\e70d";
 }
 
-.icon-search:before {
+/* 搜索 */
+.icon-search::before { 
   content: "\e607";
 }
 
-.icon-comment:before {
-  content: "\e65d";
+
+
+
+/* 本地音乐 */
+.icon-localMusic::before {
+  content: "\e687";
 }
 
-.icon-share:before {
-  content: "\e65c";
+/* 我的电台 */
+.icon-myRadio::before {
+  content: "\e611";
 }
 
-.icon-download:before {
-  content: "\e65b";
+/* 我的收藏 */
+.icon-myFavorite::before {
+  content: "\e60f";
 }
 
-.icon-multipleChoice:before {
-  content: "\e65a";
+/* 关注新歌 */
+.icon-focusNewSong::before {
+  content: "\e702";
 }
 
-.icon-playall:before {
-  content: "\e641";
+
+
+
+/* 每日推荐 */
+.icon-dailySpecial::before {
+  content: "\e603";
 }
 
-.icon-songMore:before {
-  content: "\e690";
+/* 歌单 */
+.icon-songList::before {
+  content: "\e602";
 }
 
-.icon-list:before {
-  content: "\e664";
+/* 排行榜 */
+.icon-ranking::before {
+  content: "\e604";
 }
 
-.icon-play:before {
-  content: "\e665";
+/* 电台 */
+.icon-radioStation::before {
+  content: "\e601";
 }
 
-.icon-pause:before {
-  content: "\e666";
+/* 私人FM */
+.icon-FM::before {
+  content: "\e634";
 }
 
-.icon-last:before {
-  content: "\e663";
+/* 三角 */
+.icon-triangle::before {
+  content: "\e656";
 }
 
-.icon-next:before {
-  content: "\e668";
-}
-
-.icon-orderPlay:before {
-  content: "\e600";
-}
-
-.icon-trumpet:before {
+/* 喇叭 */
+.icon-trumpet::before {
   content: "\e66d";
 }
 
-.icon-singer:before {
-  content: "\e605";
+
+
+/* 播放列表 */
+.icon-playlist::before {
+  content: "\e664";
 }
 
-.icon-empty:before {
-  content: "\e632";
+/* 评论-无值 */
+.icon-comment::before {
+  content: "\e65d";
 }
 
-.icon-collect:before {
-  content: "\e61d";
-}
-
-.icon-delete:before {
-  content: "\e626";
-}
-
-.icon-mv:before {
-  content: "\e606";
-}
-
-.icon-vip:before {
-  content: "\e670";
-}
-
-.icon-exclusive:before { 
-  content: "\e671";
-}
-
-.icon-sq:before {
-  content: "\e608";
-}
-
-.icon-like:before {
-  content: "\e697";
-}
-
-.icon-love:before {
-  content: "\e66a";
-}
-
-.icon-download-2:before {
-  content: "\e694";
-}
-
-.icon-polyphonic:before {
-  content: "\e98f";
-}
-
-.icon-commentCount:before {
+/* 评论-有值 */
+.icon-commentCount::before {
   content: "\e66b";
 }
 
-.icon-playerMore:before {
+
+
+/* 删除 */
+.icon-delete::before {
+  content: "\e626";
+}
+
+/* 清空 */
+.icon-empty::before {
+  content: "\e632";
+}
+
+/* 播放 */
+.icon-play::before {
+  content: "\e665";
+}
+
+/* 暂停 */
+.icon-pause::before {
+  content: "\e666";
+}
+
+/* 返回顶部 */
+.icon-backtotop::before {
+  content: "\e648";
+}
+
+
+
+
+
+/* 顺序播放 */
+.icon-orderPlay::before {
+  content: "\e600";
+}
+
+/* 随机播放 */
+.icon-randomPlay::before {
+  content: "\e66e";
+}
+
+/* 单曲循环 */
+.icon-singlePlay::before {
+  content: "\e60b";
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.icon-share::before {
+  content: "\e65c";
+}
+
+.icon-download::before {
+  content: "\e65b";
+}
+
+.icon-multipleChoice::before {
+  content: "\e65a";
+}
+
+.icon-playall::before {
+  content: "\e641";
+}
+
+.icon-songMore::before {
+  content: "\e690";
+}
+
+
+
+
+
+.icon-last::before {
+  content: "\e663";
+}
+
+.icon-next::before {
+  content: "\e668";
+}
+
+
+
+
+
+.icon-singer::before {
+  content: "\e605";
+}
+
+
+
+.icon-collect::before {
+  content: "\e61d";
+}
+
+
+
+.icon-mv::before {
+  content: "\e606";
+}
+
+.icon-vip::before {
+  content: "\e670";
+}
+
+.icon-exclusive::before { 
+  content: "\e671";
+}
+
+.icon-sq::before {
+  content: "\e608";
+}
+
+
+/* 点赞 */
+.icon-like::before {
+  content: "\e697";
+}
+
+.icon-love::before {
+  content: "\e66a";
+}
+
+.icon-download-2::before {
+  content: "\e694";
+}
+
+.icon-polyphonic::before {
+  content: "\e98f";
+}
+
+
+
+.icon-playerMore::before {
   content: "\e66c";
 }
 
-.icon-classify:before {
+.icon-classify::before {
   content: "\e609";
 }
 
-.icon-hot:before {
+.icon-hot::before {
   content: "\e61b";
+}
+
+
+
+
+
+
+
+
+.icon-radioStation-classify::before {
+  content: "\e756";
+}
+
+.icon-radioStation-ranking::before {
+  content: "\e60d";
+}
+
+.icon-radioStation-payBoutique::before {
+  content: "\e61c";
+}
+
+.icon-radioStation-anchorSchool::before {
+  content: "\e60c";
 }

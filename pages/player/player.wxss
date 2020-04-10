@@ -15,7 +15,7 @@ Page {
 .player-wrap {
   height: 100%;
   background-size: 0;
-  background-color: rgba(0, 0, 0, .5);
+  background-color: rgba(0, 0, 0, 0.5);
   background-position: center;
   background-repeat: no-repeat;
 }
@@ -132,8 +132,7 @@ Page {
 .player-lyric {
   flex-grow: 1;
   width: 100%;
-  /* overflow: scroll; */
-  /* transition: all ease 1s; */
+  /* overflow: scroll; *//* transition: all ease 1s; */
   position: relative;
   overflow: hidden;
 }
@@ -143,8 +142,7 @@ Page {
   height: 100%;
   padding-top: 50%;
   box-sizing: border-box;
-  /* overflow: scroll; */
-  /* position: absolute;
+  /* overflow: scroll; *//* position: absolute;
   bottom: 0; */
 }
 
@@ -155,8 +153,7 @@ Page {
   /* padding-top: 50%; */
   box-sizing: border-box;
   text-align: center;
-  /* transition: transform 1s; */
-  /* transition: top 1s;
+  /* transition: transform 1s; *//* transition: top 1s;
   position: absolute;
   top: 0;
   left: 0;
@@ -170,7 +167,7 @@ Page {
   text-overflow: ellipsis;
   overflow: hidden;
   color: #fff;
-  opacity: .3;
+  opacity: 0.3;
 }
 
 .player-lyric-list > view.current {
@@ -182,7 +179,7 @@ Page {
 .player-lyric-list > view.current + view + view + view,
 .player-lyric-list > view.current + view + view + view + view,
 .player-lyric-list > view.current + view + view + view + view + view {
-  opacity: .6;
+  opacity: 0.6;
 }
 
 .player-toolbar {
@@ -226,6 +223,7 @@ Page {
   font-size: 100rpx;
 }
 
+/* 
 .player-playlist {
   width: 100%;
   height: 900rpx;
@@ -280,7 +278,7 @@ Page {
 }
 
 .player-playlist-list {
-  /* height: 700rpx; */
+
   flex-grow: 1;
   overflow-y: scroll;
 }
@@ -350,4 +348,4 @@ Page {
   z-index: 8;
   position: absolute;
   top: 0;
-}
+} */

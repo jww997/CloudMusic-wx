@@ -1,0 +1,75 @@
+<import src="/template/box/box-template.wxml" />
+<import src="/template/loading/loading-template.wxml" />
+<import src="/template/playbar/playbar-template.wxml" />
+
+<!-- 底部播放栏 -->
+<template is="playbarTemplate" data="{{isShowPlayBar, isShowPlaylist, isPlayState, playing, playlist, modeIndex, modeList}}" />
+
+<!-- 歌单广场 -->
+<view class="square">
+
+  <!-- 歌单标签 -->
+  <view class="square-label" hidden="{{!isShowLabel}}">
+    <view>
+      <view class="square-label-title">
+        <text>我的歌单广场</text>
+        <!-- <text>（长按可编辑）</text> -->
+      </view>
+      <view class="square-label-tags">
+        <block wx:for="{{mytabs}}" wx:key="index">
+          <view class="{{index < 3? 'square-label-tag-disable' : ''}}" catch:tap="editLabel" data-name="{{item.name}}" data-index="{{index >= 3? index : ''}}" data-id="-1">
+            <text wx:if="{{item.isHot}}" class="iconfont icon-hot"></text>
+            <text>{{item.name}}</text>
+          </view>
+        </block>
+      </view>
+      <view class="square-label-edit">编辑</view>
+      <view class="square-label-close" catch:tap="onToggleLabel">关闭</view>
+    </view>
+    <view wx:for="{{label}}" wx:key="index">
+      <view class="square-label-title">{{item.title}}</view>
+      <view class="square-label-tags">
+        <block wx:for="{{item.tags}}" wx:key="index">
+          <view class="{{!1?'square-label-tag-disable':''}}" catch:tap="editLabel" data-name="{{item.name}}" data-ishot="{{item.isHot}}">
+            <text wx:if="{{item.isHot}}" class="iconfont icon-hot"></text>
+            <text>{{item.name}}</text>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+
+  <view class="square-bar">
+    <view class="square-nav" hover-class="square-nav-active">
+      <view class="square-nav-slider" style="left: {{navIndex * 120}}rpx;"></view>
+      <block wx:for="{{mytabs}}" wx:key="index">
+        <view class="square-nav-item {{navIndex == index? 'square-nav-item-active': ''}}" hover-class="square-nav-item-hover" catch:tap="onToggleNavIndex" data-id="{{index}}">
+          <text>{{item.name}}</text>
+        </view>
+      </block>
+    </view>
+    <view class="square-bar-classify" catch:tap="onToggleLabel">
+      <text class="iconfont icon-classify"></text>
+    </view>
+  </view>
+  <swiper class="square-swiper {{isShowPlayBar?'padding-bottom':''}}" current="{{navIndex}}" catch:change="onToggleNavIndex">
+    <swiper-item class="square-swiper-item" wx:for="{{mytabs}}" wx:key="index">
+
+      <scroll-view style="height: 100%;" scroll-y="true" bind:scrolltolower="onLoadMore" data-id="{{index}}">
+        <view class="songList">
+          <template is="loadingTemplate" wx:if="{{!item.list.length}}" />
+          <view class="songlist-list" wx:else>
+            <block wx:for="{{item.list}}" wx:key="index">
+              <view class="songlist-list-item" catch:tap="toPages" data-to="list" data-id="{{item.id}}">
+                <template is="boxTemplate" data="{{picUrl: item.picUrl, playCount: item.playCount, name: item.name}}" />
+              </view>
+            </block>
+            <template is="loadingTemplate" />
+          </view>
+        </view>
+      </scroll-view>
+
+    </swiper-item>
+  </swiper>
+
+</view>

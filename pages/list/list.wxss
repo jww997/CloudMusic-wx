@@ -1,0 +1,488 @@
+Page {
+  height: 100%;
+}
+
+.list {
+  margin-top: 30rpx;
+  background-size: 0;
+}
+
+.list::before {
+  content: "";
+  width: 100%;
+  height: 400rpx;
+  background-color: #000;
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  opacity: 0.2;
+}
+
+.list::after {
+  content: "";
+  width: 100%;
+  height: 400rpx;
+  background-size: 110%;
+  background-position: center;
+  background-color: #666;
+  background-image: inherit;
+  filter: blur(50px);
+  z-index: -2;
+  position: absolute;
+  top: 0;
+}
+
+.list-header, .detail-menu {
+  color: #fff;
+}
+
+.list-header {
+  display: flex;
+  flex-wrap: no-wrap;
+  width: 690rpx;
+  margin: 0 auto;
+}
+
+.list-header .songListBox {
+  margin: 0;
+}
+
+.list-cover {
+  position: relative;
+}
+
+.list-cover>image {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: -30rpx;
+  left: 0;
+  z-index: -1;
+}
+
+.detail-info {
+  height: 200rpx;
+  padding: 0 30rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #fff;
+}
+
+.detail-name, .detail-nickname text, .detail-description text {
+  display: -webkit-box;
+  overflow: hidden;
+  white-space: normal;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.detail-nickname, .detail-description {
+  position: relative;
+  margin-right: 40rpx;
+}
+
+.detail-nickname::after, .detail-description::after {
+  content: ">";
+  position: absolute;
+  right: -30rpx;
+  top: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  margin-top: -3rpx;
+}
+
+.detail-name {
+  font-size: 30rpx;
+  font-weight: bold;
+}
+
+.detail-creator {
+  display: flex;
+  align-items: center;
+}
+
+.detail-nickname {
+  margin-left: 20rpx;
+}
+
+.detail-creator image {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+  background-color: #eee;
+}
+
+.detail-description text {
+  font-size: 20rpx;
+  width: 100%;
+}
+
+.detail-menu {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  font-size: 30rpx;
+  height: 120rpx;
+  box-sizing: border-box;
+}
+
+.detail-menu text {
+  font-size: 22rpx;
+}
+
+.detail-list {
+  flex-grow: 1;
+  background: #fff;
+  border-radius: 30rpx 30rpx 0 0;
+  min-height: 420rpx;
+}
+
+.detail-playall {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 10rpx 20rpx;
+  background-color: #fff;
+  border-radius: 30rpx 30rpx 0 0;
+  position: sticky;
+  top: 0;
+}
+
+.detail-playall-title {
+  flex-grow: 1;
+  padding: 0 20rpx;
+}
+
+.detail-playall-title text {
+  font-size: 28rpx;
+}
+
+.detail-playall-title .detail-playall-total {
+  font-size: 22rpx;
+  color: #666;
+  margin-left: 10rpx;
+}
+
+.detail-playall-total::before {
+  content: "(共";
+}
+
+.detail-playall-total::after {
+  content: "首)";
+}
+
+.detail-collect {
+  line-height: 50rpx;
+  text-align: center;
+  background-color: #f00;
+  border-radius: 30rpx;
+  padding: 0 20rpx;
+  color: #fff;
+  font-size: 20rpx;
+}
+
+.detail-collect text::before {
+  content: "+ 收藏（";
+}
+
+.detail-collect text::after {
+  content: ")";
+}
+
+.detail-playlist {
+  background-color: #fff;
+}
+
+.detail-play {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+.detail-play>view, .detail-play>text {
+  flex-shrink: 0;
+}
+
+.detail-play-hover {
+  background-color: #eee;
+  transition: background-color 0.5s;
+}
+
+.detail-play>text, .detail-song>text:last-child, .icon-songMore, .icon-mv {
+  color: #888;
+}
+
+.detail-play>text {
+  width: 32rpx;
+  text-align: center;
+}
+
+.detail-play>text.icon-trumpet {
+  color: #f00;
+}
+
+.detail-song {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 0 30rpx;
+  width: 243rpx;
+}
+
+.detail-song>text:first-child {
+  font-size: 26rpx;
+  color: #000;
+}
+
+.detail-song>text:last-child {
+  height: 30rpx;
+}
+
+.detail-song>text:last-child text {
+  float: left;
+  height: 100%;
+}
+
+.detail-song>text:last-child text:last-child {
+  font-size: 22rpx;
+  max-width: 450rpx;
+}
+
+.detail-song text {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.detail-song-mv {
+  max-width: 80%;
+}
+
+.detail-song-mv>text:last-child text:last-child {
+  /* width: 203rpx; */
+  display: inline-block;
+}
+
+.icon-songMore {
+  flex-shrink: 0;
+}
+
+.icon-mv {
+  padding: 0 20rpx;
+  font-size: 40rpx;
+}
+
+.icon-vip, .icon-exclusive, .icon-sq {
+  color: #f00;
+  font-size: 30rpx;
+  margin-right: 2px;
+  height: 24rpx;
+  display: inline-block;
+}
+
+.playbar {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 80rpx;
+  background: #fff;
+  border-top: 1px solid #eee;
+  z-index: 3;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.playbar-image {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  background-size: 100%;
+  background-color: #eee;
+  margin: 0 20rpx;
+  transform-origin: center;
+  animation: rotate 10s infinite linear paused;
+  transition: animation 1s;
+  flex-shrink: 0;
+}
+
+.playbar-image.playbar-image-rotate {
+  animation-play-state: running;
+}
+
+.playbar-text {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.playbar-text text:last-child {
+  color: #333;
+  font-size: 20rpx;
+}
+
+.playbar text {
+  flex-grow: 1;
+  max-width: 500rpx;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.playbar .iconfont {
+  font-size: 40rpx;
+  margin: 0 15rpx;
+  flex-shrink: 0;
+}
+
+.playbar .icon-play, .playbar .icon-pause {
+  font-size: 44rpx;
+}
+
+.list-message {
+  width: 100%;
+  height: 100%;
+  background: #eee no-repeat center;
+  background-size: 0;
+  color: #fff;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 500;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+
+.list-message::before, .list-message::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 100%;
+  height: 100%;
+}
+
+.list-message::before {
+  -webkit-filter: blur(10px);
+  -moz-filter: blur(10px);
+  -o-filter: blur(10px);
+  -ms-filter: blur(10px);
+  filter: blur(10px);
+  background: inherit;
+  background-size: auto 100%;
+  z-index: -3;
+}
+
+.list-message::after {
+  background-color: #000;
+  opacity: 0.5;
+  z-index: -2;
+}
+
+.list-message-image {
+  transform: scale(2);
+  margin: 30rpx;
+  padding: 100rpx;
+  z-index: -1;
+}
+
+.list-message-name {
+  font-size: 30rpx;
+  font-weight: bold;
+  margin-top: 10rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.list-message-tags, .list-message-description {
+  width: 90%;
+  font-size: 20rpx;
+}
+
+.list-message-tags {
+  margin-top: 50rpx;
+  height: 30rpx;
+}
+
+.list-message-tags > text {
+  position: absolute;
+}
+
+.list-message-tags-items {
+  width: 90%;
+  margin-left: 10%;
+  box-sizing: border-box;
+  overflow: scroll;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.list-message-tags-item {
+  flex-shrink: 0;
+  margin-left: 10rpx;
+  padding: 5rpx 15rpx;
+  border-radius: 30px;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.list-message-description {
+  margin-top: 20rpx;
+  text-align: justify;
+}
+
+.list-message-close {
+  font-size: 40rpx;
+  font-weight: bold;
+  position: absolute;
+  right: 5%;
+  top: 20rpx;
+}
+
+.list-message-save {
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  font-size: 24rpx;
+  padding: 0 20rpx;
+  border-radius: 30px;
+  border: 1px solid #fff;
+  position: absolute;
+  bottom: 5%;
+}
+
+.list-message-save button {
+  height: inherit;
+  line-height: inherit;
+  background-color: transparent;
+  font-size: inherit;
+  color: #fff;
+}
+
+button, [type="button"], [type="reset"], [type="submit"] {
+  -webkit-appearance: none;
+}
+
+button::after {
+  border: none;
+}
+
+.list-message-save-hover {
+  color: #eee;
+  border-color: #eee;
+}

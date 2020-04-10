@@ -1,0 +1,22 @@
+<import src="/template/box/box-template.wxml" />
+<import src="/template/loading/loading-template.wxml" />
+<import src="/template/playbar/playbar-template.wxml" />
+
+<!-- 手机登录 -->
+<view class="phone">
+
+  <view class="phone-explain">未注册手机号后将自动创建账号</view>
+  <form bindsubmit="formSubmit">
+    <view class="phone-input phone-input">
+      <text>+86</text>
+      <input placeholder="请输入手机号" type="number" maxlength="11" name="phone"></input>
+    </view>
+    <view class="phone-input password-input">
+      <input placeholder="请输入密码" password="true" name="password"></input>
+      <text>忘记密码？</text>
+    </view>
+    <!-- <view class="phone-button" catch:tap="getCaptcha">下一步</view> -->
+    <button class="phone-button" form-type="submit">登录</button>
+  </form>
+
+</view>

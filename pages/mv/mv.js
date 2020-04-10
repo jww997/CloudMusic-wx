@@ -1,11 +1,13 @@
-var baseUrl = require("../../utils/api.js");
-var util = require("../../utils/util.js");
-var app = getApp();
-
-const BackgroundAudioManager = app.globalData.BackgroundAudioManager;
-const VideoContext = app.globalData.VideoContext;
+const util = require("../../utils/util.js");
+const common = require("../../utils/common.js");
+const app = getApp();
+const backgroundAudioManager = app.globalData.backgroundAudioManager;
+const videoContext = app.globalData.videoContext;
 
 Page({
+
+  // 公共事件
+  toPages: app.toPages,
 
   /**
    * 页面的初始数据
@@ -42,13 +44,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
-    let that = this;
+    const that = this;
+    
     let {
       id
     } = options;
     // 暂停播放的音乐
-    BackgroundAudioManager.pause();
+    backgroundAudioManager.pause();
     // 获取对应 MV 数据, 数据包含 mv 名字, 歌手, 发布时间, mv 视频地址等数据, 其中 mv 视频 网易做了防盗链处理, 可能不能直接播放, 需要播放的话需要调用 ' mv 地址' 接口
     util.getdata('mv/detail?mvid=' + id, function(res) {
       // console.log(res);
@@ -75,9 +77,7 @@ Page({
       } = res.data.data;
 
       // 标题
-      wx.setNavigationBarTitle({
-        title: name
-      });
+      util.setNavigationBarTitle(name);
       // 更新局部
       that.setData({
 
@@ -90,7 +90,7 @@ Page({
           description: desc, // 简单的介绍文本
           publishTime, // 发布时间
 
-          playCount: util.dealPlayCount(playCount), // 播放量
+          playCount: util.formatPlayCount(playCount), // 播放量
           likeCount, // 点赞量
           commentCount, // 评论量
           shareCount, // 分享量
@@ -128,7 +128,7 @@ Page({
           singer: creator[0].userName, // 歌手
           image: coverUrl, // 图片
           duration: util.formatTime(durationms), // 总时长
-          playCount: util.dealPlayCount(playTime), // 播放量
+          playCount: util.formatPlayCount(playTime), // 播放量
           type, // 0带MV标识1不带
         });
 
@@ -142,7 +142,7 @@ Page({
 
     // 精彩评论
     util.getdata('comment/mv?id='+id, res => {
-      // console.log(res);
+      console.log(res);
 
       let {
         hotComments, // 精彩评论

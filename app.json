@@ -1,11 +1,15 @@
 {
   "pages": [
-    "pages/index/index",
-    "pages/songListDetail/songListDetail",
-    "pages/songListSquare/songListSquare",
-    "pages/rankingList/rankingList",
+    "pages/home/home",
+    "pages/list/list",
     "pages/player/player",
     "pages/search/search",
+    "pages/ranking/ranking",
+    "pages/login/login",
+    "pages/phone/phone",
+    "pages/square/square",
+    "pages/radioStation/radioStation",
+    "pages/comment/comment",
     "pages/mv/mv"
   ],
   "window": {
@@ -13,7 +17,10 @@
     "navigationBarTextStyle": "white",
     "navigationBarTitleText": "网易云音乐"
   },
-  "sitemapLocation": "sitemap65.json",
+  "usingComponents": {
+    "drawer": "/components/drawer/drawer"
+  },
+  "sitemapLocation": "sitemap.json",
   "requiredBackgroundModes": [
     "audio"
   ]

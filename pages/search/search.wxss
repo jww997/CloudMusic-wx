@@ -1,4 +1,10 @@
-.search-input {
+.search-title {
+  font-weight: bold;
+  font-size: 28rpx;
+  margin-bottom: 20rpx;
+}
+
+.search-bar {
   height: 80rpx;
   padding: 0 30rpx;
   display: flex;
@@ -8,7 +14,7 @@
   color: #fff;
 }
 
-.search-input>input {
+.search-bar>input {
   height: 50rpx;
   border-bottom: 1rpx solid #ccc;
   box-sizing: border-box;
@@ -16,7 +22,7 @@
   flex-grow: 1;
 }
 
-.icon-singer {
+.search-bar>text {
   font-size: 40rpx;
   margin-left: 30rpx;
 }
@@ -26,23 +32,19 @@
   margin: 40rpx auto;
 }
 
-.search-history-title {
+.search-history>view:first-child {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.search-history-title text {
-  font-weight: bold;
-  font-size: 28rpx;
-}
-
-.search-history-title .icon-empty {
+.search-history .icon-empty {
   color: #666;
   font-size: 40rpx;
 }
 
 .search-history-content {
+  font-size: 28rpx;
   display: flex;
   flex-wrap: nowrap;
   overflow-x: scroll;
@@ -55,6 +57,7 @@
   border-radius: 30px;
   margin-top: 30rpx;
   margin-right: 20rpx;
+  white-space: nowrap;
 }
 
 .search-history-content view:last-child {
@@ -100,4 +103,62 @@
 
 .icon-songMore {
   color: #666;
+}
+
+.hots-items {
+  margin-top: 30rpx;
+}
+
+.hots-items>view:first-child {
+  margin: 0 30rpx 20rpx;
+}
+
+.hots-item {
+  height: 100rpx;
+  font-size: 22rpx;
+  padding: 0 30rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #999;
+}
+
+.hots-item > view:first-child {
+  width: 40rpx;
+  margin-right: 30rpx;
+  font-size: 24rpx;
+  font-weight: 400;
+  text-align: center;
+}
+
+.hots-item > view:nth-child(2) {
+  flex-grow: 1;
+}
+
+.hots-item > view:nth-child(2) view:first-child {
+  font-size: 40rpx;
+  color: #000;
+  display: flex;
+}
+
+.hots-item > view:nth-child(2) view:first-child image {
+  margin-left: 20rpx;
+  max-width: 50rpx;
+  height: 30rpx;
+}
+
+.hots-item > view:last-child {
+  color: #aaa;
+}
+
+.hots-item-active > view:first-child {
+  color: #bc374c;
+}
+
+.hots-item-active > view:nth-child(2) view:first-child {
+  font-weight: bold;
+}
+
+.hots-item-hover {
+  background-color: #efefef;
 }

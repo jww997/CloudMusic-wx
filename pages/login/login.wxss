@@ -1,0 +1,71 @@
+Page {
+  height: 100%;
+}
+
+.login {
+  height: 100%;
+  background: #f00;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+}
+
+.icon-cloudMusic {
+  width: 120rpx;
+  height: 120rpx;
+  line-height: 120rpx;
+  font-size: 70rpx;
+  margin-top: 100rpx;
+  box-shadow: 0 0 150rpx 0 rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.login-btn {
+  width: 80%;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  font-size: 30rpx;
+  border-radius: 50rpx;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.login-btn:nth-child(2) {
+  background-color: #fff;
+  color: #f00;
+  margin-top: 500rpx;
+}
+
+.login-type {
+  width: 70%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.login-type > view {
+  width: 50rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  font-size: 26rpx;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  text-align: center;
+}
+
+.login-agreement {
+  font-size: 22rpx;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 30rpx;
+}
+
+.login-agreement>checkbox {
+  transform: scale(0.6, 0.6);
+}
+
+.login-agreement>text {
+  font-weight: bold;
+}

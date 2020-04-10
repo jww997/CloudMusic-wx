@@ -1,0 +1,37 @@
+<!-- 抽屉 -->
+<view class="drawer">
+
+  <view class="drawer-bg" wx:if="{{isShowPlaylist}}" catch:tap="togglePlayingListShow" data-type="hide"></view>
+  <view class="drawer-box {{!isShowPlaylist? 'drawer-box-hidden':''}}">
+    <view class="drawer-box-operate">
+      <view class="drawer-box-mode" catch:tap="toggleModeIndex">
+        <text class="iconfont {{modeList[modeIndex-1].iconClass}}"></text>
+        <text>{{modeList[modeIndex-1].name}}</text>
+      </view>
+      <text class="drawer-box-count">（{{playlist.length}}）</text>
+      <view class="drawer-box-collect">
+        <text class="iconfont icon-collect"></text>
+        <text>收藏全部</text>
+      </view>
+      <view class="drawer-box-empty">
+        <text class="iconfont icon-empty"></text>
+      </view>
+    </view>
+    <view class="drawer-box-list">
+      <view class="drawer-box-list-item {{playing.id == item.id? 'drawer-box-list-item-active': ''}}" hover-class="drawer-box-list-item-hover" wx:for="{{playlist}}" wx:key="index" catch:tap="togglePlayingCut" data-id="{{index}}">
+        <view class="drawer-box-list-item-trumpet" wx:if="{{playing.id == item.id}}">
+          <text class="iconfont icon-trumpet"></text>
+        </view>
+        <view class="drawer-box-list-item-name">
+          <text>{{item.title}}</text>
+          <text> - {{item.singer}}</text>
+        </view>
+        <view class="drawer-box-list-item-delete">
+          <text class="iconfont icon-delete"></text>
+        </view>
+      </view>
+    </view>
+    <view class="drawer-box-close" catch:tap="togglePlayingListShow" data-type="hide">关闭</view>
+  </view>
+
+</view>

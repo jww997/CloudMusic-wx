@@ -1,0 +1,25 @@
+<import src="/template/box/box-template.wxml" />
+<import src="/template/loading/loading-template.wxml" />
+<import src="/template/playbar/playbar-template.wxml" />
+
+<!-- 登录 -->
+<view class="login">
+
+  <view class="iconfont icon-cloudMusic"></view>
+  <view class="login-btn" catch:tap="toPages" data-to="phone">手机号登陆</view>
+  <view class="login-btn" catch:tap="toPages" data-to="index">立即体验</view>
+  <view class="login-type">
+    <view class="iconfont icon-wechat"></view>
+    <view class="iconfont icon-qq"></view>
+    <view class="iconfont icon-microblog"></view>
+    <view class="iconfont icon-netEase"></view>
+  </view>
+  <view class="login-agreement">
+    <checkbox></checkbox>
+    同意
+    <text>《用户协议》</text>
+    <text>《隐私协议》</text>
+    <text>《儿童隐私政策》</text>
+  </view>
+
+</view>

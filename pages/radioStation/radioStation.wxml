@@ -1,0 +1,36 @@
+<import src="/template/box/box-template.wxml" />
+<import src="/template/loading/loading-template.wxml" />
+<import src="/template/playbar/playbar-template.wxml" />
+
+<!-- 底部播放栏 -->
+<template is="playbarTemplate" data="{{isShowPlayBar, isShowPlaylist, isPlayState, playing, playlist, modeIndex, modeList}}" />
+
+<!-- 电台 -->
+<view class="radioStation">
+
+  <!-- 轮播图 -->
+  <view class="banner">
+    <swiper autoplay="{{true}}" indicator-dots="{{true}}" circular="{{true}}" indicator-active-color="#f00">
+      <swiper-item wx:for="{{radioStation.banner}}" wx:key="index">
+        <view class="banner-item">
+          <image mode="scaleToFill" src="{{item.image}}" />
+          <view class="banner-title">{{item.title}}</view>
+        </view>
+      </swiper-item>
+    </swiper>
+  </view>
+  <!-- 菜单栏 -->
+  <view class="menu-items padding-top">
+    <block wx:for="{{radioStation.menus}}" wx:key="index">
+      <view class="menu-item">
+        <view class="menu_icon iconfont {{item.iconClass}}" catch:tap="toPages" data-to="{{item.dataTo}}"></view>
+        <text>{{item.name}}</text>
+      </view>
+    </block>
+  </view>
+  <!-- 分割线 -->
+  <view class="hr margin-top"></view>
+
+
+
+</view>

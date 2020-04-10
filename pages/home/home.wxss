@@ -1,0 +1,381 @@
+Page {
+  height: 100%;
+}
+
+.home {
+  height: 100%;
+  position: relative;
+  padding-top: 100rpx;
+  box-sizing: border-box;
+}
+
+.sidebar-wrap {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 200;
+}
+
+.sidebar {
+  width: 85%;
+  height: 100%;
+  background-color: #000;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: scroll;
+}
+
+.sidebar-items {
+  margin-top: 250rpx;
+  background-color: #fff;
+  border-radius: 30rpx 30rpx 0 0;
+  height: 2000rpx;
+}
+
+.sidebar-bar {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100rpx;
+  border-top: 1px solid #eee;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: #f00;
+  width: 100%;
+  height: 100rpx;
+  color: #fff;
+  position: absolute;
+  top: 0;
+}
+
+.toolbar>text {
+  width: 100rpx;
+  opacity: 0.8;
+  font-size: 25rpx;
+}
+
+.toolbar .toolbar-item-active {
+  font-weight: bold;
+  font-size: 30rpx;
+  opacity: 1;
+}
+
+.toolbar .iconfont {
+  position: absolute;
+  font-size: 40rpx;
+}
+
+.toolbar .icon-sidebar {
+  left: 5%;
+}
+
+.toolbar .icon-search {
+  right: 5%;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* 我的 */
+
+.mine {
+}
+
+.mine scroll-view {
+  background-color: transparent;
+  background-size: 0;
+  position: relative;
+}
+
+.mine scroll-view::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: -10%;
+  background-color: rgba(0, 0, 0, 0.8);
+  background-image: inherit;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  /* filter: blur(20rpx); */
+  z-index: -1;
+}
+
+.mine .person {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40rpx 30rpx;
+  box-sizing: border-box;
+}
+
+.mine .person image {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  background-color: #eee;
+  flex-shrink: 0;
+}
+
+.mine .person .identity {
+  flex-grow: 1;
+  margin-left: 20rpx;
+  font-size: 24rpx;
+  font-weight: bold;
+  color: #fff;
+}
+
+.mine .person .member {
+  font-size: 22rpx;
+  color: #999;
+  white-space: nowrap;
+  margin-left: 20rpx;
+}
+
+.mine .box {
+  width: 100%;
+  height: 1000rpx;
+  margin-top: 30rpx;
+  border-radius: 30rpx 30rpx 0 0;
+  background-color: #fff;
+}
+
+.mine .menu-items {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: #fff;
+}
+
+.mine .menu-item {
+  text-align: center;
+}
+
+.mine .menu-item .iconfont {
+  font-size: 45rpx;
+}
+
+/* 发现 */
+
+.discover .banner {
+  height: 250rpx;
+  position: relative;
+}
+
+.discover .banner::before {
+  content: "";
+  width: 100%;
+  height: 50%;
+  background-color: #f00;
+  position: absolute;
+}
+
+.discover .banner swiper {
+  height: 100%;
+}
+
+.discover .banner swiper-item {
+  box-sizing: border-box;
+  padding: 0 45rpx;
+}
+
+.discover .banner-item {
+  height: 100%;
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+}
+
+.discover .banner image {
+  width: 100%;
+  height: 100%;
+}
+
+.discover .banner-title {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: #f00;
+  border-radius: 5px 0 0 0;
+  font-size: 22rpx;
+  color: #fff;
+  padding: 5rpx 10rpx;
+}
+
+.discover .menu-items {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30rpx;
+  padding: 0 45rpx;
+}
+
+.discover .menu-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.discover .menu-item text {
+  font-size: 20rpx;
+  margin-top: 10rpx;
+}
+
+.discover .menu-item .iconfont {
+  width: 70rpx;
+  height: 70rpx;
+  background-image: linear-gradient(to right, rgba(255, 0, 0, 0.8), #f00);
+  border-radius: 50%;
+  font-size: 60rpx;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.discover .recommend, .discover .fresh {
+  margin-top: 10rpx;
+}
+
+.discover .recommend > view, .discover .fresh > view {
+  padding: 0 45rpx;
+}
+
+.discover .recommend-title, .discover .fresh-title {
+  font-size: 20rpx;
+  color: #aaa;
+}
+
+.discover .recommend-subtitle, .discover .fresh-subtitle {
+  font-size: 28rpx;
+  font-weight: bold;
+}
+
+.discover .recommend-more, .discover .fresh-more {
+  float: right;
+  height: 32rpx;
+  line-height: 32rpx;
+  margin-top: 5rpx;
+  padding: 0 15rpx;
+  font-size: 22rpx;
+  border-radius: 15px;
+  border: 1px solid #aaa;
+}
+
+.discover .recommend-swiper {
+  width: 100%;
+  height: 300rpx;
+  padding-top: 20rpx;
+  overflow: visible;
+}
+
+.discover .recommend-swiper-item {
+  padding: 0 15rpx;
+  box-sizing: border-box;
+}
+
+.discover .fresh-subtitle {
+  padding-right: 15rpx;
+  margin-right: 15rpx;
+  border-right: 1px solid #eee;
+  color: #666;
+}
+
+.discover .fresh-subtitle.fresh-subtitle-active {
+  color: #000;
+}
+
+.discover .fresh-subtitle:nth-child(2) {
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+
+.discover .fresh-swiper {
+  height: 350rpx;
+  margin-top: 20rpx;
+}
+
+.discover .fresh-item {
+  width: 660rpx;
+  border-radius: 5px;
+  margin-bottom: 15rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.discover .fresh-item-hover {
+  background-color: #eee;
+}
+
+.discover .fresh-item image {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 5px;
+  background-color: #eee;
+  flex-shrink: 0;
+}
+
+.discover .fresh-item>view:nth-child(2) {
+  width: 100%;
+  margin-left: 20rpx;
+  flex-grow: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.discover .fresh-item>view view:first-child text:first-child {
+  width: 80%;
+  line-height: 28rpx;
+  font-size: 28rpx;
+}
+
+.discover .fresh-item>view view {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.discover .fresh-item>view text:last-child,
+.discover .fresh-item>view view:nth-child(2) {
+  font-size: 22rpx;
+  color: #666;
+}
+
+.discover .fresh-playBtn {
+  flex-shrink: 0;
+  width: 50rpx;
+  height: 50rpx;
+  margin-left: 20rpx;
+  border-radius: 50%;
+  border: 1px solid #eee;
+  position: relative;
+}
+
+.discover .fresh-playBtn::after {
+  content: "";
+  width: 0;
+  height: 0;
+  border: 10rpx solid;
+  border-color: transparent transparent transparent #f00;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 12rpx;
+  right: 0;
+  margin: auto;
+}

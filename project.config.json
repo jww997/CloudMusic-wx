@@ -11,7 +11,9 @@
 		"minified": true,
 		"newFeature": true,
 		"coverView": true,
-		"autoAudits": true,
+		"autoAudits": false,
+		"showShadowRootInWxmlPanel": true,
+		"scopeDataCheck": false,
 		"checkInvalidKey": true,
 		"checkSiteMap": true,
 		"uploadWithSourceMap": true,
@@ -22,9 +24,9 @@
 		}
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.10.0",
+	"libVersion": "2.10.3",
 	"appid": "wxa129f6d1b3b03912",
-	"projectname": "CloudMusic",
+	"projectname": "CloudMusic-wx",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},
@@ -57,8 +59,8 @@
 			"list": [
 				{
 					"id": -1,
-					"name": "pages/songListSquare/songListSquare",
-					"pathName": "pages/songListSquare/songListSquare",
+					"name": "pages/square/square",
+					"pathName": "pages/square/square",
 					"query": "",
 					"scene": null
 				},
@@ -71,8 +73,8 @@
 				},
 				{
 					"id": 2,
-					"name": "pages/songListDetail/songListDetail",
-					"pathName": "pages/songListDetail/songListDetail",
+					"name": "pages/list/list",
+					"pathName": "pages/list/list",
 					"query": "id= 240934246",
 					"scene": null
 				},
@@ -92,8 +94,8 @@
 				},
 				{
 					"id": -1,
-					"name": "pages/rankingList/rankingList",
-					"pathName": "pages/rankingList/rankingList",
+					"name": "pages/ranking/ranking",
+					"pathName": "pages/ranking/ranking",
 					"query": "",
 					"scene": null
 				},
@@ -102,6 +104,34 @@
 					"name": "pages/mv/mv",
 					"pathName": "pages/mv/mv",
 					"query": "id=10869713",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/radioStation/radioStation",
+					"pathName": "pages/radioStation/radioStation",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/login/login",
+					"pathName": "pages/login/login",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/phone/phone",
+					"pathName": "pages/phone/phone",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 10,
+					"name": "pages/comment/comment",
+					"pathName": "pages/comment/comment",
+					"query": "id=1436150979",
 					"scene": null
 				}
 			]

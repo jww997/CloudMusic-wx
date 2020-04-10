@@ -1,0 +1,44 @@
+<import src="/template/box/box-template.wxml" />
+<import src="/template/loading/loading-template.wxml" />
+<import src="/template/playbar/playbar-template.wxml" />
+
+<!-- 底部播放栏 -->
+<template is="playbarTemplate" data="{{isShowPlayBar, isShowPlaylist, isPlayState, playing, playlist, modeIndex, modeList}}" />
+
+<!-- 排行榜 -->
+<view class="ranking {{isShowPlayBar?'padding-bottom':''}}">
+
+  <view class="officialList">
+    <view class="ranking-title">{{ranking.officialList.name}}</view>
+    <template is="loadingTemplate" wx:if="{{!ranking.officialList.list.length}}" />
+    <view class="officialList-rows" wx:else>
+      <block wx:for="{{ranking.officialList.list}}" wx:key="index">
+        <view class="officialList-row" hover-class="officialList-row-active" wx:if="{{item.idx||item.idx==0}}" catch:tap="toPages" data-to="list" data-type="3" data-id="{{item.idx}}">
+          <view class="ranking-box-image">
+            <image mode="aspectFit" src="{{item.coverImgUrl}}"></image>
+            <text>{{item.updateFrequency}}</text>
+          </view>
+          <view class="officialList-row-list">
+            <text wx:for="{{item.tracks}}" wx:key="index" wx:for-item="item1">{{index+1}}.{{item1.first}} - {{item1.second}}</text>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+  <view class="unofficialList" wx:for="{{ranking.unofficialLists}}" wx:key="index">
+    <view class="ranking-title">{{item.name}}</view>
+    <template is="loadingTemplate" wx:if="{{!item.list.length}}" />
+    <view class="unofficialList-boxs" wx:else>
+      <block wx:for="{{item.list}}" wx:key="index">
+        <view class="unofficialList-box" hover-class="unofficialList-box-hover" catch:tap="toPages" data-to="list" data-type="1" data-id="{{item.id}}">
+          <view class="ranking-box-image">
+            <image mode="aspectFit" src="{{item.coverImgUrl}}"></image>
+            <text>{{item.updateFrequency}}</text>
+          </view>
+          <view class="unofficialList-box-name">{{item.name}}</view>
+        </view>
+      </block>
+    </view>
+  </view>
+
+</view>

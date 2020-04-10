@@ -1,0 +1,132 @@
+@import "/utils/fonts/iconfont.wxss";
+
+.drawer .iconfont {
+  color: #666;
+}
+
+.drawer-bg, .drawer-box {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+}
+
+.drawer-bg {
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 150;
+}
+
+.drawer-box {
+  height: 900rpx;
+  background-color: #fff;
+  border-radius: 20px 20px 0 0;
+  transition: height .5s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 200;
+}
+
+.drawer-box-hidden {
+  height: 0;
+}
+
+.drawer-box-operate {
+  height: 80rpx;
+  padding: 0 20rpx;
+  box-sizing: border-box;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.drawer-box-count {
+  flex-grow: 1;
+}
+
+.drawer-box-mode, .drawer-box-collect {
+  width: 140rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 15rpx;
+}
+
+.drawer-box-empty {
+  position: relative;
+  margin-left: 15rpx;
+}
+
+.drawer-box-empty::after {
+  content: "";
+  width: 1px;
+  height: 25rpx;
+  margin: auto;
+  background-color: #eee;
+  position: absolute;
+  left: -10rpx;
+  bottom: 0;
+  top: 0;
+}
+
+.drawer-box-list {
+  flex-grow: 1;
+  overflow-y: scroll;
+}
+
+.drawer-box-list-item {
+  padding: 15rpx 20rpx;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.drawer-box-list-item-trumpet {
+  flex-shrink: 0;
+  margin-right: 10rpx;
+}
+
+.drawer-box-list-item-name {
+  flex-grow: 1;
+  width: 70%;
+  line-height: 30rpx;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.drawer-box-list-item-name text:first-child {
+  font-size: 24rpx;
+}
+
+.drawer-box-list-item-name text:nth-child(2) {
+  font-size: 20rpx;
+  color: #666;
+}
+
+.drawer-box-list-item-delete {
+  flex-shrink: 0;
+}
+
+.drawer-box-list-item-hover {
+  background-color: #eee;
+}
+
+.drawer-box-list-item-active .drawer-box-list-item-trumpet .iconfont,
+.drawer-box-list-item-active .drawer-box-list-item-name text {
+  color: #f00;
+}
+
+.drawer-box-close {
+  flex-shrink: 0;
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 30rpx;
+  text-align: center;
+  letter-spacing: 5px;
+  border-top: 1px solid #eee;
+}

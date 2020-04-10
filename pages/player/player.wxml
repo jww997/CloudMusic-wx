@@ -1,78 +1,49 @@
+<import src="/template/box/box-template.wxml" />
+<import src="/template/loading/loading-template.wxml" />
+<import src="/template/playbar/playbar-template.wxml" />
+
+<!-- 播放器 -->
 <view class="player-wrap" style="background-image: url({{playing.image||''}});">
-  <!-- 播放器 -->
-  <view class="player {{isShowPlaylist? 'player-playlist-bg':''}}" catch:tap="onHidePlaylist">
-    <!-- 唱片机 -->
-    <view class="player-phonograph" hidden="{{isShowlyric}}" catch:tap="onToggleShowlyric">
-      <!-- 手柄 -->
-      <image class="player-stick {{isPlayState?'player-stick-turn':''}}" src="../../images/stick.png" />
-      <!-- 转盘 -->
-      <view class="player-disc {{isPlayState?'player-disc-running':''}}" catch:longpress="onFullPic" data-imgurl="{{playing.image||''}}">
+
+  <view class="player">
+    <view class="player-phonograph" hidden="{{isShowLyric}}">
+      <image class="player-stick {{isPlayState?'player-stick-turn':'player-disc-new'}}" src="../../images/stick.png" catch:tap="toggleLyricShow" />
+      <view class="player-disc {{isPlayState?'player-disc-running':''}}" catch:tap="toggleLyricShow" catch:longpress="fullImage" data-imgurl="{{playing.image||''}}">
         <image class="player-img" mode="aspectFill" src="{{playing.image||'/images/chassis.png'}}" />
         <image class="player-light" src="../../images/light.png" />
         <image class="player-cover" src="../../images/cover.png" />
       </view>
-      <!-- 操作 -->
       <view class="player-operation">
         <view class="iconfont icon-love"></view>
         <view class="iconfont icon-download-2"></view>
-        <view class="iconfont icon-polyphonic"></view>
-        <view class="iconfont icon-comment"></view>
+        <!-- <view class="iconfont icon-polyphonic"></view> -->
+        <view class="iconfont icon-comment" catch:tap="toPages" data-to="comment" data-type="1" data-id="{{playing.id}}"></view>
         <view class="iconfont icon-playerMore"></view>
       </view>
     </view>
-    <!-- 歌词 -->
-    <view class="player-lyric" hidden="{{!isShowlyric}}" catch:tap="onToggleShowlyric">
-      <view class="player-lyric-list" style="transform: translateY(-{{curLrcIndex*80 + (isScrollLyric? curLrcScrolledHeight*2: 0)}}rpx);{{!isScrollLyric?'transition: transform 1s;':''}}" bind:touchstart="onStartLyric" bind:touchmove="onMoveLyric" bind:touchend="onEndLyric">
-        <block wx:for="{{playing.lyric}}" wx:key="index">
-          <view class="{{index == curLrcIndex?'current': ''}}" style="{{curLrcIndex-4 <= index && index < curLrcIndex ? 'opacity: .6;': ''}}">{{item.lrc}}</view>
+    <view class="player-lyric" hidden="{{!isShowLyric}}" catch:tap="toggleLyricShow">
+      <view class="player-lyric-list" style="transform: translateY(-{{lyric.index*80 + (isScrollLyric? curLrcScrolledHeight*2: 0)}}rpx);{{!isScrollLyric?'transition: transform 1s;':''}}" bind:touchstart="onStartLyric" bind:touchmove="onMoveLyric" bind:touchend="onEndLyric">
+        <view wx:if="{{!lyric.content.length}}">暂无歌词</view>
+        <block wx:else>
+          <view class="{{index == lyric.index?'current': ''}}" style="{{lyric.index-4 <= index && index < lyric.index ? 'opacity: .6;': ''}}" wx:for="{{lyric.content}}" wx:key="index">{{item.lrc}}</view>
         </block>
       </view>
     </view>
-
-
-    <!-- 工具区 -->
     <view class="player-toolbar">
-      <!-- 进度条 -->
       <view class="player-progress">
         <text>{{currentTime}}</text>
-        <slider backgroundColor="#ccc" activeColor="#f00" block-size="12" value="{{sliderValue}}" max="{{sliderMax}}" bind:change="onChangeProgress"></slider>
+        <slider backgroundColor="#ccc" activeColor="#f00" block-size="12" value="{{sliderValue}}" max="{{sliderMax}}" bind:change="dragProgressBar"></slider>
         <text>{{duration}}</text>
       </view>
-      <!-- 控制条 -->
       <view class="player-bar">
-        <view class="iconfont icon-orderPlay"></view>
-        <view class="iconfont icon-last" catch:tap="onChangePlaying" data-id="-1" data-type="last"></view>
-        <view class="iconfont {{isPlayState?'icon-play':'icon-pause'}}" catch:tap="onTogglePlayState"></view>
-        <view class="iconfont icon-next" catch:tap="onChangePlaying" data-id="1" data-type="next"></view>
-        <view class="iconfont icon-list" catch:tap="onShowPlaylist"></view>
+        <view class="iconfont {{modeList[modeIndex-1].iconClass? modeList[modeIndex-1].iconClass : 'icon-orderPlay'}}" catch:tap="toggleModeIndex"></view>
+        <view class="iconfont icon-last" catch:tap="togglePlaying" data-id="-1"></view>
+        <view class="iconfont {{isPlayState?'icon-play':'icon-pause'}}" catch:tap="togglePlayingState"></view>
+        <view class="iconfont icon-next" catch:tap="togglePlaying" data-id="1"></view>
+        <view class="iconfont icon-playlist" catch:tap="togglePlayingListShow" data-type="show"></view>
       </view>
     </view>
   </view>
-  <!-- 播放列表 -->
-  <view class="player-playlist {{!isShowPlaylist? 'player-playlist-hidden':''}}">
-    <view class="player-playlist-topbar">
-      <view>
-        <view class="iconfont icon-orderPlay"></view>
-        <text>列表循环（{{playlist.length}}）</text>
-      </view>
-      <view>
-        <view class="iconfont icon-collectAll"></view>
-        <text>收藏全部</text>
-        <view class="iconfont icon-empty"></view>
-      </view>
-    </view>
-    <view class="player-playlist-list">
-      <block wx:for="{{playlist}}" wx:key="index">
-        <view class="player-playlist-list-item {{playing.id==item.id?'player-playlist-list-item-active':''}}" hover-class="player-playlist-list-item-hover" catch:tap="onChangePlaying" data-id="{{index}}">
-          <view class="{{playing.id==item.id?'iconfont icon-trumpet':''}}"></view>
-          <view>
-            <text>{{item.title}}</text>
-            <text> - {{item.singer}}</text>
-          </view>
-          <view class="iconfont icon-delete"></view>
-        </view>
-      </block>
-    </view>
-    <!-- <view class="player-playlist-close" catch:tap="onHidePlaylist">关闭</view> -->
-  </view>
+  <drawer playlist="{{playlist}}" playing="{{playing}}" isShowPlaylist="{{isShowPlaylist}}"></drawer>
+
 </view>

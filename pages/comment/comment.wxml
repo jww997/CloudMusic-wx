@@ -1,0 +1,62 @@
+<import src="/template/box/box-template.wxml" />
+<import src="/template/loading/loading-template.wxml" />
+<import src="/template/playbar/playbar-template.wxml" />
+
+<!-- 评论 -->
+<view class="comment">
+
+  <view class="comment-info" hover-class="comment-info-hover" catch:tap="toPages" data-to="player">
+    <image mode="aspectFit" lazy-load="true" src="{{playing.image}}"></image>
+    <view>
+      <view>{{playing.title}}</view>
+      <view>{{playing.singer}}</view>
+    </view>
+    <text decode="true">&gt;</text>
+  </view>
+  <view class="comment-items" wx:if="{{comment.recent.length}}">
+    <view class="comment-title">近期评论</view>
+    <view class="comment-item" wx:for="{{comment.recent}}" wx:key="index">
+      <image mode="aspectFit" lazy-load="true" src="{{item.user.avatarUrl}}"></image>
+      <view class="comment-user-name">{{item.user.nickname}}</view>
+      <view class="comment-user-time">{{item.date}}</view>
+      <view class="comment-user-content">{{item.content}}</view>
+      <view class="comment-user-likedCount {{item.liked? 'comment-user-likedCount-active': ''}}" hover-class="comment-user-likedCount-hover">
+        <text>{{item.likedCount}}</text>
+        <text class="iconfont icon-like"></text>
+      </view>
+    </view>
+  </view>
+  <view class="comment-items" wx:if="{{comment.wonderful.length}}">
+    <view class="comment-title">精彩评论</view>
+    <view class="comment-item" wx:for="{{comment.wonderful}}" wx:key="index">
+      <image mode="aspectFit" lazy-load="true" src="{{item.user.avatarUrl}}"></image>
+      <view class="comment-user-name">{{item.user.nickname}}</view>
+      <view class="comment-user-time">{{item.date}}</view>
+      <view class="comment-user-content">{{item.content}}</view>
+      <view class="comment-user-likedCount {{item.liked? 'comment-user-likedCount-active': ''}}" hover-class="comment-user-likedCount-hover">
+        <text>{{item.likedCount}}</text>
+        <text class="iconfont icon-like"></text>
+      </view>
+    </view>
+  </view>
+  <view class="comment-items" wx:if="{{comment.newest.length}}">
+    <view class="comment-title">最新评论</view>
+    <view class="comment-item" wx:for="{{comment.newest}}" wx:key="index">
+      <image mode="aspectFit" lazy-load="true" src="{{item.user.avatarUrl}}"></image>
+      <view class="comment-user-name">{{item.user.nickname}}</view>
+      <view class="comment-user-time">{{item.date}}</view>
+      <view class="comment-user-content">{{item.content}}</view>
+      <view class="comment-user-likedCount {{item.liked? 'comment-user-likedCount-active': ''}}" hover-class="comment-user-likedCount-hover">
+        <text>{{item.likedCount}}</text>
+        <text class="iconfont icon-like"></text>
+      </view>
+    </view>
+    <template is="loadingTemplate" wx:if="{{!(comment.newest.length == comment.total)}}" />
+    <view class="comment-items-end" wx:else>- 华丽的底线 -</view>
+  </view>
+  <view class="comment-items-none" wx:if="{{!comment.recent.length&&!comment.wonderful.length&&!comment.newest.length}}">- 沙发随便坐 -</view>
+  <view class="comment-backtotop" catch:tap="pageScrollTo" wx:if="{{isShowBacktotop}}">
+    <text class="iconfont icon-backtotop"></text>
+  </view>
+
+</view>

@@ -1,0 +1,84 @@
+.box {
+  width: 200rpx;
+}
+
+.box text {
+  font-size: 20rpx;
+}
+
+.box-img {
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 5px;
+  background-color: #eee;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+  z-index: 1;
+}
+
+.box-img::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.1), transparent 10%);
+  z-index: 2;
+}
+
+.box-playCount {
+  font-size: 20rpx;
+  position: absolute;
+  right: 10rpx;
+  top: 10rpx;
+  z-index: 3;
+}
+
+.box-playBtn {
+  width: 50rpx;
+  height: 50rpx;
+  background: #fff;
+  border-radius: 50%;
+  position: absolute;
+  right: 15rpx;
+  bottom: 15rpx;
+  opacity: 0.9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.box-playBtn::after {
+  content: "";
+  border-width: 10rpx 0 10rpx 15rpx;
+  border-style: solid;
+  border-color: transparent transparent transparent #f00;
+  margin-left: 5rpx;
+  width: 0;
+  height: 0;
+}
+
+.box-name, .box-author {
+  display: -webkit-box;
+  overflow: hidden;
+  white-space: normal;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+}
+
+.box-name {
+  padding-top: 10rpx;
+  -webkit-line-clamp: 2;
+}
+
+.box-author {
+  color: #666;
+  -webkit-line-clamp: 1;
+}
+
+.box-name-nowrap {
+  -webkit-line-clamp: 1;
+}

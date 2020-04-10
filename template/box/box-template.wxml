@@ -1,0 +1,15 @@
+<template name="boxTemplate">
+
+  <view class="box">
+    <view class="box-img" style="background-image: url({{picUrl}});">
+      <!-- <view class="box-playBtn" wx:if="{{isPlayBtnShow}}"></view> -->
+      <view class="box-playCount" wx:if="{{playCount}}">
+        <text class="iconfont icon-triangle"></text>
+        <text>{{playCount}}</text>
+      </view>
+    </view>
+    <text class="box-name {{artist?'box-name-nowrap':''}}" wx:if="{{name}}">{{name}}</text>
+    <!-- <text class="box-author" wx:if="{{artist}}">{{artist}}</text> -->
+  </view>
+
+</template>

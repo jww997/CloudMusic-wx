@@ -1,0 +1,206 @@
+Page {
+  height: 100%;
+}
+
+.square {
+  height: 100%;
+}
+
+.square-bar {
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  border-bottom: 1px solid #eee;
+  box-sizing: border-box;
+  text-align: center;
+  position: absolute;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.square-nav {
+  flex-grow: 1;
+  height: 100%;
+  position: relative;
+  overflow: scroll;
+  display: flex;
+}
+
+.square-nav-slider, .square-nav .square-nav-slider::before,
+.square-nav .square-nav-slider::after {
+  height: 2px;
+  position: absolute;
+  bottom: 0;
+  background-color: #f00;
+}
+
+.square-nav-slider {
+  width: 50rpx;
+  margin: 0 35rpx;
+  border-radius: 50px;
+  left: 0;
+  transition: left 0.5s;
+}
+
+.square-nav .square-nav-slider::before, .square-nav .square-nav-slider::after {
+  content: '';
+  width: 0;
+  transition: all 0.2s;
+}
+
+.square-nav-active .square-nav-slider::before,
+.square-nav-active .square-nav-slider::after {
+  width: 70rpx;
+}
+
+.square-nav .square-nav-slider::before {
+  right: 100%;
+}
+
+.square-nav-active .square-nav-slider::before {
+  right: 0;
+}
+
+.square-nav .square-nav-slider::after {
+  left: 100%;
+}
+
+.square-nav-active .square-nav-slider::after {
+  left: 0;
+}
+
+.square-nav-item {
+  flex-shrink: 0;
+  width: 120rpx;
+  height: 100%;
+  font-size: 26rpx;
+  color: #333;
+  transition: color 0.3s;
+}
+
+.square-nav-item-active {
+  color: #f00;
+}
+
+.square-nav-item-hover {
+  background-color: #eee;
+}
+
+.square-bar-classify {
+  flex-shrink: 0;
+  padding: 10rpx;
+}
+
+.square-swiper {
+  height: 100%;
+  flex-grow: 1;
+  padding-top: 80rpx;
+  box-sizing: border-box;
+}
+
+.square-swiper-item {
+  overflow: scroll;
+}
+
+.square-label {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0 15rpx 80rpx;
+  box-sizing: border-box;
+  background: #fff;
+  overflow: scroll;
+  z-index: 3;
+}
+
+.square-label > view:first-child {
+  position: relative;
+}
+
+.square-label-title {
+  font-size: 26rpx;
+  margin-top: 20rpx;
+  padding-left: 10rpx;
+}
+
+.square-label-title > text:last-child {
+  font-size: 20rpx;
+  color: #666;
+}
+
+.square-label-tags {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20rpx;
+}
+
+.square-label-tags > view {
+  width: 160rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  padding: 0 10rpx;
+  box-sizing: border-box;
+  background-color: #eee;
+  border-radius: 50rpx;
+  text-align: center;
+  margin: 10rpx;
+  display: flex;
+}
+
+.square-label-tags .icon-hot {
+  font-size: 28rpx;
+  color: #f00;
+}
+
+.square-label-tags > view text:last-child {
+  display: inline-block;
+  flex-grow: 1;
+  font-size: 20rpx;
+  color: #111;
+}
+
+.square-label-tag-disable {
+  opacity: 0.5;
+}
+
+.square-label-edit, .square-label-close {
+  width: 70rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+  font-size: 18rpx;
+  border: 1px solid #f00;
+  border-radius: 50rpx;
+  text-align: center;
+  color: #f00;
+  position: absolute;
+  top: 0;
+}
+
+.square-label-edit {
+  right: 100rpx;
+}
+
+.square-label-close {
+  right: 10rpx;
+}
+
+.songList {
+  height: 100%;
+}
+
+.songlist-list {
+  height: 100%;
+  margin: 0 15rpx;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.songlist-list-item {
+  margin: 20rpx;
+  transform: scale(1.1);
+  transform-origin: center;
+}

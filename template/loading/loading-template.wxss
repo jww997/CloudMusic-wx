@@ -55,10 +55,9 @@
 }
 
 .loading-icon > view:nth-child(odd) {
-  animation: loading1 .5s linear infinite;
+  animation: loading1 0.5s linear infinite;
 }
 
 .loading-icon > view:nth-child(even) {
-  animation: loading2 .5s linear infinite;
+  animation: loading2 0.5s linear infinite;
 }
-

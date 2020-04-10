@@ -1,32 +1,4 @@
-import "api.js";
-
-var baseUrl = require("./api.js");
-var app = getApp();
-
-// 保留当前页面，跳转到应用内的某个页面
-function navigateTo(url) {
-  wx.navigateTo({
-    url: url,
-  });
-}
-
-// 调用网易云音乐API接口，获取数据
-function getdata(parameter, fn, fn2) {
-  wx.request({
-    url: baseUrl + parameter,
-    header: {
-      'Content-Type': 'application/json'
-    },
-    success: function(res) {
-      // console.log(res);
-      if (res.statusCode === 200) {
-        fn(res);
-      } else {
-        fn2 ? fn2(res) : '';
-      };
-    }
-  });
-}
+const baseUrl = require("./api.js");
 
 // 格式化时间 传入毫秒，输出分秒
 function formatTime(time) {
@@ -49,7 +21,7 @@ function formatDate(time) {
 }
 
 // 格式化歌词 输入字符串，输出数组
-function parseLyric(content) {
+function formatLyric(content) {
   let newArr = new Array();
   let rowArr = content.split('\n');
   for (var row of rowArr) {
@@ -70,14 +42,8 @@ function parseLyric(content) {
   return newArr;
 }
 
-
-
-
-
-
-
-// 处理歌单被播放所有次数单位
-function dealPlayCount(countArr) {
+// 格式化播放量 输入数字数组，输出带单位的数组
+function formatPlayCount(countArr) {
   let newCountArr = new Array();
   if (countArr instanceof Array) {
     countArr.forEach(count => {
@@ -106,166 +72,203 @@ function dealPlayCount(countArr) {
     };
     return count;
   };
-
 }
 
-// 歌单歌单列表
-function playList(playUrl, playImgUrl, playTitle, playAuthor, playId) {
-  let isPlayState = app.globalData.isPlayState;
-  init();
-
-  // console.log(' app.globalData.curPlayId=' + app.globalData.curPlayId + ',playId=' + playId);
-
-  if (app.globalData.curPlayId != playId) {
-
-    play(playUrl, playImgUrl, playTitle, playAuthor, playId);
-
-  } else { // 点第二下会暂停，改成跳转页面
-
-    // pause(playUrl, playImgUrl, playTitle, playAuthor, playId);
-    console.log('跳转');
-
-  };
-
-
-}
-
-// 监听后台音乐状态
-function listenbackgroundState(that) {
-  // console.log(that);
-  wx.onBackgroundAudioPlay(that => {
-    that.setData({
-      isPlayState: true,
-      isShowPlayBar: true
-    });
-  });
-  wx.onBackgroundAudioPause(that => {
-    that.setData({
-      isPlayState: false,
-      isShowPlayBar: false
-    });
-  });
-  wx.onBackgroundAudioStop(that => {
-    that.setData({
-      isPlayState: false,
-      isShowPlayBar: false
-    });
-  });
-}
-
-// 控制歌曲的播放暂停
-function toggle(playUrl, playImgUrl, playTitle, playAuthor, playId) {
-  let isPlayState = app.globalData.isPlayState;
-  init();
-
-  if (!isPlayState) {
-    play(playUrl, playImgUrl, playTitle, playAuthor, playId);
-  } else {
-    pause();
-  };
-}
-
-function init() {
-  wx.onBackgroundAudioPlay(function() {
-    app.globalData.isPlayState = true;
-  });
-  wx.onBackgroundAudioPause(function() {
-    app.globalData.isPlayState = false;
-  });
-  wx.onBackgroundAudioStop(function() {
-    app.globalData.isPlayState = false;
-  });
-}
-
-function play(playUrl, playImgUrl, playTitle, playAuthor, playId) {
-  getdata("check/music?id=" + playId, res => {
-    if (res.data.success) {
-      wx.playBackgroundAudio({
-        dataUrl: playUrl,
-        title: playTitle + "-" + playAuthor,
-        coverImgUrl: playImgUrl
-      });
-      wx.setNavigationBarTitle({
-        title: playTitle + "-" + playAuthor
-      });
-      app.globalData.isPlayState = true;
-      app.globalData.curPlayId = playId;
-      app.globalData.curPlayUrl = playUrl;
-      app.globalData.curPlaySong = playTitle;
-      app.globalData.curPlayPicUrl = playImgUrl;
-      app.globalData.curPlayAuthor = playAuthor;
+// 格式化歌手 输入数组，输出字符串
+function formatArtists(arr) {
+  let singers = '';
+  arr.forEach((value, index) => {
+    if (index > 0) {
+      singers += '/' + value.name;
+    } else {
+      singers = value.name;
     };
-
-  }, res => {
-    wx.showToast({
-      title: '暂无版权',
-      icon: 'none',
-    });
   });
+  return singers;
 }
 
-function pause() {
-  wx.pauseBackgroundAudio();
-  app.globalData.isPlayState = false;
-}
-
-
-
-
-// 跳转公共方法
-function toPages(event) {
-  // console.log(event);
-  let to = event.currentTarget.dataset.to;
-  let id = event.currentTarget.dataset.id;
-  let type = event.currentTarget.dataset.type || 'recommends';
-  switch (to) {
-    case 'songListSquare': // 歌单广场页
-      util.navigateTo('/pages/songListSquare/songListSquare');
-      break;
-    case 'songListDetail': // 歌单详情页
-      util.navigateTo('/pages/songListDetail/songListDetail?type=' + type + '&id=' + id);
-      break;
-    case 'player': // 音乐播放页
-      util.getdata("check/music?id=" + id, res => {
-        // console.log('查询版权');
-        // console.log(res.data.success);
-
-        util.navigateTo('/pages/player/player?id=' + id);
-
-      }, res => {
-        // console.log(res);
-        wx.showToast({
-          title: '亲,暂无版权',
-          image: '/images/cm2_discover_icn_3@2x.png',
-          duration: 1000,
-          mask: true //是否有透明蒙层，默认为false 
-          //如果有透明蒙层，弹窗的期间不能点击文档内容 
-        });
-      });
-      break;
-    case 'search': // 搜索页
-      util.navigateTo('/pages/search/search');
-      break;
+// 数组切割 [{},{},{},{},{},{}] => [[{},{},{}],[{},{},{}]]
+function arrSlice(arr, subGroupLength, index = 0) {
+  let arr_new = new Array();
+  while (index < arr.length) {
+    arr_new.push(arr.slice(index, index += subGroupLength));
   };
+  return arr_new;
 }
 
+// 数组展开 [[{},{},{}],[{},{},{}]] => [{},{},{},{},{},{}] 
+function arrUnfold(arr) {
+  let arr_new = new Array();
+  arr.forEach(item => {
+    arr_new.push(...item);
+  });
+  return arr_new;
+}
+
+// 清除定时器
+// function clearInterval() {
+//   clearInterval();
+// }
 
 module.exports = {
+  // --------------------------------- 自定义处理
+  formatTime, // 格式化分秒
+  formatDate, // 格式化年月日
+  formatLyric, // 格式化歌词
+  formatPlayCount, // 格式化单位
+  formatArtists, // 格式化歌手
+  arrSlice, // 数组切割
+  arrUnfold, // 数组展开
+  // --------------------------------- 微信官方API
+  getdata, // 发起 HTTPS 网络请求
+  navigateTo, // 保留当前页面，跳转到应用内的某个页面
+  redirectTo, // 关闭当前页面，跳转到应用内的某个页面
+  showToast, // 显示消息提示框
+  vibrateShort, // 短振动
+  setNavigationBarTitle, // 动态设置当前页面的标题
+  previewImage, // 在新页面中全屏预览图片
+  pageScrollTo, // 将页面滚动到目标位置
+  getSystemInfo, // 获取系统信息
+  saveImageToPhotosAlbum, // 保存图片到系统相册
+  downloadFile, // 下载文件资源到本地
+  getSetting, // 获取用户的当前设置
+  getUserInfo, // 获取用户信息。
+}
 
-  getdata: getdata, // 获取数据
-  formatTime: formatTime, // 格式化分秒
-  formatDate: formatDate, // 格式化年月日
-  parseLyric: parseLyric, // 歌词转化
+// 发起 HTTPS 网络请求
+function getdata(api, resolve, reject) {
+  wx.request({
+    url: baseUrl + api,
+    header: {
+      'Content-Type': 'application/json',
+      'token': '64d65234a8d5b854577c48c7fce60174f288f2a8bb4b3a54120b691dd1d7964afae782bf2ffa385e88fe4d29196311f77e358852ab2752ce',
+    },
+    success: function(res) {
+      if (res.statusCode === 200) {
+        resolve ? resolve(res) : '';
+      } else {
+        reject ? reject(res) : '';
+      };
+    }
+  });
+}
 
+// 保留当前页面，跳转到应用内的某个页面。但是不能跳到 tabbar 页面
+function navigateTo(url) {
+  wx.navigateTo({
+    url: url,
+  });
+}
 
-  toPages: toPages,
-  navigateTo: navigateTo,
-  dealPlayCount: dealPlayCount,
-  listenbackgroundState: listenbackgroundState,
-  playList: playList,
-  toggle: toggle,
-  pause: pause,
-  play: play,
-  init: init,
+// 关闭当前页面，跳转到应用内的某个页面。但是不允许跳转到 tabbar 页面
+function redirectTo(url) {
+  wx.redirectTo({
+    url: url,
+  });
+}
 
+// 显示消息提示框
+function showToast(title, icon = 'none', duration = 1500) {
+  wx.showToast({
+    title,
+    icon,
+    duration,
+  });
+}
+
+// 使手机发生较短时间的振动（15 ms）
+function vibrateShort() {
+  wx.vibrateShort();
+}
+
+// 动态设置当前页面的标题
+function setNavigationBarTitle(title) {
+  wx.setNavigationBarTitle({
+    title,
+  });
+}
+
+// 在新页面中全屏预览图片。预览的过程中用户可以进行保存图片、发送给朋友等操作
+function previewImage(urls = [], current = '') {
+  wx.previewImage({
+    current, // 当前显示图片的http链接
+    urls // 需要预览的图片http链接列表
+  });
+}
+
+// 将页面滚动到目标位置，支持选择器和滚动距离两种方式定位
+function pageScrollTo(scrollTop, duration) {
+  return () => {
+    wx.pageScrollTo({
+      scrollTop: scrollTop ? scrollTop : 0,
+      duration: duration ? duration : 3000,
+    });
+  }
+}
+
+// 获取系统信息
+function getSystemInfo(resolve, reject) {
+  wx.getSystemInfo({
+    success(res) {
+      resolve && resolve(res);
+    },
+    fail(res) {
+      reject && reject(res);
+    }
+  });
+}
+
+// 保存图片到系统相册
+function saveImageToPhotosAlbum(filePath = '', resolve, reject) {
+  wx.saveImageToPhotosAlbum({
+    filePath,
+    success(res) {
+      resolve && resolve(res);
+    },
+    fail(res) {
+      reject && reject(res);
+    }
+  });
+}
+
+// 下载文件资源到本地。客户端直接发起一个 HTTPS GET 请求，返回文件的本地临时路径(本地路径) ，单次下载允许的最大文件为 50MB。使用前请注意阅读相关说明。
+// 注意：请在服务端响应的 header 中指定合理的 Content - Type 字段，以保证客户端正确处理文件类型。
+function downloadFile(url = '', resolve, reject) {
+  wx.downloadFile({
+    url,
+    // filePath: wx.env.USER_DATA_PATH + '/' + fileName + '.jpg',
+    header: {
+      "Content-Type": 'image/jpg',
+    },
+    success(res) {
+      resolve && resolve(res);
+    },
+    fail(res) {
+      reject && reject(res);
+    }
+  });
+}
+
+// 获取用户的当前设置。返回值中只会出现小程序已经向用户请求过的权限。
+function getSetting(resolve, reject) {
+  wx.getSetting({
+    success(res) {
+      resolve && resolve(res);
+    },
+    fail(res) {
+      reject && reject(res);
+    }
+  });
+}
+
+// 获取用户信息。
+function getUserInfo(resolve, reject) {
+  wx.getUserInfo({
+    success(res) {
+      resolve && resolve(res);
+    },
+    fail(res) {
+      reject && reject(res);
+    }
+  });
 }
