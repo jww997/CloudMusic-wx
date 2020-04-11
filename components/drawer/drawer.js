@@ -46,9 +46,17 @@ Component({
   methods: {
     // 公共事件
     toPages: app.toPages,
-    togglePlayingCut: common.togglePlayingCut, // 列表切歌
+    // togglePlayingCut: common.togglePlayingCut, // 列表切歌
     togglePlayingState: common.togglePlayingState, // 播放状态
     togglePlayingListShow: common.togglePlayingListShow, // 播放列表显示
     toggleModeIndex: common.toggleModeIndex, // 播放顺序
+    foo: function(event) {
+      console.log(event);
+      let {
+        id,
+      } = event.currentTarget.dataset;
+      const that = this;
+      that.triggerEvent('cut', id);
+    }
   }
 })

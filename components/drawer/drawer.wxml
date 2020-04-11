@@ -18,7 +18,7 @@
       </view>
     </view>
     <view class="drawer-box-list">
-      <view class="drawer-box-list-item {{playing.id == item.id? 'drawer-box-list-item-active': ''}}" hover-class="drawer-box-list-item-hover" wx:for="{{playlist}}" wx:key="index" catch:tap="togglePlayingCut" data-id="{{index}}">
+      <view class="drawer-box-list-item {{playing.id == item.id? 'drawer-box-list-item-active': ''}}" hover-class="drawer-box-list-item-hover" wx:for="{{playlist}}" wx:key="index" catch:tap="foo" data-id="{{index}}">
         <view class="drawer-box-list-item-trumpet" wx:if="{{playing.id == item.id}}">
           <text class="iconfont icon-trumpet"></text>
         </view>

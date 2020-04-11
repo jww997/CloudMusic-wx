@@ -147,7 +147,18 @@
       </scroll-view>
     </swiper-item>
     <swiper-item>云村(待开发)</swiper-item>
-    <swiper-item>视频(待开发)</swiper-item>
+    <swiper-item class="video">
+      视频（需登录开发）
+      <!-- <scroll-view class="video-group" scroll-x="true" enable-flex="true">
+        <block wx:for="{{video.group}}" wx:key="index">
+          <text class="video-group-item" wx:if="{{index<14}}" catch:tap="toggleVideoGroupIndex" data-id="{{item.id}}" data-index="{{index}}">{{item.name}}</text>
+        </block>
+      </scroll-view> -->
+
+
+
+
+    </swiper-item>
   </swiper>
 
 </view>

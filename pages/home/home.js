@@ -97,6 +97,52 @@ Page({
     });
   },
 
+
+  getVideo: function(event) { // 获取视频
+    const that = this;
+    let {
+      video,
+      video: {
+        group,
+      },
+    } = that.data;
+    // 标签列表
+    util.getdata('video/group/list', function(res) {
+      that.setData({
+        video: {
+          ...video,
+          group: res.data.data,
+        },
+      });
+    });
+
+
+  },
+  toggleVideoGroupIndex: function(event) {
+    const that = this;
+    let {
+      id,
+      index,
+    } = event.currentTarget.dataset;
+    let {
+      video,
+      // video: {
+      //   index,
+      // },
+    } = that.data;
+    util.getdata(`video/group?id=${id}`, res => {
+      console.log(res);
+
+
+      that.setData({
+        video: {
+          ...video,
+          index: id,
+        },
+      });
+    });
+  },
+
   /**
    * 页面的初始数据
    */
@@ -178,6 +224,12 @@ Page({
         newDiscs: [], // 新碟 2
       },
     },
+
+    // 视频
+    video: {
+      group: [], // 标签
+      index: 0, // 选中下标
+    },
   },
 
   /**
@@ -256,6 +308,8 @@ Page({
 
 
 
+
+    // that.getVideo(); // 视频
 
   },
 

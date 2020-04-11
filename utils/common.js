@@ -51,7 +51,10 @@ function togglePlaying(direction = 1) { // 1 next & -1 prev
 function togglePlayingCut(event) {
   const that = this;
   const app = getApp();
-  let id = event.currentTarget.dataset.id;
+  // let id = event.currentTarget.dataset.id;
+  let id = event.detail;
+  // console.log(event);
+  // debugger;
   let {
     playIndex,
     playlist,
@@ -71,7 +74,6 @@ function togglePlayingCut(event) {
     if (app.globalData.isShowLyric) {
       getLyric.call(that, playing.id);
     };
-    console.log(that.data);
     app.initAudio(that);
     // app.update(that);
   });
