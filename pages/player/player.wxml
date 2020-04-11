@@ -44,6 +44,6 @@
       </view>
     </view>
   </view>
-  <drawer playlist="{{playlist}}" playing="{{playing}}" isShowPlaylist="{{isShowPlaylist}}"></drawer>
+  <drawer playlist="{{playlist}}" playing="{{playing}}" isShowPlaylist="{{isShowPlaylist}}" bind:PlayingCut="togglePlayingCut"></drawer>
 
 </view>

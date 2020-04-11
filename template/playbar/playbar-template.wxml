@@ -11,7 +11,7 @@
       <view class="iconfont {{isPlayState?'icon-play':'icon-pause'}}" catch:tap="togglePlayingState"></view>
       <view class="iconfont icon-playlist" catch:tap="togglePlayingListShow" data-type="show"></view>
     </view>
-    <drawer playlist="{{playlist}}" playing="{{playing}}" isShowPlaylist="{{isShowPlaylist}}" bind:cut="togglePlayingCut"></drawer>
+    <drawer playlist="{{playlist}}" playing="{{playing}}" isShowPlaylist="{{isShowPlaylist}}" bind:PlayingCut="togglePlayingCut"></drawer>
   </view>
 
 </template>

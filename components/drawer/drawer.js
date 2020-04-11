@@ -50,13 +50,12 @@ Component({
     togglePlayingState: common.togglePlayingState, // 播放状态
     togglePlayingListShow: common.togglePlayingListShow, // 播放列表显示
     toggleModeIndex: common.toggleModeIndex, // 播放顺序
-    foo: function(event) {
-      console.log(event);
+    _togglePlayingCut: function(event) { // 列表切歌
+      const that = this;
       let {
         id,
       } = event.currentTarget.dataset;
-      const that = this;
-      that.triggerEvent('cut', id);
+      that.triggerEvent('PlayingCut', id);
     }
   }
 })
