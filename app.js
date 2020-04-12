@@ -50,9 +50,10 @@ App({
       playing,
       backgroundAudioManager,
     } = this.globalData;
+    console.log(that);
     console.log(`%c初始开始, %cplaying.url => ${playing.url}`, `color: #74b9ff;`, `color: inherit;`);
     this.update(that);
-    if (playing.url || playing.url != backgroundAudioManager.src) {
+    if (playing.url && playing.url != backgroundAudioManager.src) {
       console.log(`%c初始成功, %cplaying.id => ${playing.id} `, `color: #0984e3;`, `color: inherit;`);
       // 音频的数据源（2.2.3 开始支持云文件ID）。默认为空字符串，当设置了新的 src 时，会自动开始播放，目前支持的格式有 m4a, aac, mp3, wav
       backgroundAudioManager.src = playing.url;
@@ -64,11 +65,12 @@ App({
       backgroundAudioManager.singer = playing.singer;
       // 封面图 URL，用于做原生音频播放器背景图。原生音频播放器中的分享功能，分享出去的卡片配图及背景也将使用该图
       backgroundAudioManager.coverImgUrl = playing.image;
-      // 监听背景音频进入可播放状态事件。 但不保证后面可以流畅播放
-      backgroundAudioManager.onCanplay(() => {
-        backgroundAudioManager.play();
-      });
     };
+    // 监听背景音频进入可播放状态事件。 但不保证后面可以流畅播放
+    backgroundAudioManager.onCanplay(() => {
+      backgroundAudioManager.play();
+    });
+
 
     // 监听背景音频播放事件
     backgroundAudioManager.onPlay(() => {
@@ -116,6 +118,8 @@ App({
     backgroundAudioManager.onError(() => {
 
     });
+
+
 
   },
 

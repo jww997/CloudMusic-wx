@@ -26,7 +26,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "2.10.3",
 	"appid": "wxa129f6d1b3b03912",
-	"projectname": "CloudMusic-wx",
+	"projectname": "miniprogram-1",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},
