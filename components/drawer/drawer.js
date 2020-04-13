@@ -37,7 +37,7 @@ Component({
   pageLifetimes: { // 组件所在页面的生命周期函数
     show: function() {
       const that = this;
-      app.initAudio(that);
+      // app.initAudio(that);
     },
     hide: function() {},
     resize: function() {},

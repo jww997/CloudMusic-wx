@@ -48,12 +48,13 @@ App({
   initAudio(that) {
     const {
       playing,
+      modeIndex,
       backgroundAudioManager,
     } = this.globalData;
     console.log(that);
     console.log(`%c初始开始, %cplaying.url => ${playing.url}`, `color: #74b9ff;`, `color: inherit;`);
     this.update(that);
-    if (playing.url && playing.url != backgroundAudioManager.src) {
+    if (playing.url && (playing.url != backgroundAudioManager.src || modeIndex == 2)) {
       console.log(`%c初始成功, %cplaying.id => ${playing.id} `, `color: #0984e3;`, `color: inherit;`);
       // 音频的数据源（2.2.3 开始支持云文件ID）。默认为空字符串，当设置了新的 src 时，会自动开始播放，目前支持的格式有 m4a, aac, mp3, wav
       backgroundAudioManager.src = playing.url;
