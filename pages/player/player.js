@@ -35,24 +35,32 @@ Page({
     let {
       playing,
       lyric,
+      isGetedLyric,
     } = that.data;
     let {
       isShowLyric,
     } = app.globalData;
     that.setData({
       isShowLyric: !isShowLyric,
+      isGetedLyric: true,
     });
     app.globalData.isShowLyric = !isShowLyric;
+    app.globalData.isGetedLyric = true;
+
     if (!!isShowLyric) {
-      let {
-        lyric: {
-          timer,
-        },
-      } = that.data;
       that.clearTimer.call(that);
     } else {
-      common.getLyric.call(that, playing.id, res => {}, res => {});
+      that.setData({
+        lyric: {
+          ...app.globalData.lyric,
+          timer: that.setTimer(),
+        }
+      });
+      if (!isGetedLyric) {
+        common.getLyric.call(that, playing.id);
+      };
     };
+
   },
   setTimer: function(event) {
     return setInterval(() => {
@@ -60,17 +68,13 @@ Page({
       console.log(`%c倒计时开始`, `color: green`);
       let {
         lyric,
-        lyric: {
-          index,
-          content,
-        },
       } = that.data;
-      if (!content.length) {
+      if (!lyric.content.length) {
         that.clearTimer.call(that);
         return false;
       };
-      for (let i in content) {
-        if (content[i].sec < backgroundAudioManager.currentTime) {
+      for (let i in lyric.content) {
+        if (lyric.content[i].sec < backgroundAudioManager.currentTime) {
           lyric = {
             ...lyric,
             index: i,
@@ -118,6 +122,7 @@ Page({
     isShowPlaylist: false, // 显示&隐藏 播放列表
     isShowLyric: false, // 显示&隐藏 歌词
     isScrollLyric: false, // 歌词能否滚动
+    isGetedLyric: false, // 记录是否获取过歌词
 
     currentTime: '00:00', // 进度时长
     duration: '00:00', // 总时长

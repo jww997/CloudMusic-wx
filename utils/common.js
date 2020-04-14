@@ -186,7 +186,6 @@ function getLyric(songId, resolve, reject) {
     //   reject && reject();
     // };
 
-
     let lyric = res.data.lrc ? res.data.lrc.lyric : '';
     if (lyric) {
       resolve && resolve();
