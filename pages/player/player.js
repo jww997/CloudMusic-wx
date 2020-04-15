@@ -33,13 +33,14 @@ Page({
   toggleLyricShow: function(event) { // 显示&隐藏 歌词
     const that = this;
     let {
+      isGetedLyric,
       playing,
       lyric,
-      isGetedLyric,
     } = that.data;
     let {
       isShowLyric,
     } = app.globalData;
+
     that.setData({
       isShowLyric: !isShowLyric,
       isGetedLyric: true,
@@ -145,9 +146,6 @@ Page({
    */
   onLoad: function(options) {
     const that = this;
-    let {
-      playing,
-    } = app.globalData;
 
   },
 
@@ -189,6 +187,9 @@ Page({
   onUnload: function() {
     const that = this;
     that.clearTimer.call(that);
+    that.setData({
+      isGetedLyric: false,
+    });
   },
 
   /**

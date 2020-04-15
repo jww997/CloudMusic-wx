@@ -177,14 +177,6 @@ function getLyric(songId, resolve, reject) {
   const app = getApp();
   let content = [];
   util.getdata(`lyric?id=${songId}`, function(res) {
-    // let lyric = res.data.lrc ? res.data.lrc.lyric : '';
-    // if (lyric) {
-    //   resolve && resolve(lyric);
-    // } else {
-    //   util.vibrateShort();
-    //   util.showToast('你该充钱了');
-    //   reject && reject();
-    // };
 
     let lyric = res.data.lrc ? res.data.lrc.lyric : '';
     if (lyric) {

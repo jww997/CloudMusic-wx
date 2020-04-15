@@ -30,27 +30,30 @@ Page({
   },
   search: function(event) { // 搜索触发
     const that = this;
-
-    // let timer = setTimeout(function() {
     let {
       searchHistory,
-      // isSearching,
     } = that.data;
     let {
       word,
     } = event.currentTarget.dataset;
-    // if (isSearching) {
-    //   clearTimeout(timer);
-    // };
-    // that.setData({
-    //   isSearching: true,
-    // });
+    let searchResult = new Array();
     let value = event.detail.value ? event.detail.value : word;
-    util.getdata('search?keywords=' + value, res => {
-      // if (!res.data.result.songs) return false;
-      console.log('res.data.result.songs=', res.data.result.songs);
+    util.getdata(`search?keywords=${value}`, res => {
+      let {
+        result: {
+          songs,
+        },
+      } = res.data;
+      songs ? songs.forEach(item => {
+        searchResult.push({
+          id: item.id,
+          title: item.name,
+          singer: util.formatArtists(item.artists),
+          image: item.album.artist.img1v1Url,
+        });
+      }) : '';
       that.setData({
-        searchResult: res.data.result.songs ? res.data.result.songs : [],
+        searchResult,
       });
       if (!searchHistory.includes(value)) {
         searchHistory.push(value);
@@ -87,7 +90,7 @@ Page({
     const that = this;
     let {
       id,
-      index
+      index,
     } = event.currentTarget.dataset;
     let {
       playing,
@@ -97,24 +100,28 @@ Page({
       isPlayState,
     } = that.data;
     let list = that.data.searchResult;
+
+
     if (playIndex != index) {
       util.getdata('song/url?id=' + list[index].id, function(res) {
-        console.log(list[index]);
-        console.log(res);
         let url = res.data.data[0].url;
         if (url) {
           backgroundAudioManager.src = url;
-          backgroundAudioManager.title = list[index].name;
+          backgroundAudioManager.title = list[index].title;
           backgroundAudioManager.coverImgUrl = list[index].image;
           backgroundAudioManager.singer = list[index].singer;
           that.setData({
-            playing: list[index],
+            playing: { ...list[index],
+              url
+            },
             playIndex: index,
             playlist: list,
             isShowPlayBar: true,
             isPlayState: true,
           });
-          app.globalData.playing = list[index];
+          app.globalData.playing = { ...list[index],
+            url
+          };
           app.globalData.playIndex = index;
           app.globalData.playlist = list;
           app.globalData.isShowPlayBar = true;
