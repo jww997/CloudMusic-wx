@@ -25,7 +25,7 @@
       <view class="player-lyric-list" style="transform: translateY(-{{lyric.index*80 + (isScrollLyric? curLrcScrolledHeight*2: 0)}}rpx);{{!isScrollLyric?'transition: transform 1s;':''}}" bind:touchstart="onStartLyric" bind:touchmove="onMoveLyric" bind:touchend="onEndLyric">
         <view wx:if="{{!lyric.content.length}}">暂无歌词</view>
         <block wx:else>
-          <view class="{{index == lyric.index?'current': ''}}" style="{{lyric.index-4 <= index && index < lyric.index ? 'opacity: .6;': ''}}" wx:for="{{lyric.content}}" wx:key="index">{{item.lrc}}</view>
+          <view class="{{index == lyric.index?'current': ''}}" wx:for="{{lyric.content}}" wx:key="index">{{item.lrc}}</view>
         </block>
       </view>
     </view>

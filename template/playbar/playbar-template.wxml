@@ -3,7 +3,7 @@
   <view class="playbarTemplate" catch:tap="togglePlayingListShow">
     <!-- 播放条 -->
     <view class="playbar" wx:if="{{isShowPlayBar}}" catch:tap="toPages" data-to="player" data-id="{{playing.id}}">
-      <view class="playbar-image {{isPlayState?'playbar-image-rotate':''}}" style="background-image: url({{playing.image||'/images/chassis.png'}});"></view>
+      <image class="playbar-image {{isPlayState?'playbar-image-rotate':''}}" src="{{playing.image||'/images/chassis.png'}}" mode="aspectFill"></image>
       <view class="playbar-text">
         <text>{{playing.title}}</text>
         <text>{{playing.singer}}</text>

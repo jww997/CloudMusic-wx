@@ -34,12 +34,10 @@ Page({
     const that = this;
     let {
       isGetedLyric,
+      isShowLyric,
       playing,
       lyric,
     } = that.data;
-    let {
-      isShowLyric,
-    } = app.globalData;
 
     that.setData({
       isShowLyric: !isShowLyric,

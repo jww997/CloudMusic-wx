@@ -167,19 +167,11 @@ Page {
   text-overflow: ellipsis;
   overflow: hidden;
   color: #fff;
-  opacity: 0.3;
+  opacity: 0.5;
 }
 
 .player-lyric-list > view.current {
   opacity: 1 !important;
-}
-
-.player-lyric-list > view.current + view,
-.player-lyric-list > view.current + view + view,
-.player-lyric-list > view.current + view + view + view,
-.player-lyric-list > view.current + view + view + view + view,
-.player-lyric-list > view.current + view + view + view + view + view {
-  opacity: 0.6;
 }
 
 .player-toolbar {

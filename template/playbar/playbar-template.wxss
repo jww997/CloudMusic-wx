@@ -24,8 +24,9 @@
   height: 60rpx;
   margin: 0 20rpx;
   border-radius: 50%;
-  background-size: 100%;
+  /* background-size: 100%;
   background-image: url('/images/chassis.png');
+  background-repeat: no-repeat; */
   animation: rotate 10s infinite linear paused;
   flex-shrink: 0;
 }
