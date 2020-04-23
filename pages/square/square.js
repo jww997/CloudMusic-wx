@@ -114,7 +114,9 @@ Page({
       mytabs,
     } = that.data;
     console.log(`id = ${id}, index = ${index}, ishot = ${ishot}, name = ${name}`);
-    if (id == '-1') { // 删除
+    if (id == '-1' && (name == '推荐' || name == '官方' || name == '精品')) { // 推荐 & 官方 & 精品
+      return false;
+    } else if (id == '-1') { // 删除
       index ? mytabs.splice(index, 1) : '';
       util.showToast('删除成功', 'success');
     } else { // 增加

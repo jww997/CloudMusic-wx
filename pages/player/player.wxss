@@ -147,7 +147,7 @@ Page {
 }
 
 .player-lyric-list {
-  line-height: 80rpx;
+  /* line-height: 80rpx; */
   font-size: 24rpx;
   padding-top: 53%;
   /* padding-top: 50%; */
@@ -163,11 +163,14 @@ Page {
 
 .player-lyric-list > view {
   width: 100%;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
+  /* height: 80rpx; */
+  height: 100rpx;
+  /* white-space: nowrap; *//* text-overflow: ellipsis; *//* overflow: hidden; */
   color: #fff;
   opacity: 0.5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .player-lyric-list > view.current {
