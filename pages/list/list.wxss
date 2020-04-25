@@ -351,6 +351,7 @@ Page {
 .list-message {
   width: 100%;
   height: 100%;
+  padding-bottom: 20%;
   background: #eee no-repeat center;
   background-size: 0;
   color: #fff;
@@ -361,7 +362,8 @@ Page {
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow: hidden;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .list-message::before, .list-message::after {
@@ -393,6 +395,10 @@ Page {
   z-index: -2;
 }
 
+.list-message > view {
+  flex-shrink: 0;
+}
+
 .list-message-image {
   transform: scale(2);
   margin: 30rpx;
@@ -401,6 +407,7 @@ Page {
 }
 
 .list-message-name {
+  min-height: 40rpx;
   font-size: 30rpx;
   font-weight: bold;
   margin-top: 10rpx;
@@ -444,6 +451,7 @@ Page {
 .list-message-description {
   margin-top: 20rpx;
   text-align: justify;
+  padding-bottom: 200rpx;
 }
 
 .list-message-close {
@@ -462,7 +470,7 @@ Page {
   padding: 0 20rpx;
   border-radius: 30px;
   border: 1px solid #fff;
-  position: absolute;
+  position: fixed;
   bottom: 5%;
 }
 

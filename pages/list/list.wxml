@@ -76,7 +76,7 @@
     </view>
   </view>
 
-  <view class="list-message" style="background-image: url({{songlist.image||''}});" hidden="{{!isShowMessage}}" catch:tap="toggleMessageShow" data-type="0">
+  <scroll-view class="list-message" style="background-image: url({{songlist.image||''}});" scroll-y enable-flex hidden="{{!isShowMessage}}" catch:tap="toggleMessageShow" data-type="0">
     <view class="list-message-close" catch:tap="toggleMessageShow" data-type="0">
       <text class="iconfont icon-delete"></text>
     </view>
@@ -99,6 +99,6 @@
     <view class="list-message-description">
       <text>{{songlist.description}}</text>
     </view>
-  </view>
+  </scroll-view>
 
 </view>
