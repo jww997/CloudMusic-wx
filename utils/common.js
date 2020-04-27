@@ -177,19 +177,22 @@ function getLyric(songId, resolve, reject) {
   const app = getApp();
   let content = [];
   util.getdata(`lyric?id=${songId}`, function(res) {
-
-    let lyric = res.data.lrc ? res.data.lrc.lyric : '';
-    if (lyric) {
+    let {
+      lrc,
+      nolyric,
+    } = res.data;
+    if (!nolyric) {
       resolve && resolve();
-      util.formatLyric(lyric).forEach(item => {
+      util.formatLyric(lrc.lyric).forEach(item => {
         content.push(item);
       });
-      lyric = {
+      let lyric = {
         ...that.data.lyric,
         index: 0,
         content,
+        nolyric: nolyric ? true : false,
       };
-      clearInterval(that.data.lyric.timer);
+      clearInterval(that.data.lyric ? that.data.lyric.timer : '');
       that.setData({
         lyric: {
           ...lyric,
@@ -199,11 +202,14 @@ function getLyric(songId, resolve, reject) {
       app.globalData.lyric = lyric;
     } else {
       reject && reject();
-      clearInterval(that.data.lyric.timer);
+      clearInterval(that.data.lyric ? that.data.lyric.timer : '');
+      let lyric = {
+        nolyric: nolyric ? true : false,
+      };
       that.setData({
-        lyric: {},
+        lyric,
       });
-      app.globalData.lyric = {};
+      app.globalData.lyric = lyric;
     };
   });
 }

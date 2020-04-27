@@ -54,7 +54,8 @@
     <template is="loadingTemplate" wx:if="{{!(comment.newest.length == comment.total)}}" />
     <view class="comment-items-end" wx:else>- 华丽的底线 -</view>
   </view>
-  <view class="comment-items-none" wx:if="{{!comment.recent.length&&!comment.wonderful.length&&!comment.newest.length}}">- 沙发随便坐 -</view>
+  <template is="loadingTemplate" wx:elif="{{!comment.newest.length}}" />
+  <view class="comment-items-none" wx:elif="{{!comment.recent.length&&!comment.wonderful.length&&!comment.newest.length}}">- 沙发随便坐 -</view>
   <view class="comment-backtotop" catch:tap="pageScrollTo" wx:if="{{isShowBacktotop}}">
     <text class="iconfont icon-backtotop"></text>
   </view>

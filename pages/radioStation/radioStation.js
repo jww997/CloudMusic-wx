@@ -54,10 +54,9 @@ Page({
       }
     } = that.data;
 
-    // 获取电台banner
+    // 电台轮播图
     util.getdata('dj/banner', function(res) {
-      console.log(res);
-
+      // console.log(res);
       res.data.data.forEach(value => {
         let {
           pic,
@@ -75,10 +74,31 @@ Page({
             ...radioStation,
           }
         });
-
       });
+    });
 
+    // 电台推荐
+    util.getdata('dj/recommend', function(res) {
+      console.log(res);
 
+      // res.data.data.forEach(value => {
+      //   let {
+      //     pic,
+      //     url,
+      //     typeTitle,
+      //   } = value;
+      //   banner.push({
+      //     title: typeTitle,
+      //     image: pic,
+      //     url,
+      //   });
+      //   that.setData({
+      //     radioStation: {
+      //       banner,
+      //       ...radioStation,
+      //     }
+      //   });
+      // });
 
     });
 
