@@ -141,7 +141,6 @@ function getdata(api, resolve, reject) {
     url: baseUrl + api,
     header: {
       'Content-Type': 'application/json',
-      'token': '64d65234a8d5b854577c48c7fce60174f288f2a8bb4b3a54120b691dd1d7964afae782bf2ffa385e88fe4d29196311f77e358852ab2752ce',
     },
     success: function(res) {
       if (res.statusCode === 200) {

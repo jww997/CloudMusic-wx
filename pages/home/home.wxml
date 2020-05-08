@@ -36,7 +36,7 @@
     <!-- 我的 -->
     <swiper-item class="mine">
       我的(待开发)
-      <scroll-view style="background-image: url('{{account.backgroundUrl}}');">
+      <!-- <scroll-view style="background-image: url('{{account.backgroundUrl}}');">
 
         <view class="person">
           <image src="{{account.avatarUrl}}" lazy-load="true" catch:tap="toPages" data-to="login"></image>
@@ -60,7 +60,7 @@
         <view class="box">
 
         </view>
-      </scroll-view>
+      </scroll-view> -->
     </swiper-item>
     <!-- 发现 -->
     <swiper-item class="discover">
