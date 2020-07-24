@@ -91,8 +91,7 @@ Page {
 
 /* 我的 */
 
-.mine {
-}
+.mine {}
 
 .mine scroll-view {
   background-color: transparent;
@@ -213,6 +212,7 @@ Page {
   font-size: 22rpx;
   color: #fff;
   padding: 5rpx 10rpx;
+  opacity: .8;
 }
 
 .discover .menu-items {
@@ -245,25 +245,30 @@ Page {
   align-items: center;
 }
 
-.discover .recommend, .discover .fresh {
+.discover .recommend,
+.discover .fresh {
   margin-top: 10rpx;
 }
 
-.discover .recommend > view, .discover .fresh > view {
+.discover .recommend>view,
+.discover .fresh>view {
   padding: 0 45rpx;
 }
 
-.discover .recommend-title, .discover .fresh-title {
+.discover .recommend-title,
+.discover .fresh-title {
   font-size: 20rpx;
   color: #aaa;
 }
 
-.discover .recommend-subtitle, .discover .fresh-subtitle {
+.discover .recommend-subtitle,
+.discover .fresh-subtitle {
   font-size: 28rpx;
   font-weight: bold;
 }
 
-.discover .recommend-more, .discover .fresh-more {
+.discover .recommend-more,
+.discover .fresh-more {
   float: right;
   height: 32rpx;
   line-height: 32rpx;

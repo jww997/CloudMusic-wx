@@ -1,5 +1,13 @@
+/**
+ * @Author: Gavin
+ * @Begin: 2020-07-24 14:15:3
+ * @Update: 2020-07-24 14:15:3
+ * @Update log: 更新日志
+ */
+const api = require("../../utils/api.js");
 const util = require("../../utils/util.js");
 const common = require("../../utils/common.js");
+const apiwx = require("../../utils/apiwx.js");
 const app = getApp();
 const backgroundAudioManager = app.globalData.backgroundAudioManager;
 
@@ -13,7 +21,7 @@ Page({
   toggleModeIndex: common.toggleModeIndex, // 播放顺序
 
   // 局部事件
-  toggleHomeSwiperIndex: function(event) { // 容器下标切换
+  toggleHomeSwiperIndex: function (event) { // 容器下标切换
     const that = this;
     let id = event.currentTarget.dataset.id;
     let current = event.detail.current;
@@ -23,7 +31,7 @@ Page({
       homeSwiperIndex,
     });
   },
-  toggleDiscoverFreshIndex: function(event) { // 列表切换[1新碟 2新歌]
+  toggleDiscoverFreshIndex: function (event) { // 列表切换[1新碟 2新歌]
     const that = this;
     let id = event.currentTarget.dataset.id;
     let {
@@ -41,14 +49,15 @@ Page({
     });
 
     if (newDiscs.length) return false;
-    util.getdata('album/newest', function(res) { // 新碟
+
+    api.getAlbumNewest().then(res => { // 新碟上架
       let arr = new Array();
-      res.data.albums.forEach(value => {
+      res.data.albums.forEach(item => {
         arr.push({
-          id: value.id,
-          title: value.name,
-          singer: util.formatArtists(value.artists),
-          image: value.picUrl,
+          id: item.id,
+          title: item.name,
+          singer: util.formatArtists(item.artists),
+          image: item.picUrl,
         });
       });
       newDiscs.push(...util.arrSlice(arr, 3));
@@ -57,7 +66,7 @@ Page({
       });
     });
   },
-  toggleNewSongs: function(event) { // 播放新歌
+  toggleNewSongs: function (event) { // 播放新歌
     const that = this;
     let {
       id,
@@ -98,7 +107,7 @@ Page({
   },
 
 
-  getVideo: function(event) { // 获取视频
+  getVideo: function (event) { // 获取视频
     const that = this;
     let {
       video,
@@ -107,7 +116,7 @@ Page({
       },
     } = that.data;
     // 标签列表
-    util.getdata('video/group/list', function(res) {
+    util.getdata('video/group/list', function (res) {
       that.setData({
         video: {
           ...video,
@@ -118,7 +127,7 @@ Page({
 
 
   },
-  toggleVideoGroupIndex: function(event) {
+  toggleVideoGroupIndex: function (event) {
     const that = this;
     let {
       id,
@@ -139,6 +148,34 @@ Page({
           ...video,
           index: id,
         },
+      });
+    });
+  },
+  getdata: function () {
+    const that = this;
+    let discover = that.data.discover;
+    api.getBanner().then(res => { // 轮播图
+      discover.banners = res.data.banners;
+      return api.getPersonalized(); // 推荐歌单
+    }).then(res => {
+      res.data.result.forEach(item => {
+        item.playCount = util.formatPlayCount(item.playCount);
+      });
+      discover.recommends = res.data.result;
+      return api.getTopSong(); // 新歌速递
+    }).then(res => {
+      let arr = new Array();
+      res.data.data.forEach(item => {
+        arr.push({
+          id: item.id,
+          title: item.name,
+          singer: util.formatArtists(item.artists),
+          image: item.album.blurPicUrl,
+        });
+      });
+      discover.fresh.newSongs.push(...util.arrSlice(arr, 3));
+      that.setData({
+        discover,
       });
     });
   },
@@ -235,95 +272,32 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     const that = this;
-
-    wx.getStorage({ // 账户缓存
-      key: 'account',
-      success(res) {
-        that.setData({
-          account: res.data,
-        });
-        app.globalData.account = res.data;
-      }
-    });
-
-    let {
-      account, // 账户
-
-      discover, // 发现
-      discover: {
-        banners, // 轮播图
-        recommends, // 推荐歌单
-        fresh: {
-          newIndex, // 下标
-          newSongs, // 新歌
-        },
-      },
-    } = that.data;
-
-
-    // 轮播图
-    util.getdata('banner', function(res) {
-      res.data.banners.forEach(value => {
-        banners.push({
-          image: value.imageUrl,
-          title: value.typeTitle,
-        });
-      });
-      that.setData({
-        discover,
-      });
-    });
-    // 推荐歌单
-    util.getdata('personalized', function(res) {
-      res.data.result.forEach((value, index) => {
-        recommends.push({
-          id: value.id,
-          title: value.name,
-          image: value.picUrl,
-          playCount: util.formatPlayCount(value.playCount),
-        });
-      });
-      that.setData({
-        discover,
-      });
-    });
-    // 新歌
-    util.getdata('top/song', function(res) {
-      let arr = new Array();
-      res.data.data.forEach(value => {
-        arr.push({
-          id: value.id,
-          title: value.name,
-          singer: util.formatArtists(value.artists),
-          image: value.album.blurPicUrl,
-        });
-      });
-      newSongs.push(...util.arrSlice(arr, 3));
-      that.setData({
-        discover,
-      });
-    });
-
-
-
-
-    // that.getVideo(); // 视频
-
+    // wx.getStorage({ // 账户缓存
+    //   key: 'account',
+    //   success(res) {
+    //     that.setData({
+    //       account: res.data,
+    //     });
+    //     app.globalData.account = res.data;
+    //   }
+    // });
+    that.getdata();
+    apiwx.hideShareMenu();
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
     const that = this;
     app.initAudio(that);
   },
@@ -331,35 +305,35 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   }
 })

@@ -237,6 +237,8 @@ App({
    */
   onLaunch: function() {
 
+    console.log(`${common.getNowFormatDate()} ${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`);
+
   },
 
   /**

@@ -1,5 +1,58 @@
 const util = require("./util.js");
 
+module.exports = {
+  // --------------------------------- 播放操作
+  togglePlaying, // 下一首&下一首
+  togglePlayingCut, // 切歌
+  togglePlayingState, // 播放状态
+  togglePlayingListShow, // 播放列表显示
+  toggleModeIndex, // 播放顺序
+  // --------------------------------- 网易云API
+  getSongUrl, // 获取歌曲地址
+  getLyric, // 获取歌词
+
+
+
+  getTimestampMistiming, // 获取时间戳与当前时间戳之差
+  getNowFormatDate, // 获取当前时间
+  addZero, // 补零
+}
+
+
+
+
+
+
+// 获取当前时间
+function getNowFormatDate(separator = '-') {
+  let date = new Date();
+  return `${date.getFullYear()}${separator}${addZero(date.getMonth() + 1)}${separator}${addZero(date.getDate())}`;
+}
+
+// 获取时间戳与当前时间戳之差
+function getTimestampMistiming(timestamp) {
+  return timestamp ? Math.abs(new Date().getTime() - Number.parseInt(timestamp)) : '';
+}
+
+// 补零
+function addZero(num) {
+  return num < 10 ? '0' + num : num;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // 上一首&下一首
 function togglePlaying(direction = 1) { // 1 next & -1 prev
   const that = this;
@@ -142,17 +195,6 @@ function toggleModeIndex(event) {
 
 
 
-module.exports = {
-  // --------------------------------- 播放操作
-  togglePlaying, // 下一首&下一首
-  togglePlayingCut, // 切歌
-  togglePlayingState, // 播放状态
-  togglePlayingListShow, // 播放列表显示
-  toggleModeIndex, // 播放顺序
-  // --------------------------------- 网易云API
-  getSongUrl, // 获取歌曲地址
-  getLyric, // 获取歌词
-}
 
 
 // 使用歌单详情接口后,能得到的音乐的id,但不能得到的音乐url,调用此接口,传入的音乐id(可多个,用逗号隔开),可以获取对应的音乐的url(不需要登录)
@@ -176,7 +218,7 @@ function getLyric(songId, resolve, reject) {
   const that = this;
   const app = getApp();
   let content = [];
-  util.getdata(`lyric?id=${songId}`, function(res) {
+  util.getdata(`lyric?id=${songId}`, function (res) {
     let {
       lrc,
       nolyric,
