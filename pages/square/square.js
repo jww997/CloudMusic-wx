@@ -1,5 +1,13 @@
+/**
+ * @Author: Gavin
+ * @Begin: 2020-08-19 16:2:21
+ * @Update: 2020-08-19 16:2:21
+ * @Update log: 更新日志
+ */
+const api = require("../../utils/api.js");
 const util = require("../../utils/util.js");
 const common = require("../../utils/common.js");
+const apiwx = require("../../utils/apiwx.js");
 const app = getApp();
 const backgroundAudioManager = app.globalData.backgroundAudioManager;
 
@@ -12,7 +20,7 @@ Page({
   togglePlayingListShow: common.togglePlayingListShow, // 播放列表显示
   toggleModeIndex: common.toggleModeIndex, // 播放顺序
   // 局部事件
-  onToggleLabel: function(event) { // 显示&隐藏 歌单标签
+  onToggleLabel: function (event) { // 显示&隐藏 歌单标签
     let that = this;
     let {
       isShowLabel
@@ -20,9 +28,9 @@ Page({
     that.setData({
       isShowLabel: !isShowLabel
     });
-    util.setNavigationBarTitle(!isShowLabel ? '歌单标签' : '歌单广场');
+    apiwx.setNavigationBarTitle(!isShowLabel ? '歌单标签' : '歌单广场');
   },
-  onToggleNavIndex: function(event) { // 点击&拖拽 切换导航内容
+  onToggleNavIndex: function (event) { // 点击&拖拽 切换导航内容
     // console.log(event);
     let that = this;
     let id = event.currentTarget.dataset.id;
@@ -37,7 +45,9 @@ Page({
     });
 
     if (mytabs[navIndex].name == '精品') {
-      util.getdata('top/playlist/highquality?limit=' + limit, function(res) {
+      api.getTopPlaylistHighquality({
+        limit,
+      }).then(res => {
         // console.log(res);
         mytabs[navIndex].list = mytabs[navIndex].list || new Array();
         if (mytabs[navIndex].list.length == 0) {
@@ -56,7 +66,10 @@ Page({
         });
       });
     } else {
-      util.getdata('top/playlist?limit=' + limit + '&cat=' + mytabs[navIndex].name, function(res) {
+      api.getTopPlaylist({
+        limit,
+        cat: mytabs[navIndex].name,
+      }).then(res => {
         // console.log(res);
         mytabs[navIndex].list = mytabs[navIndex].list || new Array();
         if (mytabs[navIndex].list.length == 0) {
@@ -77,15 +90,17 @@ Page({
     };
 
   },
-  onLoadMore: function(event) { // 到达底部，加载更多
+  onLoadMore: function (event) { // 到达底部，加载更多
     let that = this;
     let id = event.currentTarget.dataset.id;
     let {
       limit,
       mytabs,
     } = that.data;
-    util.getdata('top/playlist/highquality?before=' + mytabs[id].list[mytabs[id].list.length - 1].updateTime + '&limit=' + limit, function(res) {
-      // console.log(res);
+    api.getTopPlaylistHighquality({
+      before: mytabs[id].list[mytabs[id].list.length - 1].updateTime,
+      limit,
+    }).then(res => {
       res.data.playlists.forEach(value => {
         mytabs[id].list.push({
           name: value.name, // 歌单名字
@@ -102,7 +117,7 @@ Page({
     });
   },
 
-  editLabel: function(event) { // 编辑标签
+  editLabel: function (event) { // 编辑标签
     const that = this;
     let {
       id,
@@ -118,10 +133,10 @@ Page({
       return false;
     } else if (id == '-1') { // 删除
       index ? mytabs.splice(index, 1) : '';
-      util.showToast('删除成功', 'success');
+      apiwx.showToast('删除成功', 'success');
     } else { // 增加
       if (mytabs.length >= 8) {
-        util.showToast('标签已满');
+        apiwx.showToast('标签已满');
         return false;
       };
       let mytab = {
@@ -130,9 +145,9 @@ Page({
       };
       if (JSON.stringify(mytabs).indexOf(JSON.stringify(mytab)) == -1) {
         mytabs.push(mytab);
-        util.showToast('添加成功', 'success');
+        apiwx.showToast('添加成功', 'success');
       } else {
-        util.showToast('标签已有');
+        apiwx.showToast('标签已有');
       };
     };
     that.setData({
@@ -185,7 +200,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     const that = this;
 
     let {
@@ -194,7 +209,7 @@ Page({
     } = that.data;
 
     // 歌单分类
-    util.getdata('playlist/catlist', function(res) {
+    api.getPlaylistCatlist().then(res => {
       // console.log(res);
       let categories = res.data.categories;
       let sub = res.data.sub;
@@ -218,7 +233,9 @@ Page({
     });
 
     // 歌单列表
-    util.getdata('top/playlist?limit=30', function(res) {
+    api.getTopPlaylist({
+      limit: 30,
+    }).then(res => {
       let {
         mytabs,
       } = that.data;
@@ -243,14 +260,14 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
     const that = this;
     app.initAudio(that);
   },
@@ -258,35 +275,35 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   }
 })

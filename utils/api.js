@@ -1,7 +1,7 @@
 /**
  * @Author: Gavin
  * @Begin: 2020-07-24 13:56:31
- * @Update: 2020-07-24 13:56:31
+ * @Update: 2020-08-19 16:54:31
  * @Update log: 更新日志
  */
 const apiwx = require("./apiwx");
@@ -12,7 +12,6 @@ const common = require("./common");
 // const API_BASE_URL = "http://192.168.2.113:8088/"
 // const API_BASE_URL = "https://netease.lzcdev.xyz/"
 const API_BASE_URL = "http://localhost:3000/"
-// module.exports = API_BASE_URL
 
 
 /**
@@ -38,21 +37,12 @@ const request = (url, parameter, isShowLoading = true) => {
 module.exports = { // 前缀 => get获取 add修改 pay支付 upload上传 init初始化 delete删除
   // home =====================================
   getBanner: parameter => { // 轮播图
-    /**
-     * @param {Number} type 资源类型。0(PC,默认), 1(android), 2(iphone), 3(ipad)
-     */
     return request("banner", parameter);
   },
   getPersonalized: parameter => { // 推荐歌单
-    /**
-     * @param {Number} limit 取出数量, 默认为30(不支持 offset)。
-     */
     return request("personalized", parameter);
   },
   getTopSong: parameter => { // 新歌速递
-    /**
-     * @param {Number} type 地区类型。0(全部), 7(华语), 96(欧美), 8(日本), 16(韩国)
-     */
     return request("top/song", parameter);
   },
   getAlbumNewest: parameter => { // 新碟上架
@@ -74,7 +64,142 @@ module.exports = { // 前缀 => get获取 add修改 pay支付 upload上传 init�
 
 
 
+
+  getVideoGroup: parameter => { // 
+    return request("video/group", parameter);
+  },
+  getSongUrl: parameter => { // 
+    return request("song/url", parameter);
+  },
+
+
+
+
+  // ranking =====================================
+  getToplistDetail: parameter => { // 排行榜
+    return request("toplist/detail", parameter);
+  },
+
+
+  // list =====================================
+  getPlaylistDetail: parameter => { // 热门推荐列表
+    return request("playlist/detail", parameter);
+  },
+  getAlbum: parameter => { // 专辑
+    return request("album", parameter);
+  },
+  getTopList: parameter => { // 
+    return request("top/list", parameter);
+  },
+
+
+
+
+
+  getLyric: parameter => { // 
+    return request("lyric", parameter);
+  },
+  getMvDetail: parameter => { // 
+    return request("mv/detail", parameter);
+  },
+  getMvUrl: parameter => { // 
+    return request("mv/url", parameter);
+  },
+  getRelatedAllvideo: parameter => { // 相关视频
+    return request("related/allvideo", parameter);
+  },
+  getCommentMv: parameter => { // 最新评论
+    return request("comment/mv", parameter);
+  },
+
+
+
+
+
+
+
+
+  getTopPlaylistHighquality: parameter => { // 
+    return request("top/playlist/highquality", parameter);
+  },
+  getTopPlaylist: parameter => { // 
+    return request("top/playlist", parameter);
+  },
+  getPlaylistCatlist: parameter => { // 
+    return request("playlist/catlist", parameter);
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

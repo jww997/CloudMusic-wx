@@ -1,4 +1,6 @@
 const util = require("./util.js");
+const apiwx = require("./apiwx.js");
+const api = require("./api.js");
 
 module.exports = {
   // --------------------------------- 播放操作
@@ -71,7 +73,7 @@ function togglePlaying(direction = 1) { // 1 next & -1 prev
       playIndex = playlist.length - 1;
     } else {
       playIndex += direction;
-      util.showToast(direction == -1 ? '上一首' : '下一首', 'success');
+      apiwx.showToast(direction == -1 ? '上一首' : '下一首', 'success');
     };
   };
   getSongUrl(playlist[playIndex].id, url => {
@@ -82,7 +84,7 @@ function togglePlaying(direction = 1) { // 1 next & -1 prev
     if (app.globalData.isShowLyric) {
       getLyric.call(that, playlist[playIndex].id);
     };
-    util.setNavigationBarTitle(`${playing.title}-${playing.singer}`);
+    apiwx.setNavigationBarTitle(`${playing.title}-${playing.singer}`);
     that.setData({
       playIndex,
       playing,
@@ -92,7 +94,7 @@ function togglePlaying(direction = 1) { // 1 next & -1 prev
     app.initAudio(that);
   }, () => {
     console.log(`%c跳过成功, %c你该充钱了...`, `color: purple;`, `color: inherit;`);
-    util.vibrateShort();
+    apiwx.vibrateShort();
     app.globalData.playIndex = playIndex;
     setTimeout(() => {
       togglePlaying.call(that, direction);
@@ -183,7 +185,7 @@ function toggleModeIndex(event) {
   } = that.data;
   modeIndex++;
   modeIndex = modeIndex != (modeList.length + 1) ? modeIndex : 1;
-  util.showToast(modeList[modeIndex - 1].name);
+  apiwx.showToast(modeList[modeIndex - 1].name);
   that.setData({
     modeIndex,
   });
@@ -199,26 +201,32 @@ function toggleModeIndex(event) {
 
 // 使用歌单详情接口后,能得到的音乐的id,但不能得到的音乐url,调用此接口,传入的音乐id(可多个,用逗号隔开),可以获取对应的音乐的url(不需要登录)
 // 注:部分用户反馈获取的url会403,hwaphon找到的解决方案是当获取到音乐的id后，将 https://music.163.com/song/media/outer/url?id=id.mp3以src赋予Audio即可播放
-function getSongUrl(songId, resolve, reject) {
-  const that = this;
-  util.getdata('song/url?id=' + songId, res => {
+function getSongUrl(id, resolve, reject) {
+  const api = require("./api.js");
+  api.getSongUrl({
+    id,
+  }).then(res => {
     let url = res.data.data[0].url;
     if (url) {
       resolve && resolve(url);
     } else {
-      util.vibrateShort();
-      util.showToast('你该充钱了');
+      apiwx.vibrateShort();
+      apiwx.showToast('你该充钱了');
       reject && reject();
     };
   });
 }
 
 // 调用此接口,传入音乐id可获得对应音乐的歌词(不需要登录)
-function getLyric(songId, resolve, reject) {
+function getLyric(id, resolve, reject) {
   const that = this;
   const app = getApp();
+  const util = require("./util.js");
+  const api = require("./api.js");
   let content = [];
-  util.getdata(`lyric?id=${songId}`, function (res) {
+  api.getLyric({
+    id,
+  }).then(res => {
     let {
       lrc,
       nolyric,

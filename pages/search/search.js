@@ -1,5 +1,13 @@
+/**
+ * @Author: Gavin
+ * @Begin: 2020-08-19 16:2:21
+ * @Update: 2020-08-19 16:2:21
+ * @Update log: 更新日志
+ */
+const api = require("../../utils/api.js");
 const util = require("../../utils/util.js");
 const common = require("../../utils/common.js");
+const apiwx = require("../../utils/apiwx.js");
 const app = getApp();
 const backgroundAudioManager = app.globalData.backgroundAudioManager;
 
@@ -127,8 +135,8 @@ Page({
           app.globalData.isShowPlayBar = true;
           app.globalData.isPlayState = true;
         } else {
-          util.vibrateShort();
-          util.showToast('你该充钱了');
+          apiwx.vibrateShort();
+          apiwx.showToast('你该充钱了');
         };
       });
     } else { // 点第二下跳转页面

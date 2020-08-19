@@ -1,5 +1,13 @@
+/**
+ * @Author: Gavin
+ * @Begin: 2020-08-19 15:57:45
+ * @Update: 2020-08-19 15:57:45
+ * @Update log: 更新日志
+ */
+const api = require("../../utils/api.js");
 const util = require("../../utils/util.js");
 const common = require("../../utils/common.js");
+const apiwx = require("../../utils/apiwx.js");
 const app = getApp();
 const backgroundAudioManager = app.globalData.backgroundAudioManager;
 
@@ -19,16 +27,17 @@ Page({
 
   // 局部事件
   dragProgressBar: function(event) { // 拖动进度条
+    const that = this;
     const position = event.detail.value;
     backgroundAudioManager.seek(position);
-    this.setData({
+    that.setData({
       currentTime: util.formatTime(position * 1000), // 进度时长
       sliderValue: position, // 当前滑块值
     });
   },
   fullImage: function(event) { // 长按查看原图
     let current = event.currentTarget.dataset.imgurl;
-    util.previewImage([current]);
+    apiwx.previewImage([current]);
   },
   toggleLyricShow: function(event) { // 显示&隐藏 歌词
     const that = this;
@@ -143,7 +152,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    const that = this;
 
   },
 

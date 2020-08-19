@@ -1,5 +1,13 @@
+/**
+ * @Author: Gavin
+ * @Begin: 2020-08-19 16:2:21
+ * @Update: 2020-08-19 16:2:21
+ * @Update log: 更新日志
+ */
+const api = require("../../utils/api.js");
 const util = require("../../utils/util.js");
 const common = require("../../utils/common.js");
+const apiwx = require("../../utils/apiwx.js");
 const app = getApp();
 const backgroundAudioManager = app.globalData.backgroundAudioManager;
 
@@ -13,13 +21,13 @@ Page({
     } = event.detail.value;
 
     if (!phone && !password) {
-      util.showToast('手机号与密码不能为空');
+      apiwx.showToast('手机号与密码不能为空');
       return false;
     } else if (!phone) {
-      util.showToast('手机号不能为空');
+      apiwx.showToast('手机号不能为空');
       return false;
     } else if (!password) {
-      util.showToast('密码不能为空');
+      apiwx.showToast('密码不能为空');
       return false;
     };
 
@@ -58,7 +66,7 @@ Page({
         })
         util.redirectTo('/pages/home/home');
       } else {
-        util.showToast('用户名或者密码错误');
+        apiwx.showToast('用户名或者密码错误');
       };
     });
   },

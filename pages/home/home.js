@@ -139,7 +139,9 @@ Page({
       //   index,
       // },
     } = that.data;
-    util.getdata(`video/group?id=${id}`, res => {
+    api.getVideoGroup({
+      id,
+    }).then(res => {
       console.log(res);
 
 

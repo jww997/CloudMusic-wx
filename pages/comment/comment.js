@@ -86,7 +86,7 @@ Page({
         comments,
         total,
       } = res.data;
-      util.setNavigationBarTitle(`评论（${total}）`);
+      apiwx.setNavigationBarTitle(`评论（${total}）`);
       let recent = topComments.map(item => {
         return { ...item,
           date: util.formatDate(item.time)

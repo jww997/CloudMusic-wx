@@ -1,5 +1,13 @@
+/**
+ * @Author: Gavin
+ * @Begin: 2020-08-19 13:44:42
+ * @Update: 2020-08-19 13:44:42
+ * @Update log: 更新日志
+ */
+const api = require("../../utils/api.js");
 const util = require("../../utils/util.js");
 const common = require("../../utils/common.js");
+const apiwx = require("../../utils/apiwx.js");
 const app = getApp();
 const backgroundAudioManager = app.globalData.backgroundAudioManager;
 
@@ -13,7 +21,7 @@ Page({
   toggleModeIndex: common.toggleModeIndex, // 播放顺序
 
   // 局部事件
-  toggleSonglistPlaying: function(event) { // 歌单列表切歌
+  toggleSonglistPlaying: function (event) { // 歌单列表切歌
     const that = this;
     let {
       id,
@@ -53,7 +61,7 @@ Page({
       util.navigateTo('../player/player');
     };
   },
-  toggleMessageShow: function(event) {
+  toggleMessageShow: function (event) {
     const that = this;
     let {
       type,
@@ -71,7 +79,7 @@ Page({
         break;
     };
   },
-  saveImage: function(event) { // 保存封面
+  saveImage: function (event) { // 保存封面
     const that = this;
     let {
       songlist: {
@@ -84,7 +92,7 @@ Page({
       console.log(res);
       util.saveImageToPhotosAlbum(res.tempFilePath, res => {
         console.log(res);
-        util.showToast('保存成功');
+        apiwx.showToast('保存成功');
       });
     }, err => {
       if (err.errMsg === "saveImageToPhotosAlbum:fail auth deny") {
@@ -101,6 +109,168 @@ Page({
       }
     });
 
+  },
+  getdata: function () {
+    const that = this;
+    let playing = that.data.playing;
+    let type = that.data.type;
+    apiwx.setNavigationBarTitle(type == 2 ? '专辑' : '歌单');
+    switch (type) { // 1 热门推荐 2 新碟 3 排行榜
+      case '1':
+        api.getPlaylistDetail({
+          id: playing.id,
+        }).then(res => {
+          let {
+            playlist: {
+              id, // 歌单ID
+              coverImgUrl, // 图片地址
+              name, // 歌单名
+              creator, // 主人,对象
+              description, // 简单的介绍文本
+              playCount, // 播放量
+              commentCount, // 评论量
+              shareCount, // 分享量
+              subscribedCount, // 收藏量
+              tracks, // 歌单列表
+              tags, // 标签
+            },
+            privileges,
+          } = res.data;
+
+          tracks = tracks.map((value, index) => { // 包装
+            return {
+              id: value.id, // 歌曲ID
+              mv: value.mv, // 视频ID
+              image: value.al.picUrl, // 图片URL
+              title: value.name, // 歌名
+              singer: value.ar[0].name, // 歌手
+              album: value.al.name, // 专辑
+              exclusive: false, // 独家音乐标识
+              vip: false, // 网易云会员标识
+              sq: privileges[index].maxbr == 999000, // 无损音质标识
+            };
+          });
+
+          that.setData({
+            songlist: {
+              id, // 歌单ID
+              image: coverImgUrl, // 图片地址
+              title: name, // 歌单名
+              writer: creator.nickname, // 歌单主人
+              writerImage: creator.avatarUrl, // 主人头像
+              description: description, // 简单的介绍文本
+              playCount: util.formatPlayCount(playCount), // 播放量
+              commentCount: util.formatPlayCount(commentCount), // 评论量
+              shareCount: util.formatPlayCount(shareCount), // 分享量
+              collectCount: util.formatPlayCount(subscribedCount), // 收藏量
+              list: tracks, // 歌单列表
+              tags, // 标签
+            },
+          });
+          app.globalData.playlist = tracks; // 播放列表
+        });
+
+        break;
+      case '2':
+        api.getAlbum({
+          id: playing.id,
+        }).then(res => {
+          let {
+            album,
+            songs,
+          } = res.data;
+
+          console.log(res.data);
+
+          songs = songs.map(value => { // 包装
+            return {
+              id: value.id, // 歌曲ID
+              mv: value.mv, // 视频ID
+              image: value.al.picUrl, // 图片URL
+              title: value.name, // 歌名
+              singer: value.ar[0].name, // 歌手
+              album: value.al.name, // 专辑
+              exclusive: false, // 独家音乐标识
+              vip: false, // 网易云会员标识
+              sq: value.privilege.maxbr == 999000, // 无损音质标识
+            };
+          });
+
+          that.setData({
+            songlist: {
+              id: album.id, // 专辑ID
+              image: album.picUrl, // 图片地址
+              title: album.name, // 歌单名
+              writer: album.artist.name, // 歌手名
+              writerImage: album.artist.picUrl, // 歌手照片
+              description: album.description, // 简单的介绍文本
+              commentCount: util.formatPlayCount(album.info.commentCount), // 歌单评论次数
+              shareCount: util.formatPlayCount(album.info.shareCount), // 歌单评论次数
+              collectCount: util.formatPlayCount(album.info.likedCount), // 歌单收藏次数
+              list: songs, // 播放列表
+              type: 2,
+            },
+          });
+          app.globalData.playlist = songs; // 歌单列表
+
+        });
+        break;
+      case '3':
+        api.getTopList({
+          id: playing.id,
+        }).then(res => {
+          let {
+            playlist: {
+              id, // 歌单ID
+              coverImgUrl, // 图片地址
+              name, // 歌单名
+              creator, // 主人,对象
+              description, // 简单的介绍文本
+              playCount, // 播放量
+              commentCount, // 评论量
+              shareCount, // 分享量
+              subscribedCount, // 收藏量
+              tracks, // 歌单列表
+              tags, // 标签
+            },
+            privileges,
+          } = res.data;
+
+          tracks = tracks.map((value, index) => { // 包装
+            return {
+              id: value.id, // 歌曲ID
+              mv: value.mv, // 视频ID
+              image: value.al.picUrl, // 图片URL
+              title: value.name, // 歌名
+              singer: value.ar[0].name, // 歌手
+              album: value.al.name, // 专辑
+              exclusive: false, // 独家音乐标识
+              vip: false, // 网易云会员标识
+              sq: privileges[index].maxbr == 999000, // 无损音质标识
+            };
+          });
+
+          that.setData({
+            songlist: {
+              id, // 歌单ID
+              image: coverImgUrl, // 图片地址
+              title: name, // 歌单名
+              writer: creator.nickname, // 歌单主人
+              writerImage: creator.avatarUrl, // 主人头像
+              description: description, // 简单的介绍文本
+              playCount: util.formatPlayCount(playCount), // 播放量
+              commentCount: util.formatPlayCount(commentCount), // 评论量
+              shareCount: util.formatPlayCount(shareCount), // 分享量
+              collectCount: util.formatPlayCount(subscribedCount), // 收藏量
+              list: tracks, // 歌单列表
+              tags, // 标签
+            },
+          });
+          app.globalData.playlist = tracks; // 播放列表
+
+        });
+        break;
+    };
   },
 
   /**
@@ -153,179 +323,29 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     const that = this;
-
-    let id = options.id;
-    let type = options.type != 'undefined' ? options.type : '1';
-
-    util.setNavigationBarTitle(type == 2 ? '专辑' : '歌单');
-    switch (type) { // 1 热门推荐 2 新碟 3 排行榜
-      case '1':
-        util.getdata('playlist/detail?id=' + id, function(res) {
-
-          let {
-            playlist: {
-              id, // 歌单ID
-              coverImgUrl, // 图片地址
-              name, // 歌单名
-              creator, // 主人,对象
-              description, // 简单的介绍文本
-              playCount, // 播放量
-              commentCount, // 评论量
-              shareCount, // 分享量
-              subscribedCount, // 收藏量
-              tracks, // 歌单列表
-              tags, // 标签
-            },
-            privileges,
-          } = res.data;
-
-          tracks = tracks.map((value, index) => { // 包装
-            return {
-              id: value.id, // 歌曲ID
-              mv: value.mv, // 视频ID
-              image: value.al.picUrl, // 图片URL
-              title: value.name, // 歌名
-              singer: value.ar[0].name, // 歌手
-              album: value.al.name, // 专辑
-              exclusive: false, // 独家音乐标识
-              vip: false, // 网易云会员标识
-              sq: privileges[index].maxbr == 999000, // 无损音质标识
-            };
-          });
-
-          that.setData({
-            songlist: {
-              id, // 歌单ID
-              image: coverImgUrl, // 图片地址
-              title: name, // 歌单名
-              writer: creator.nickname, // 歌单主人
-              writerImage: creator.avatarUrl, // 主人头像
-              description: description, // 简单的介绍文本
-              playCount: util.formatPlayCount(playCount), // 播放量
-              commentCount: util.formatPlayCount(commentCount), // 评论量
-              shareCount: util.formatPlayCount(shareCount), // 分享量
-              collectCount: util.formatPlayCount(subscribedCount), // 收藏量
-              list: tracks, // 歌单列表
-              tags, // 标签
-            },
-          });
-          app.globalData.playlist = tracks; // 播放列表
-
-        });
-        break;
-      case '2':
-        util.getdata('album?id=' + id, function(res) {
-
-          let {
-            album,
-            songs,
-          } = res.data;
-
-          console.log(res.data);
-
-          songs = songs.map(value => { // 包装
-            return {
-              id: value.id, // 歌曲ID
-              mv: value.mv, // 视频ID
-              image: value.al.picUrl, // 图片URL
-              title: value.name, // 歌名
-              singer: value.ar[0].name, // 歌手
-              album: value.al.name, // 专辑
-              exclusive: false, // 独家音乐标识
-              vip: false, // 网易云会员标识
-              sq: value.privilege.maxbr == 999000, // 无损音质标识
-            };
-          });
-
-          that.setData({
-            songlist: {
-              id: album.id, // 专辑ID
-              image: album.picUrl, // 图片地址
-              title: album.name, // 歌单名
-              writer: album.artist.name, // 歌手名
-              writerImage: album.artist.picUrl, // 歌手照片
-              description: album.description, // 简单的介绍文本
-              commentCount: util.formatPlayCount(album.info.commentCount), // 歌单评论次数
-              shareCount: util.formatPlayCount(album.info.shareCount), // 歌单评论次数
-              collectCount: util.formatPlayCount(album.info.likedCount), // 歌单收藏次数
-              list: songs, // 播放列表
-              type: 2,
-            },
-          });
-          app.globalData.playlist = songs; // 歌单列表
-
-        });
-        break;
-      case '3':
-        util.getdata('top/list?idx=' + id, function(res) {
-          let {
-            playlist: {
-              id, // 歌单ID
-              coverImgUrl, // 图片地址
-              name, // 歌单名
-              creator, // 主人,对象
-              description, // 简单的介绍文本
-              playCount, // 播放量
-              commentCount, // 评论量
-              shareCount, // 分享量
-              subscribedCount, // 收藏量
-              tracks, // 歌单列表
-              tags, // 标签
-            },
-            privileges,
-          } = res.data;
-
-          tracks = tracks.map((value, index) => { // 包装
-            return {
-              id: value.id, // 歌曲ID
-              mv: value.mv, // 视频ID
-              image: value.al.picUrl, // 图片URL
-              title: value.name, // 歌名
-              singer: value.ar[0].name, // 歌手
-              album: value.al.name, // 专辑
-              exclusive: false, // 独家音乐标识
-              vip: false, // 网易云会员标识
-              sq: privileges[index].maxbr == 999000, // 无损音质标识
-            };
-          });
-
-          that.setData({
-            songlist: {
-              id, // 歌单ID
-              image: coverImgUrl, // 图片地址
-              title: name, // 歌单名
-              writer: creator.nickname, // 歌单主人
-              writerImage: creator.avatarUrl, // 主人头像
-              description: description, // 简单的介绍文本
-              playCount: util.formatPlayCount(playCount), // 播放量
-              commentCount: util.formatPlayCount(commentCount), // 评论量
-              shareCount: util.formatPlayCount(shareCount), // 分享量
-              collectCount: util.formatPlayCount(subscribedCount), // 收藏量
-              list: tracks, // 歌单列表
-              tags, // 标签
-            },
-          });
-          app.globalData.playlist = tracks; // 播放列表
-
-        });
-        break;
-    };
-
+    let playing = that.data.playing;
+    playing.id = options.id;
+    that.setData({
+      playing,
+      type: options.type != 'undefined' ? options.type : '1',
+    });
+    that.getdata();
+    apiwx.hideShareMenu();
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
     const that = this;
     app.initAudio(that);
   },
@@ -333,35 +353,35 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   }
 })
