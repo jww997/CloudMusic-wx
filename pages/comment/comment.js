@@ -1,5 +1,13 @@
+/**
+ * @Author: Gavin
+ * @Begin: 2020-08-20 10:44:8
+ * @Update: 2020-08-20 10:44:8
+ * @Update log: 更新日志
+ */
+const api = require("../../utils/api.js");
 const util = require("../../utils/util.js");
 const common = require("../../utils/common.js");
+const apiwx = require("../../utils/apiwx.js");
 const app = getApp();
 const backgroundAudioManager = app.globalData.backgroundAudioManager;
 
@@ -15,7 +23,7 @@ Page({
   pageScrollTo: util.pageScrollTo(0, 1500), // 返回顶部
 
   // 局部事件
-  onPageScroll: function(event) {
+  onPageScroll: function (event) {
     const that = this;
     util.getSystemInfo(res => {
       if (event.scrollTop > res.screenHeight) {
@@ -48,7 +56,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     const that = this;
     let {
       id,
@@ -79,7 +87,10 @@ Page({
         break;
     };
 
-    util.getdata(`comment/${typeName}?id=${id}`, function(res) {
+    api.getComment({
+      id,
+    }, typeName).then(res => {
+
       let {
         topComments,
         hotComments,
@@ -88,17 +99,20 @@ Page({
       } = res.data;
       apiwx.setNavigationBarTitle(`评论（${total}）`);
       let recent = topComments.map(item => {
-        return { ...item,
+        return {
+          ...item,
           date: util.formatDate(item.time)
         }
       });
       let wonderful = hotComments.map(item => {
-        return { ...item,
+        return {
+          ...item,
           date: util.formatDate(item.time)
         }
       });
       let newest = comments.map(item => {
-        return { ...item,
+        return {
+          ...item,
           date: util.formatDate(item.time)
         }
       });
@@ -119,42 +133,42 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
     const that = this;
     let {
       id,
@@ -165,10 +179,14 @@ Page({
       },
       typeName,
     } = that.data;
-    if (newest.length == total) return false; 
-    util.getdata(`comment/${typeName}?id=${id}&before=${newest[newest.length-1].time}`, function(res) {
+    if (newest.length == total) return false;
+    api.getComment({
+      before: newest[newest.length - 1].time,
+      id,
+    }, typeName).then(res => {
       res.data.comments.map(item => {
-        newest.push({ ...item,
+        newest.push({
+          ...item,
           date: util.formatDate(item.time),
         });
       });
@@ -184,7 +202,7 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   }
 })

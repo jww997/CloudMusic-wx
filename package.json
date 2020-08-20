@@ -1,0 +1,23 @@
+{
+  "name": "cloudmusic-wx",
+  "version": "1.0.0",
+  "description": "仿网易云音乐的微信小程序, API => https://github.com/Binaryify",
+  "main": "app.js",
+  "dependencies": {
+    "@vant/weapp": "^1.4.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jww997/CloudMusic-wx.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jww997/CloudMusic-wx/issues"
+  },
+  "homepage": "https://github.com/jww997/CloudMusic-wx#readme"
+}

@@ -130,11 +130,9 @@ module.exports = { // 前缀 => get获取 add修改 pay支付 upload上传 init�
   },
 
 
-
-
-
-
-
+  getComment: (parameter, port) => { // 
+    return request(`comment/${port}`, parameter);
+  },
 
 
 

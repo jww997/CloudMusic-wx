@@ -6,13 +6,13 @@
 	"setting": {
 		"urlCheck": false,
 		"es6": true,
-		"enhance": false,
+		"enhance": true,
 		"postcss": true,
 		"preloadBackgroundData": false,
 		"minified": true,
 		"newFeature": true,
 		"coverView": true,
-		"nodeModules": false,
+		"nodeModules": true,
 		"autoAudits": false,
 		"showShadowRootInWxmlPanel": true,
 		"scopeDataCheck": false,
@@ -31,7 +31,7 @@
 		"userConfirmedUseCompilerModuleSwitch": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.10.3",
+	"libVersion": "2.12.1",
 	"appid": "wxa129f6d1b3b03912",
 	"projectname": "miniprogram-1",
 	"debugOptions": {
