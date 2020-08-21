@@ -11,10 +11,10 @@ const common = require("./common");
 // const API_BASE_URL = "http://192.168.2.113:3000/"
 // const API_BASE_URL = "http://192.168.2.113:8088/"
 // const API_BASE_URL = "https://netease.lzcdev.xyz/"
-const API_BASE_URL = "http://localhost:3000/"
+// const API_BASE_URL = "http://localhost:3000/"
 
 
-// const API_BASE_URL = "http://49.234.76.196/"
+const API_BASE_URL = "http://49.234.76.196:3000/"
 
 
 /**
