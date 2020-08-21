@@ -1,6 +1,9 @@
 @import "/utils/reset/normalize.wxss";
 @import "/utils/fonts/iconfont.wxss";
 
+
+@import '/miniprogram_npm/weui-miniprogram/weui-wxss/dist/style/weui.wxss';
+
 @import "/template/box/box-template.wxss";
 @import "/template/loading/loading-template.wxss";
 @import "/template/playbar/playbar-template.wxss";

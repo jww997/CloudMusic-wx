@@ -5,95 +5,119 @@
 <!-- 视频 -->
 <view class="mv">
 
-  <video class="mv-video" id="video" src="{{video.url||''}}" autoplay loop></video>
-  <view class="mv-container">
-    <!-- 视频信息 -->
-    <view class="mv-title">{{video.title}}</view>
-    <view class="mv-playCount">{{video.playCount}}次观看</view>
-    <view class="mv-more">
-      <view>{{video.publishTime}} 发布</view>
-      <view wx:if="{{video.description}}">{{video.description}}</view>
-    </view>
-    <view class="mv-menu">
-      <view>
-        <view class="iconfont icon-like"></view>
-        <text>{{video.likeCount}}</text>
-      </view>
-      <view>
-        <view class="iconfont icon-collect"></view>
-        <text>{{video.collectCount}}</text>
-      </view>
-      <view catch:tap="toPages" data-to="comment" data-type="4" data-id="{{video.id}}">
-        <view class="iconfont icon-comment"></view>
-        <text>{{video.commentCount}}</text>
-      </view>
-      <view>
-        <view class="iconfont icon-share"></view>
-        <text>{{video.shareCount}}</text>
-      </view>
-    </view>
-    <view class="mv-hr"></view>
-    <view class="mv-singer">
-      <text>{{video.singer}}</text>
-      <view>+ 收藏</view>
-    </view>
-    <view class="mv-hr"></view>
-    <!-- 相关音乐 -->
-    <view class="mv-relatedMusic wrap">
-      <view>相关音乐</view>
-    </view>
-    <!-- 相关视频 -->
-    <view class="mv-relatedVideo wrap">
-      <view>相关视频</view>
-      <view class="mv-relatedVideo-row" wx:for="{{relatedVideo}}" wx:key="index">
-        <view>
-          <image mode="aspectFill" src="{{item.image}}"></image>
-          <view class="mv-relatedVideo-row-playCount">
-            <text class="iconfont icon-triangle"></text>
-            <text>{{item.playCount}}</text>
-          </view>
-        </view>
-        <view>
-          <text>{{item.title}}</text>
-          <text>{{item.duration}} by {{item.singer}}</text>
-        </view>
-      </view>
-    </view>
-    <view class="mv-hr"></view>
-    <!-- 精彩评论 -->
-    <view class="mv-comment wrap">
-      <view class="mv-comment-title" wx:if="{{hotComment.length}}">精彩评论</view>
-      <view class="mv-comment-row" wx:for="{{hotComment}}" wx:key="index">
-        <image src="{{item.image}}"></image>
-        <view class="mv-comment-row-info">
-          <text>{{item.name}}</text>
-          <text>{{item.time}}</text>
-          <text>{{item.content}}</text>
-        </view>
-        <view class="mv-comment-row-likedCount">
-          <text>{{item.likedCount}} </text>
-          <text class="iconfont icon-like"></text>
-        </view>
-      </view>
-      <view class="mv-comment-title">最新评论</view>
-      <view class="mv-comment-row" wx:for="{{newComment}}" wx:key="index">
-        <image src="{{item.image}}"></image>
-        <view class="mv-comment-row-info">
-          <text>{{item.name}}</text>
-          <text>{{item.time}}</text>
-          <text>{{item.content}}</text>
-        </view>
-        <view class="mv-comment-row-likedCount">
-          <text>{{item.likedCount}} </text>
-          <text class="iconfont icon-like"></text>
-        </view>
-      </view>
+	<video class="mv-video" id="video" src="{{video.url||''}}" autoplay loop danmu-list="{{danmuList}}" enable-danmu danmu-btn show-center-play-btn='{{false}}' show-play-btn="{{true}}" controls picture-in-picture-mode="{{['push', 'pop']}}" bindenterpictureinpicture='bindVideoEnterPictureInPicture' bindleavepictureinpicture='bindVideoLeavePictureInPicture'></video>
 
 
 
-    </view>
 
 
-  </view>
+
+
+	<view class="page-body">
+		<view class="page-section tc">
+			<video id="myVideo" src="http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400" binderror="videoErrorCallback" danmu-list="{{danmuList}}" enable-danmu danmu-btn show-center-play-btn='{{false}}' show-play-btn="{{true}}" controls picture-in-picture-mode="{{['push', 'pop']}}" bindenterpictureinpicture='bindVideoEnterPictureInPicture' bindleavepictureinpicture='bindVideoLeavePictureInPicture'></video>
+			<!-- <view style="margin: 30rpx auto" class="weui-label">弹幕内容</view>
+			<input bindblur="bindInputBlur" class="weui-input" type="text" placeholder="在此处输入弹幕内容" />
+			<button style="margin: 30rpx auto" bindtap="bindSendDanmu" class="page-body-button" type="primary" formType="submit">发送弹幕</button>
+			<navigator style="margin: 30rpx auto" url="picture-in-picture" hover-class="other-navigator-hover">
+				<button type="primary" class="page-body-button" bindtap="bindPlayVideo">小窗模式</button>
+			</navigator> -->
+		</view>
+	</view>
+
+
+
+
+
+
+	<view class="mv-container">
+		<!-- 视频信息 -->
+		<view class="mv-title">{{video.title}}</view>
+		<view class="mv-playCount">{{video.playCount}}次观看</view>
+		<view class="mv-more">
+			<view>{{video.publishTime}} 发布</view>
+			<view wx:if="{{video.description}}">{{video.description}}</view>
+		</view>
+		<view class="mv-menu">
+			<view>
+				<view class="iconfont icon-like"></view>
+				<text>{{video.likeCount}}</text>
+			</view>
+			<view>
+				<view class="iconfont icon-collect"></view>
+				<text>{{video.collectCount}}</text>
+			</view>
+			<view catch:tap="toPages" data-to="comment" data-type="4" data-id="{{video.id}}">
+				<view class="iconfont icon-comment"></view>
+				<text>{{video.commentCount}}</text>
+			</view>
+			<view>
+				<view class="iconfont icon-share"></view>
+				<text>{{video.shareCount}}</text>
+			</view>
+		</view>
+		<view class="mv-hr"></view>
+		<view class="mv-singer">
+			<text>{{video.singer}}</text>
+			<view>+ 收藏</view>
+		</view>
+		<view class="mv-hr"></view>
+		<!-- 相关音乐 -->
+		<view class="mv-relatedMusic wrap">
+			<view>相关音乐</view>
+		</view>
+		<!-- 相关视频 -->
+		<view class="mv-relatedVideo wrap">
+			<view>相关视频</view>
+			<view class="mv-relatedVideo-row" wx:for="{{relatedVideo}}" wx:key="index">
+				<view>
+					<image mode="aspectFill" src="{{item.image}}"></image>
+					<view class="mv-relatedVideo-row-playCount">
+						<text class="iconfont icon-triangle"></text>
+						<text>{{item.playCount}}</text>
+					</view>
+				</view>
+				<view>
+					<text>{{item.title}}</text>
+					<text>{{item.duration}} by {{item.singer}}</text>
+				</view>
+			</view>
+		</view>
+		<view class="mv-hr"></view>
+		<!-- 精彩评论 -->
+		<view class="mv-comment wrap">
+			<view class="mv-comment-title" wx:if="{{hotComment.length}}">精彩评论</view>
+			<view class="mv-comment-row" wx:for="{{hotComment}}" wx:key="index">
+				<image src="{{item.image}}"></image>
+				<view class="mv-comment-row-info">
+					<text>{{item.name}}</text>
+					<text>{{item.time}}</text>
+					<text>{{item.content}}</text>
+				</view>
+				<view class="mv-comment-row-likedCount">
+					<text>{{item.likedCount}} </text>
+					<text class="iconfont icon-like"></text>
+				</view>
+			</view>
+			<view class="mv-comment-title">最新评论</view>
+			<view class="mv-comment-row" wx:for="{{newComment}}" wx:key="index">
+				<image src="{{item.image}}"></image>
+				<view class="mv-comment-row-info">
+					<text>{{item.name}}</text>
+					<text>{{item.time}}</text>
+					<text>{{item.content}}</text>
+				</view>
+				<view class="mv-comment-row-likedCount">
+					<text>{{item.likedCount}} </text>
+					<text class="iconfont icon-like"></text>
+				</view>
+			</view>
+
+
+
+		</view>
+
+
+	</view>
 
 </view>

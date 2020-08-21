@@ -4,7 +4,8 @@
   "description": "仿网易云音乐的微信小程序, API => https://github.com/Binaryify",
   "main": "app.js",
   "dependencies": {
-    "@vant/weapp": "^1.4.4"
+    "@vant/weapp": "^1.4.4",
+    "weui-miniprogram": "^1.0.4"
   },
   "devDependencies": {},
   "scripts": {
@@ -19,5 +20,9 @@
   "bugs": {
     "url": "https://github.com/jww997/CloudMusic-wx/issues"
   },
-  "homepage": "https://github.com/jww997/CloudMusic-wx#readme"
+  "homepage": "https://github.com/jww997/CloudMusic-wx#readme",
+  "useExtendedLib": {
+    "kbone": true,
+    "weui": true
+  }
 }

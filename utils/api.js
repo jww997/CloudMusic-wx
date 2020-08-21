@@ -14,6 +14,9 @@ const common = require("./common");
 const API_BASE_URL = "http://localhost:3000/"
 
 
+// const API_BASE_URL = "http://49.234.76.196/"
+
+
 /**
  * 发起 HTTPS 网络请求
  * @param {String} url 开发者服务器接口地址

@@ -7,6 +7,9 @@
 
 <!-- 首页 -->
 <view class="home">
+	<!-- <mp-dialog title="test" show="{{true}}" bindbuttontap="tapDialogButton" buttons="{{[{text: '取消'}, {text: '确认'}]}}">
+		<view>test content</view>
+	</mp-dialog> -->
 
 	<!-- 登录侧边栏 -->
 	<view class="sidebar-wrap">
