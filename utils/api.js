@@ -139,8 +139,17 @@ module.exports = { // 前缀 => get获取 add修改 pay支付 upload上传 init�
 
 
 
+  getLoginCellphone: parameter => { // 手机号登录
+    return request(`login/cellphone`, parameter);
+  },
 
 
+
+
+
+  getRecommendResource: parameter => { // 每日推荐歌单 ( 需要登录 )
+    return request(`recommend/resource`, parameter);
+  },
 
 
 

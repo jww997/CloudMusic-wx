@@ -14,7 +14,7 @@ const backgroundAudioManager = app.globalData.backgroundAudioManager;
 Page({
 
   // 监听事件
-  formSubmit: function(event) { // 提交表单
+  formSubmit: function (event) { // 提交表单
     let {
       phone,
       password,
@@ -34,8 +34,14 @@ Page({
     console.log(phone);
     console.log(password);
 
-    util.getdata(`login/cellphone?phone=${phone}&password=${password}`, function(res) {
-      console.log(res);
+
+    api.getLoginCellphone({
+      phone,
+      password,
+    }).then(res => {
+
+      // util.getdata(`login/cellphone?phone=${phone}&password=${password}`, function(res) {
+      //   console.log(res);
       if (res.data.code == 200) {
         console.log('登录成功');
         console.log(res);
@@ -64,18 +70,22 @@ Page({
           key: "account",
           data: account
         })
-        util.redirectTo('/pages/home/home');
+        // util.redirectTo('/pages/home/home');
+
+        api.getRecommendResource({
+          cookie: res.data.cookie,
+        });
       } else {
         apiwx.showToast('用户名或者密码错误');
       };
     });
   },
-  getCaptcha: function() { // 发送验证码
+  getCaptcha: function () { // 发送验证码
     let that = this;
     let phone = that.data.phone;
     if (!phone) return;
     console.log(phone);
-    util.getdata('captcha/sent?phone=' + phone, function(res) {
+    util.getdata('captcha/sent?phone=' + phone, function (res) {
       console.log(res);
     });
 
@@ -91,7 +101,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     const that = this;
 
   },
@@ -99,49 +109,49 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   }
 })

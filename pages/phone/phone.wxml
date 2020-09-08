@@ -9,10 +9,10 @@
   <form bindsubmit="formSubmit">
     <view class="phone-input phone-input">
       <text>+86</text>
-      <input placeholder="请输入手机号" type="number" maxlength="11" name="phone"></input>
+      <input placeholder="请输入手机号" type="number" maxlength="11" name="phone" value="15812811722"></input>
     </view>
     <view class="phone-input password-input">
-      <input placeholder="请输入密码" password="true" name="password"></input>
+      <input placeholder="请输入密码" password="true" name="password" value="MI15812811722"></input>
       <text>忘记密码？</text>
     </view>
     <!-- <view class="phone-button" catch:tap="getCaptcha">下一步</view> -->

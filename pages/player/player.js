@@ -19,14 +19,14 @@ Page({
   togglePlayingState: common.togglePlayingState, // 播放状态
   togglePlayingListShow: common.togglePlayingListShow, // 播放列表显示
   toggleModeIndex: common.toggleModeIndex, // 播放顺序
-  togglePlaying: function(event) { // 上一首&下一首
+  togglePlaying: function (event) { // 上一首&下一首
     const that = this;
     let id = parseInt(event.currentTarget.dataset.id);
     common.togglePlaying.call(that, id);
   },
 
   // 局部事件
-  dragProgressBar: function(event) { // 拖动进度条
+  dragProgressBar: function (event) { // 拖动进度条
     const that = this;
     const position = event.detail.value;
     backgroundAudioManager.seek(position);
@@ -35,11 +35,11 @@ Page({
       sliderValue: position, // 当前滑块值
     });
   },
-  fullImage: function(event) { // 长按查看原图
+  fullImage: function (event) { // 长按查看原图
     let current = event.currentTarget.dataset.imgurl;
-    apiwx.previewImage([current]);
+    apiwx.previewImage(current, [current]);
   },
-  toggleLyricShow: function(event) { // 显示&隐藏 歌词
+  toggleLyricShow: function (event) { // 显示&隐藏 歌词
     const that = this;
     let {
       isGetedLyric,
@@ -70,7 +70,7 @@ Page({
     };
 
   },
-  setTimer: function(event) {
+  setTimer: function (event) {
     return setInterval(() => {
       const that = this;
       console.log(`%c倒计时开始`, `color: green`);
@@ -95,7 +95,7 @@ Page({
       app.globalData.lyric = lyric;
     }, 1000);
   },
-  clearTimer: function(event) {
+  clearTimer: function (event) {
     const that = this;
     let {
       lyric: {
@@ -151,25 +151,25 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
 
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
     const that = this;
     app.initAudio(that);
 
-    backgroundAudioManager.onTimeUpdate(function() {
+    backgroundAudioManager.onTimeUpdate(function () {
       that.setData({
         currentTime: util.formatTime(backgroundAudioManager.currentTime * 1000), // 进度时长
         duration: util.formatTime(backgroundAudioManager.duration * 1000), // 总时长
@@ -182,7 +182,7 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
     const that = this;
     that.clearTimer.call(that);
   },
@@ -190,7 +190,7 @@ Page({
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
     const that = this;
     that.clearTimer.call(that);
     that.setData({
@@ -201,27 +201,27 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   },
 
 
 
-  onStartLyric: function(event) { // 开始拖动歌词
+  onStartLyric: function (event) { // 开始拖动歌词
     const that = this;
     let {
       curLrcStartHeight
@@ -234,7 +234,7 @@ Page({
     });
 
   },
-  onMoveLyric: function(event) { // 正在拖动歌词
+  onMoveLyric: function (event) { // 正在拖动歌词
 
     const that = this;
     let {
@@ -250,7 +250,7 @@ Page({
 
 
   },
-  onEndLyric: function(event) { // 结束拖动歌词
+  onEndLyric: function (event) { // 结束拖动歌词
     const that = this;
     let {
       curLrcScrolledHeight
@@ -258,7 +258,7 @@ Page({
 
     let clientY = event.changedTouches[0].clientY;
 
-    setTimeout(function() {
+    setTimeout(function () {
       that.setData({
         isScrollLyric: false,
         curLrcStartHeight: clientY
