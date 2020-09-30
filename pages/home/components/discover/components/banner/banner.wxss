@@ -1,0 +1,45 @@
+.container {
+  height: 250rpx;
+  position: relative;
+}
+
+.container::before {
+  content: "";
+  width: 100%;
+  height: 50%;
+  background-color: #f00;
+  position: absolute;
+}
+
+.container swiper {
+  height: 100%;
+}
+
+.container swiper-item {
+  box-sizing: border-box;
+  padding: 0 45rpx;
+}
+
+.container .container-item {
+  height: 100%;
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+}
+
+.container image:first-child {
+  width: 100%;
+  height: 100%;
+}
+
+.container view:nth-child(2) {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: #f00;
+  border-radius: 5px 0 0 0;
+  font-size: 22rpx;
+  color: #fff;
+  padding: 5rpx 10rpx;
+  opacity: .8;
+}

@@ -1,0 +1,9 @@
+{
+  "component": true,
+  "usingComponents": {
+    "banner": "components/banner/banner",
+    "menu": "components/menu/menu",
+    "recommend": "components/recommend/recommend",
+    "fresh": "components/fresh/fresh"
+  }
+}

@@ -24,6 +24,9 @@ const API_BASE_URL = "http://49.234.76.196:3000/"
  * @param {Boolean} isShowLoading 是否展示加载中提示
  */
 const request = (url, parameter, isShowLoading = true) => {
+  let cookie = apiwx.getStorageSync("cookie");
+  parameter && cookie ? parameter.cookie = cookie : "";
+
   console.log(`request =${!isShowLoading? '>': ''} ${url}, parameter = `, parameter);
   return new Promise((resolve, reject) => {
     isShowLoading ? apiwx.showLoading() : '';
@@ -63,6 +66,12 @@ module.exports = { // 前缀 => get获取 add修改 pay支付 upload上传 init�
 
   getHomepageDragonBall: parameter => { // APP首页圆形图标入口列表
     return request("homepage/dragon/ball", parameter);
+  },
+
+
+
+  getHomePersonalFM: parameter => { // 私人 FM( 需要登录 )
+    return request("personal_fm", parameter);
   },
 
 
@@ -159,6 +168,22 @@ module.exports = { // 前缀 => get获取 add修改 pay支付 upload上传 init�
 
 
 
+
+
+
+
+
+
+  
+
+
+  getUserDetail: parameter => {
+    return request(`user/detail`, parameter);
+    /**
+     * 登陆后调用此接口 , 传入用户 id, 可以获取用户详情
+     * @param {Number} uid 用户 id
+     */
+  },
 }
 
 

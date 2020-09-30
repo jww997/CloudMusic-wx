@@ -1,147 +1,151 @@
 {
-	"description": "项目配置文件",
-	"packOptions": {
-		"ignore": []
-	},
-	"setting": {
-		"urlCheck": false,
-		"es6": true,
-		"enhance": true,
-		"postcss": true,
-		"preloadBackgroundData": false,
-		"minified": true,
-		"newFeature": true,
-		"coverView": true,
-		"nodeModules": true,
-		"autoAudits": false,
-		"showShadowRootInWxmlPanel": true,
-		"scopeDataCheck": false,
-		"uglifyFileName": false,
-		"checkInvalidKey": true,
-		"checkSiteMap": true,
-		"uploadWithSourceMap": true,
-		"compileHotReLoad": false,
-		"babelSetting": {
-			"ignore": [],
-			"disablePlugins": [],
-			"outputPath": ""
-		},
-		"useIsolateContext": true,
-		"useCompilerModule": false,
-		"userConfirmedUseCompilerModuleSwitch": false
-	},
-	"compileType": "miniprogram",
-	"libVersion": "2.12.1",
-	"appid": "wxa129f6d1b3b03912",
-	"projectname": "miniprogram-1",
-	"debugOptions": {
-		"hidedInDevtools": []
-	},
-	"isGameTourist": false,
-	"simulatorType": "wechat",
-	"simulatorPluginLibVersion": {},
-	"condition": {
-		"search": {
-			"current": -1,
-			"list": []
-		},
-		"conversation": {
-			"current": -1,
-			"list": []
-		},
-		"plugin": {
-			"current": -1,
-			"list": []
-		},
-		"game": {
-			"currentL": -1,
-			"list": []
-		},
-		"gamePlugin": {
-			"current": -1,
-			"list": []
-		},
-		"miniprogram": {
-			"current": -1,
-			"list": [
-				{
-					"id": -1,
-					"name": "pages/square/square",
-					"pathName": "pages/square/square",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/index/index",
-					"pathName": "pages/index/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 2,
-					"name": "pages/list/list",
-					"pathName": "pages/list/list",
-					"query": "id= 240934246",
-					"scene": null
-				},
-				{
-					"id": 3,
-					"name": "pages/player/player",
-					"pathName": "pages/player/player",
-					"query": "id=1406003612",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/search/search",
-					"pathName": "pages/search/search",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/ranking/ranking",
-					"pathName": "pages/ranking/ranking",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 6,
-					"name": "pages/mv/mv",
-					"pathName": "pages/mv/mv",
-					"query": "id=10952202",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/radioStation/radioStation",
-					"pathName": "pages/radioStation/radioStation",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/login/login",
-					"pathName": "pages/login/login",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/phone/phone",
-					"pathName": "pages/phone/phone",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 10,
-					"name": "pages/comment/comment",
-					"pathName": "pages/comment/comment",
-					"query": "id=1436150979",
-					"scene": null
-				}
-			]
-		}
-	}
+  "description": "项目配置文件",
+  "packOptions": {
+    "ignore": []
+  },
+  "setting": {
+    "urlCheck": false,
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "preloadBackgroundData": false,
+    "minified": true,
+    "newFeature": true,
+    "coverView": true,
+    "nodeModules": true,
+    "autoAudits": false,
+    "showShadowRootInWxmlPanel": true,
+    "scopeDataCheck": false,
+    "uglifyFileName": false,
+    "checkInvalidKey": true,
+    "checkSiteMap": true,
+    "uploadWithSourceMap": true,
+    "compileHotReLoad": false,
+    "useMultiFrameRuntime": false,
+    "useApiHook": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "useIsolateContext": true,
+    "useCompilerModule": true,
+    "userConfirmedUseCompilerModuleSwitch": false,
+    "packNpmManually": false,
+    "packNpmRelationList": []
+  },
+  "compileType": "miniprogram",
+  "libVersion": "2.12.1",
+  "appid": "wxa129f6d1b3b03912",
+  "projectname": "miniprogram-1",
+  "debugOptions": {
+    "hidedInDevtools": []
+  },
+  "isGameTourist": false,
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
+  "condition": {
+    "search": {
+      "current": -1,
+      "list": []
+    },
+    "conversation": {
+      "current": -1,
+      "list": []
+    },
+    "plugin": {
+      "current": -1,
+      "list": []
+    },
+    "game": {
+      "currentL": -1,
+      "list": []
+    },
+    "gamePlugin": {
+      "current": -1,
+      "list": []
+    },
+    "miniprogram": {
+      "current": -1,
+      "list": [
+        {
+          "id": -1,
+          "name": "pages/square/square",
+          "pathName": "pages/square/square",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/index/index",
+          "pathName": "pages/index/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 2,
+          "name": "pages/list/list",
+          "pathName": "pages/list/list",
+          "query": "id= 240934246",
+          "scene": null
+        },
+        {
+          "id": 3,
+          "name": "pages/player/player",
+          "pathName": "pages/player/player",
+          "query": "id=1406003612",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/search/search",
+          "pathName": "pages/search/search",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/ranking/ranking",
+          "pathName": "pages/ranking/ranking",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 6,
+          "name": "pages/mv/mv",
+          "pathName": "pages/mv/mv",
+          "query": "id=10952202",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/radioStation/radioStation",
+          "pathName": "pages/radioStation/radioStation",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/login/login",
+          "pathName": "pages/login/login",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/phone/phone",
+          "pathName": "pages/phone/phone",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 10,
+          "name": "pages/comment/comment",
+          "pathName": "pages/comment/comment",
+          "query": "id=1436150979",
+          "scene": null
+        }
+      ]
+    }
+  }
 }

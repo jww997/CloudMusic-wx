@@ -1,0 +1,12 @@
+<view class="container">
+
+  <swiper autoplay circular indicator-dots circularindicator-active-color="#f00">
+    <swiper-item wx:for="{{list}}" wx:key="index">
+      <view class="container-item">
+        <image mode="scaleToFill" lazy-load="true" src="{{item.imageUrl}}" />
+        <view style="background-color: {{item.titleColor}}">{{item.typeTitle}}</view>
+      </view>
+    </swiper-item>
+  </swiper>
+
+</view>

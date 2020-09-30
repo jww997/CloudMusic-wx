@@ -40,41 +40,11 @@ Page({
       password,
     }).then(res => {
 
-      // util.getdata(`login/cellphone?phone=${phone}&password=${password}`, function(res) {
-      //   console.log(res);
       if (res.data.code == 200) {
-        console.log('登录成功');
-        console.log(res);
-        let {
-          account: {
-            id,
-          },
-          profile: {
-            nickname,
-            signature,
-            avatarUrl,
-            backgroundUrl,
-          },
-          token,
-        } = res.data;
-        let account = {
-          id,
-          nickname,
-          signature, // 个人签名
-          avatarUrl, // 头像
-          backgroundUrl,
-          token,
-        };
-        app.globalData.account = account;
-        wx.setStorage({
-          key: "account",
-          data: account
-        })
-        // util.redirectTo('/pages/home/home');
-
-        api.getRecommendResource({
-          cookie: res.data.cookie,
-        });
+        
+        apiwx.setStorageSync("account", res.data.account);
+        apiwx.setStorageSync("cookie", res.data.cookie);
+        util.redirectTo(`/pages/home/home?index=0`);
       } else {
         apiwx.showToast('用户名或者密码错误');
       };

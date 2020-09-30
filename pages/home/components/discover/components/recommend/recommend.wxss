@@ -1,0 +1,47 @@
+@import "/app.wxss";
+
+.container .recommend,
+.container .fresh {
+  margin-top: 10rpx;
+}
+
+.container .recommend>view,
+.container .fresh>view {
+  padding: 0 45rpx;
+}
+
+.container .recommend-title,
+.container .fresh-title {
+  font-size: 20rpx;
+  color: #aaa;
+}
+
+.container .recommend-subtitle,
+.container .fresh-subtitle {
+  font-size: 28rpx;
+  font-weight: bold;
+}
+
+.container .recommend-more,
+.container .fresh-more {
+  float: right;
+  height: 32rpx;
+  line-height: 32rpx;
+  margin-top: 5rpx;
+  padding: 0 15rpx;
+  font-size: 22rpx;
+  border-radius: 15px;
+  border: 1px solid #aaa;
+}
+
+.container .recommend-swiper {
+  width: 100%;
+  height: 300rpx;
+  padding-top: 20rpx;
+  overflow: visible;
+}
+
+.container .recommend-swiper-item {
+  padding: 0 15rpx;
+  box-sizing: border-box;
+}

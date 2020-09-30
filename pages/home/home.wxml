@@ -3,7 +3,8 @@
 <import src="/template/playbar/playbar-template.wxml" />
 
 <!-- 底部播放栏 -->
-<template is="playbarTemplate" data="{{isShowPlayBar, isShowPlaylist, isPlayState, playing, playlist, modeIndex, modeList}}" />
+<template is="playbarTemplate"
+	data="{{isShowPlayBar, isShowPlaylist, isPlayState, playing, playlist, modeIndex, modeList}}" />
 
 <!-- 首页 -->
 <view class="home">
@@ -26,10 +27,14 @@
 	</view>
 	<!-- 顶部工具栏 -->
 	<view class="toolbar">
-		<text class="{{homeSwiperIndex==0?'toolbar-item-active':''}}" catch:tap="toggleHomeSwiperIndex" data-id="0">我的</text>
-		<text class="{{homeSwiperIndex==1?'toolbar-item-active':''}}" catch:tap="toggleHomeSwiperIndex" data-id="1">发现</text>
-		<text class="{{homeSwiperIndex==2?'toolbar-item-active':''}}" catch:tap="toggleHomeSwiperIndex" data-id="2">云村</text>
-		<text class="{{homeSwiperIndex==3?'toolbar-item-active':''}}" catch:tap="toggleHomeSwiperIndex" data-id="3">视频</text>
+		<text class="{{homeSwiperIndex==0?'toolbar-item-active':''}}" catch:tap="toggleHomeSwiperIndex"
+			data-id="0">我的</text>
+		<text class="{{homeSwiperIndex==1?'toolbar-item-active':''}}" catch:tap="toggleHomeSwiperIndex"
+			data-id="1">发现</text>
+		<text class="{{homeSwiperIndex==2?'toolbar-item-active':''}}" catch:tap="toggleHomeSwiperIndex"
+			data-id="2">云村</text>
+		<text class="{{homeSwiperIndex==3?'toolbar-item-active':''}}" catch:tap="toggleHomeSwiperIndex"
+			data-id="3">视频</text>
 
 		<view class="iconfont icon-sidebar"></view>
 		<view class="iconfont icon-search" catch:tap="toPages" data-to="search"></view>
@@ -38,118 +43,39 @@
 	<swiper class="container" current="{{homeSwiperIndex}}" catch:change="toggleHomeSwiperIndex">
 		<!-- 我的 -->
 		<swiper-item class="mine">
-			我的(待开发)
-			<scroll-view style="background-image: url('{{account.backgroundUrl}}');">
+			<scroll-view style="background-image: url('{{mine.profile.backgroundUrl}}');">
 
-        <view class="person">
-          <image src="{{account.avatarUrl}}" lazy-load="true" catch:tap="toPages" data-to="login"></image>
-          <view class="identity">
-            <view>{{account.nickname}}</view>
-            <view></view>
-          </view>
-          <view class="member">进入会员中心 ></view>
-        </view>
-
-
-        <view class="menu-items">
-          <block wx:for="{{mine.menus}}" wx:key="index">
-            <view class="menu-item">
-              <view class="iconfont {{item.iconClass}}"></view>
-              <text>{{item.name}}</text>
-            </view>
-          </block>
-        </view>
-
-        <view class="box">
-
-        </view>
-      </scroll-view>
-		</swiper-item>
-		<!-- 发现 -->
-		<swiper-item class="discover">
-			<scroll-view style="height: 100%;" scroll-y="true">
-				<!-- 轮播图 -->
-				<view class="banner">
-					<swiper indicator-active-color="#f00" autoplay indicator-dots circular>
-						<swiper-item wx:for="{{discover.banners}}" wx:key="index">
-							<view class="banner-item">
-								<image mode="scaleToFill" lazy-load="true" src="{{item.imageUrl}}" />
-								<view class="banner-title" style="background-color: {{item.titleColor}}">{{item.typeTitle}}</view>
-							</view>
-						</swiper-item>
-					</swiper>
+				<view class="person">
+					<image src="{{mine.profile.avatarUrl}}" lazy-load="true" catch:tap="toPages" data-to="login"></image>
+					<view class="identity">
+						<view>{{mine.profile.nickname}}</view>
+						<view></view>
+					</view>
+					<view class="member">进入会员中心 ></view>
 				</view>
-				<!-- 菜单栏 -->
+
+
 				<view class="menu-items">
-					<block wx:for="{{discover.menus}}" wx:key="index">
+					<block wx:for="{{mine.menus}}" wx:key="index">
 						<view class="menu-item">
-							<view class="iconfont {{item.iconClass}}" catch:tap="toPages" data-to="{{item.dataTo}}"></view>
+							<view class="iconfont {{item.iconClass}}"></view>
 							<text>{{item.name}}</text>
 						</view>
 					</block>
 				</view>
-				<!-- 分割线 -->
-				<view class="hr"></view>
-				<!-- 推荐歌单 -->
-				<view class="recommend">
-					<view>
-						<text class="recommend-title">推荐歌单</text>
-					</view>
-					<view>
-						<text class="recommend-subtitle">为你精挑细选</text>
-						<buttom class="recommend-more" catch:tap="toPages" data-to="square">查看更多</buttom>
-					</view>
-					<template is="loadingTemplate" wx:if="{{!discover.recommends.length}}" />
-					<block wx:else>
-						<swiper class="recommend-swiper" display-multiple-items="3" previous-margin="15" next-margin="15">
-							<swiper-item class="recommend-swiper-item" wx:for="{{discover.recommends}}" wx:key="index" catch:tap="toPages" data-to="list" data-id="{{item.id}}">
-								<template is="boxTemplate" data="{{name: item.name, picUrl: item.picUrl, playCount: item.playCount}}" />
-							</swiper-item>
-						</swiper>
-					</block>
-				</view>
-				<!-- 新碟&新歌 -->
-				<view class="fresh {{isShowPlayBar?'padding-bottom':''}}">
-					<view class="fresh-title">{{discover.fresh.date}}</view>
-					<view>
-						<text class="fresh-subtitle {{discoverFreshIndex == 1?'fresh-subtitle-active': ''}}" catch:tap="toggleDiscoverFreshIndex" data-id="1">新歌</text>
-						<text class="fresh-subtitle {{discoverFreshIndex == 2?'fresh-subtitle-active': ''}}" catch:tap="toggleDiscoverFreshIndex" data-id="2">新碟</text>
-						<buttom class="fresh-more">更多新{{discoverFreshIndex == 1?'歌': '碟'}}</buttom>
-					</view>
-					<template is="loadingTemplate" wx:if="{{!discover.fresh.newSongs.length&&discoverFreshIndex == 1}}" />
-					<swiper class="fresh-swiper" wx:elif="{{discoverFreshIndex == 1}}" previous-margin="45rpx" next-margin="20rpx">
-						<swiper-item class="fresh-swiper-item" wx:for="{{discover.fresh.newSongs}}" wx:if="{{index < 4}}" wx:key="index" wx:for-item="i">
-							<view class="fresh-item" hover-class="fresh-item-hover" wx:for="{{i}}" wx:key="index2" wx:for-item="j" wx:for-index="index2" catch:tap="toggleNewSongs" data-id="{{j.id}}" data-index="{{index}}" data-index2="{{index2}}">
-								<image mode="aspectFit" lazy-load="true" src="{{j.image}}"></image>
-								<view>
-									<view>
-										<text>{{j.title}}</text>
-										<text> - {{j.singer}}</text>
-									</view>
-									<view>愣着干什么，摇起来就对了</view>
-								</view>
-								<view class="fresh-playBtn"></view>
-							</view>
-						</swiper-item>
-					</swiper>
-					<template is="loadingTemplate" wx:if="{{!discover.fresh.newDiscs.length&&discoverFreshIndex == 2}}" />
-					<swiper class="fresh-swiper" wx:elif="{{discoverFreshIndex == 2}}" previous-margin="45rpx" next-margin="20rpx">
-						<swiper-item class="fresh-swiper-item" wx:for="{{discover.fresh.newDiscs}}" wx:if="{{index < 4}}" wx:key="index" wx:for-item="i">
-							<view class="fresh-item" hover-class="fresh-item-hover" wx:for="{{i}}" wx:key="index" wx:for-item="j" catch:tap="toPages" data-to="list" data-type="2" data-id="{{j.id}}">
-								<image mode="aspectFit" lazy-load="true" src="{{j.image}}"></image>
-								<view>
-									<view>
-										<text>{{j.title}}</text>
-										<text> - {{j.singer}}</text>
-									</view>
-								</view>
-							</view>
-						</swiper-item>
-					</swiper>
+
+				<view class="box">
+
 				</view>
 			</scroll-view>
 		</swiper-item>
+		<!-- 发现 -->
+		<swiper-item class="discover">
+			<discover discover="{{discover}}"></discover>
+		</swiper-item>
+		<!-- 云村 -->
 		<swiper-item>云村(待开发)</swiper-item>
+		<!-- 视频 -->
 		<swiper-item class="video">
 			视频（需登录开发）
 			<!-- <scroll-view class="video-group" scroll-x="true" enable-flex="true">

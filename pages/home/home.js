@@ -30,6 +30,7 @@ Page({
     that.setData({
       homeSwiperIndex,
     });
+    that.getdata();
   },
   toggleDiscoverFreshIndex: function (event) { // 列表切换[1新碟 2新歌]
     const that = this;
@@ -153,7 +154,40 @@ Page({
       });
     });
   },
+
+  getFM: function () {
+    const that = this;
+    api.getHomePersonalFM();
+  },
+
+
+
+
+
+
   getdata: function () {
+    const that = this;
+    let homeSwiperIndex = that.data.homeSwiperIndex;
+    if (homeSwiperIndex == 0) {
+      that.gatMine();
+    } else if (homeSwiperIndex == 1) {
+      that.getDiscover();
+    };
+  },
+  gatMine: function () {
+    const that = this;
+    api.getUserDetail({
+      uid: apiwx.getStorageSync("account").id,
+    }).then(res => {
+      that.setData({
+        mine: {
+          menus: that.data.mine.menus,
+          ...res.data,
+        },
+      });
+    });
+  },
+  getDiscover: function () {
     const that = this;
     let discover = that.data.discover;
     api.getBanner().then(res => { // 轮播图
@@ -163,7 +197,7 @@ Page({
       res.data.result.forEach(item => {
         item.playCount = util.formatPlayCount(item.playCount);
       });
-      discover.recommends = res.data.result;
+      discover.recommend = res.data.result;
       return api.getTopSong(); // 新歌速递
     }).then(res => {
       let arr = new Array();
@@ -181,6 +215,7 @@ Page({
       });
     });
   },
+
 
   /**
    * 页面的初始数据
@@ -256,7 +291,7 @@ Page({
         iconClass: 'icon-FM',
         dataTo: '',
       }], // 菜单栏
-      recommends: [], // 推荐歌单
+      recommend: [], // 推荐歌单
       fresh: {
         date: `${new Date().getMonth() + 1}月${new Date().getDate()}日`, // 日期
         newSongs: [], // 新歌 1
@@ -276,15 +311,11 @@ Page({
    */
   onLoad: function (options) {
     const that = this;
-    // wx.getStorage({ // 账户缓存
-    //   key: 'account',
-    //   success(res) {
-    //     that.setData({
-    //       account: res.data,
-    //     });
-    //     app.globalData.account = res.data;
-    //   }
-    // });
+    let index = options.index;
+    index ? that.setData({
+      homeSwiperIndex: options.index,
+    }) : "";
+
     that.getdata();
     apiwx.hideShareMenu();
   },

@@ -1,0 +1,51 @@
+<import src="/template/box/box-template.wxml" />
+<import src="/template/loading/loading-template.wxml" />
+<view class="container">
+
+  <view class="fresh {{isShowPlayBar?'padding-bottom':''}}">
+    <view class="fresh-title">{{soul.date}}</view>
+    <view>
+      <text class="fresh-subtitle {{discoverFreshIndex == 1?'fresh-subtitle-active': ''}}"
+        catch:tap="toggleDiscoverFreshIndex" data-id="1">新歌</text>
+      <text class="fresh-subtitle {{discoverFreshIndex == 2?'fresh-subtitle-active': ''}}"
+        catch:tap="toggleDiscoverFreshIndex" data-id="2">新碟</text>
+      <buttom class="fresh-more">更多新{{discoverFreshIndex == 1?'歌': '碟'}}</buttom>
+    </view>
+    <template is="loadingTemplate" wx:if="{{!soul.newSongs.length&&discoverFreshIndex == 1}}" />
+    <swiper class="fresh-swiper" wx:elif="{{discoverFreshIndex == 1}}" previous-margin="45rpx" next-margin="20rpx">
+      <swiper-item class="fresh-swiper-item" wx:for="{{soul.newSongs}}" wx:if="{{index < 4}}" wx:key="index"
+        wx:for-item="i">
+        <view class="fresh-item" hover-class="fresh-item-hover" wx:for="{{i}}" wx:key="index2" wx:for-item="j"
+          wx:for-index="index2" catch:tap="toggleNewSongs" data-id="{{j.id}}" data-index="{{index}}"
+          data-index2="{{index2}}">
+          <image mode="aspectFit" lazy-load="true" src="{{j.image}}"></image>
+          <view>
+            <view>
+              <text>{{j.title}}</text>
+              <text> - {{j.singer}}</text>
+            </view>
+            <view>愣着干什么，摇起来就对了</view>
+          </view>
+          <view class="fresh-playBtn"></view>
+        </view>
+      </swiper-item>
+    </swiper>
+    <template is="loadingTemplate" wx:if="{{!soul.newDiscs.length&&discoverFreshIndex == 2}}" />
+    <swiper class="fresh-swiper" wx:elif="{{discoverFreshIndex == 2}}" previous-margin="45rpx" next-margin="20rpx">
+      <swiper-item class="fresh-swiper-item" wx:for="{{soul.newDiscs}}" wx:if="{{index < 4}}" wx:key="index"
+        wx:for-item="i">
+        <view class="fresh-item" hover-class="fresh-item-hover" wx:for="{{i}}" wx:key="index" wx:for-item="j"
+          catch:tap="toPages" data-to="list" data-type="2" data-id="{{j.id}}">
+          <image mode="aspectFit" lazy-load="true" src="{{j.image}}"></image>
+          <view>
+            <view>
+              <text>{{j.title}}</text>
+              <text> - {{j.singer}}</text>
+            </view>
+          </view>
+        </view>
+      </swiper-item>
+    </swiper>
+  </view>
+
+</view>

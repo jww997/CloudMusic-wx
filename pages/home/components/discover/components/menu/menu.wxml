@@ -1,0 +1,13 @@
+<view class="container">
+
+  <view class="menu-items">
+    <block wx:for="{{list}}" wx:key="index">
+      <view class="menu-item">
+        <view class="iconfont {{item.iconClass}}" catch:tap="{{index != 4? 'toPages': 'getFM'}}"
+          data-to="{{item.dataTo}}"></view>
+        <text>{{item.name}}</text>
+      </view>
+    </block>
+  </view>
+
+</view>

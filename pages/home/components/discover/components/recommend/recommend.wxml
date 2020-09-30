@@ -1,0 +1,24 @@
+<import src="/template/box/box-template.wxml" />
+<import src="/template/loading/loading-template.wxml" />
+<view class="container">
+
+  <view class="recommend">
+    <view>
+      <text class="recommend-title">推荐歌单</text>
+    </view>
+    <view>
+      <text class="recommend-subtitle">为你精挑细选</text>
+      <buttom class="recommend-more" catch:tap="toPages" data-to="square">查看更多</buttom>
+    </view>
+    <template is="loadingTemplate" wx:if="{{!list.length}}" />
+    <block wx:else>
+      <swiper class="recommend-swiper" display-multiple-items="3" previous-margin="15" next-margin="15">
+        <swiper-item class="recommend-swiper-item" wx:for="{{list}}" wx:key="index" catch:tap="toPages"
+          data-to="list" data-id="{{item.id}}">
+          <template is="boxTemplate" data="{{name: item.name, picUrl: item.picUrl, playCount: item.playCount}}" />
+        </swiper-item>
+      </swiper>
+    </block>
+  </view>
+
+</view>

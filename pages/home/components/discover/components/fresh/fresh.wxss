@@ -1,0 +1,141 @@
+
+
+.container .recommend,
+.container .fresh {
+  margin-top: 10rpx;
+}
+
+.container .recommend>view,
+.container .fresh>view {
+  padding: 0 45rpx;
+}
+
+.container .recommend-title,
+.container .fresh-title {
+  font-size: 20rpx;
+  color: #aaa;
+}
+
+.container .recommend-subtitle,
+.container .fresh-subtitle {
+  font-size: 28rpx;
+  font-weight: bold;
+}
+
+.container .recommend-more,
+.container .fresh-more {
+  float: right;
+  height: 32rpx;
+  line-height: 32rpx;
+  margin-top: 5rpx;
+  padding: 0 15rpx;
+  font-size: 22rpx;
+  border-radius: 15px;
+  border: 1px solid #aaa;
+}
+
+.container .recommend-swiper {
+  width: 100%;
+  height: 300rpx;
+  padding-top: 20rpx;
+  overflow: visible;
+}
+
+.container .recommend-swiper-item {
+  padding: 0 15rpx;
+  box-sizing: border-box;
+}
+
+.container .fresh-subtitle {
+  padding-right: 15rpx;
+  margin-right: 15rpx;
+  border-right: 1px solid #eee;
+  color: #666;
+}
+
+.container .fresh-subtitle.fresh-subtitle-active {
+  color: #000;
+}
+
+.container .fresh-subtitle:nth-child(2) {
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+
+.container .fresh-swiper {
+  height: 350rpx;
+  margin-top: 20rpx;
+}
+
+.container .fresh-item {
+  width: 660rpx;
+  border-radius: 5px;
+  margin-bottom: 15rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.container .fresh-item-hover {
+  background-color: #eee;
+}
+
+.container .fresh-item image {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 5px;
+  background-color: #eee;
+  flex-shrink: 0;
+}
+
+.container .fresh-item>view:nth-child(2) {
+  width: 100%;
+  margin-left: 20rpx;
+  flex-grow: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.container .fresh-item>view view:first-child text:first-child {
+  width: 80%;
+  line-height: 28rpx;
+  font-size: 28rpx;
+}
+
+.container .fresh-item>view view {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.container .fresh-item>view text:last-child,
+.container .fresh-item>view view:nth-child(2) {
+  font-size: 22rpx;
+  color: #666;
+}
+
+.container .fresh-playBtn {
+  flex-shrink: 0;
+  width: 50rpx;
+  height: 50rpx;
+  margin-left: 20rpx;
+  border-radius: 50%;
+  border: 1px solid #eee;
+  position: relative;
+}
+
+.container .fresh-playBtn::after {
+  content: "";
+  width: 0;
+  height: 0;
+  border: 10rpx solid;
+  border-color: transparent transparent transparent #f00;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 12rpx;
+  right: 0;
+  margin: auto;
+}

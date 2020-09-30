@@ -1,0 +1,12 @@
+<view class="container">
+
+  <!-- 轮播 -->
+  <banner list="{{discover.banners}}"></banner>
+  <!-- 菜单 -->
+  <menu list="{{discover.menus}}"></menu>
+  <!-- 推荐歌单 -->
+  <recommend list="{{discover.recommend}}"></recommend>
+  <!-- 新碟新歌 -->
+  <fresh soul="{{discover.fresh}}" isShowPlayBar="{{isShowPlayBar}}" discoverFreshIndex="{{discoverFreshIndex}}"></fresh>
+
+</view>

@@ -1,5 +1,8 @@
 {
   "usingComponents": {
-    "mp-dialog": "/miniprogram_npm/weui-miniprogram/dialog/dialog"
+    "mp-dialog": "/miniprogram_npm/weui-miniprogram/dialog/dialog",
+
+
+    "discover": "components/discover/discover"
   }
 }
